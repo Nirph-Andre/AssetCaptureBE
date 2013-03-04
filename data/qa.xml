@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="1" assertions="1" failures="0" errors="0" time="0.583374">
+    <testsuite name="Application Test Suite" tests="1" assertions="1" failures="0" errors="0" time="0.583374">
+      <testsuite name="Api_AmfTest" file="C:\Apache2\htdocs\Matula\tests\application\Api\AmfTest.php" fullPackage="Api" tests="0" assertions="0" failures="0" errors="0" time="0.000000"/>
+      <testsuite name="Api_DataTest" file="C:\Apache2\htdocs\Matula\tests\application\Api\DataTest.php" fullPackage="Api" tests="0" assertions="0" failures="0" errors="0" time="0.000000"/>
+      <testsuite name="Api_XmlRpcTest" file="C:\Apache2\htdocs\Matula\tests\application\Api\XmlRpcTest.php" fullPackage="Api" tests="0" assertions="0" failures="0" errors="0" time="0.000000"/>
+      <testsuite name="BusinessRule_AgentTest" file="C:\Apache2\htdocs\Matula\tests\application\BusinessRule\AgentTest.php" fullPackage="BusinessRule" tests="0" assertions="0" failures="0" errors="0" time="0.000000"/>
+      <testsuite name="Template_DataTest" file="C:\Apache2\htdocs\Matula\tests\application\Template\DataTest.php" fullPackage="Template" tests="1" assertions="1" failures="0" errors="0" time="0.583374">
+        <testcase name="testPopulateTemplates" class="Template_DataTest" file="C:\Apache2\htdocs\Matula\tests\application\Template\DataTest.php" line="21" assertions="1" time="0.583374"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="Library Test Suite" tests="0" assertions="0" failures="0" errors="0" time="0.000000"/>
+  </testsuite>
+</testsuites>

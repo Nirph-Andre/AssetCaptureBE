@@ -1,0 +1,23 @@
+
+<div class="row-fluid">
+ <div class="span12">
+  <script type="text/x-handlebars">
+    {{#view App.MyView class="handy" tagName="span"}}
+
+{{#with App.person}}
+    {{#if isLoaded}}
+        Hello, {{fullName}}! You were born on {{birthday}} :)
+    {{else}}
+        Loading...
+    {{/if}}
+{{/with}}
+<br/><br/>
+{{view Bootstrap.Forms.TextField valueBinding="App.person.firstName" label="Name" inputClass="input-small"}}
+{{view Bootstrap.Forms.TextField valueBinding="App.person.lastName" label="Surname" placeholder="Surname"}}
+{{view Bootstrap.Forms.DateField valueBinding="App.person.birthday" label="DOB"}}
+
+
+    {{/view}}
+  </script>
+ </div>
+</div>
