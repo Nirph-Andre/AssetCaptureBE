@@ -4,5 +4,5 @@ header('Cache-Control: no-cache, must-revalidate');
 header("Pragma: no-cache");
 header('Content-type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
-echo json_encode('This is my test document!');
+echo json_encode(array('html' => 'This is my test document!'));
 ?>

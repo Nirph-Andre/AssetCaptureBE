@@ -137,6 +137,7 @@ class Struct_Abstract_Controller extends Zend_Controller_Action
 			header('Cache-Control: no-cache, must-revalidate');
 			header("Pragma: no-cache");
 			header('Content-type: application/json; charset=utf-8');
+			header('Access-Control-Allow-Origin: *');
 		}
 		catch(Exception $e) {
 			Struct_Debug::errorLog('jsonResult.Exception', "$e");
@@ -162,6 +163,7 @@ class Struct_Abstract_Controller extends Zend_Controller_Action
 			header('Cache-Control: no-cache, must-revalidate');
 			header("Pragma: no-cache");
 			header('Content-type: application/json; charset=utf-8');
+			header('Access-Control-Allow-Origin: *');
 		}
 		catch(Exception $e) {
 			Struct_Debug::errorLog('jsonNsResult.Exception', "$e");
@@ -187,6 +189,7 @@ class Struct_Abstract_Controller extends Zend_Controller_Action
 			header('Cache-Control: no-cache, must-revalidate');
 			header("Pragma: no-cache");
 			header('Content-type: application/json; charset=utf-8');
+			header('Access-Control-Allow-Origin: *');
 		}
 		catch(Exception $e) {
 			Struct_Debug::errorLog('jsonResult.Exception', "$e");
