@@ -2,7 +2,7 @@
 
 
 #-> Basic configs.
-define('APPLICATION', 'Matula');
+define('APPLICATION', 'QuickAssetCapture');
 
 #-> API configs.
 define('SMS_USERNAME', '');
@@ -29,14 +29,14 @@ switch (getenv('APPLICATION_ENV'))
 		break;
 	case 'staging':
 		$isDev = true;
-		$mailHost = 'mentum.in';
-		$appHost  = 'matula.mentum.in';
+		$mailHost = 'nirphrdp.com';
+		$appHost  = 'qac.nirphrdp.com';
 		$apeHost  = '127.0.0.1:6969';
 		break;
 	default:
 		$isDev = false;
 		$mailHost = 'mentum.in';
-		$appHost  = 'matula.mentum.in';
+		$appHost  = 'qac.mentum.in';
 		$apeHost  = '127.0.0.1:6969';
 		break;
 }

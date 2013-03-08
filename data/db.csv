@@ -1,5 +1,12 @@
 table,field,db type,length,enum values,not null,default,display type,required,custom validation,entry,entry,entry,entry,entry,entry,entry,entry,entry,entry
 ,,,,,,,,,,,,,,,,,,,
+mobile_content,type,VARCHAR,25,,1,,,,,,,,,,,,,,
+,name,VARCHAR,250,,1,,,,,,,,,,,,,,
+,html,TEXT,,,0,,,,,,,,,,,,,,
+,js,TEXT,,,0,,,,,,,,,,,,,,
+,created,DATETIME,,,1,,,,,,,,,,,,,,
+,updated,DATETIME,,,0,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
 contact_request,person_name,VARCHAR,100,,1,,,,,,,,,,,,,,
 ,trading_name,VARCHAR,100,,0,,,,,,,,,,,,,,
 ,email,VARCHAR,255,,0,,,,,,,,,,,,,,

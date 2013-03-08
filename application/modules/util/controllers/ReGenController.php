@@ -13,7 +13,7 @@ class Util_ReGenController extends Zend_Controller_Action
     	$forceRefresh = $this->getRequest()->getParam('force', false);
     	$rebuild = $this->getRequest()->getParam('rebuild', false);
     	
-    	ReGen_Registry::setContext('projectLocation', 'c:\Apache2\htdocs\Matula');
+    	ReGen_Registry::setContext('projectLocation', 'c:\Apache2\htdocs\AssetCaptureBE');
     	ReGen_Registry::setContext('applicationName', 'application');
     	ReGen_Registry::setContext('entityName', 'source');
     	ReGen_Registry::setContext('dataContext', array());

@@ -8,7 +8,7 @@ class Lookup extends Struct_Abstract_AmfService
 
     /**
      * Find existing LibCity entry by id.
-     * 
+     *
      * @param string $authToken
      * @param array $data
      * @return array
@@ -20,7 +20,7 @@ class Lookup extends Struct_Abstract_AmfService
 
     /**
      * key > value list of LibCity entries.
-     * 
+     *
      * @param string $authToken
      * @param array $options
      * @return array
@@ -32,7 +32,7 @@ class Lookup extends Struct_Abstract_AmfService
 
     /**
      * Full data grid of LibCity entries.
-     * 
+     *
      * @param string $authToken
      * @param array $options
      * @return array
@@ -44,7 +44,7 @@ class Lookup extends Struct_Abstract_AmfService
 
     /**
      * Find existing LibRegion entry by id.
-     * 
+     *
      * @param string $authToken
      * @param array $data
      * @return array
@@ -56,7 +56,7 @@ class Lookup extends Struct_Abstract_AmfService
 
     /**
      * key > value list of LibRegion entries.
-     * 
+     *
      * @param string $authToken
      * @param array $options
      * @return array
@@ -68,7 +68,7 @@ class Lookup extends Struct_Abstract_AmfService
 
     /**
      * Full data grid of LibRegion entries.
-     * 
+     *
      * @param string $authToken
      * @param array $options
      * @return array
@@ -80,7 +80,7 @@ class Lookup extends Struct_Abstract_AmfService
 
     /**
      * Find existing LibCountry entry by id.
-     * 
+     *
      * @param string $authToken
      * @param array $data
      * @return array
@@ -92,7 +92,7 @@ class Lookup extends Struct_Abstract_AmfService
 
     /**
      * key > value list of LibCountry entries.
-     * 
+     *
      * @param string $authToken
      * @param array $options
      * @return array
@@ -104,7 +104,7 @@ class Lookup extends Struct_Abstract_AmfService
 
     /**
      * Full data grid of LibCountry entries.
-     * 
+     *
      * @param string $authToken
      * @param array $options
      * @return array

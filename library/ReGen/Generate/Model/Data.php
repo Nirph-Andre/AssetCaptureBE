@@ -51,7 +51,7 @@ class ReGen_Generate_Model_Data extends CodeSource
 		$filter = new Zend_Filter_Word_UnderscoreToCamelCase();
 		
 		#-> Grab csv and chew up first two rows for brekfast.
-		$handle = fopen('c:\Apache2\htdocs\Matula\data\db.csv', "r");
+		$handle = fopen('c:\Apache2\htdocs\AssetCaptureBE\data\db.csv', "r");
 		$data = fgetcsv($handle);
 		$data = fgetcsv($handle);
 		
@@ -947,17 +947,17 @@ App.Validate.$tableName = {";
 				if (strtoupper($meta['DATA_TYPE']) == 'DATETIME'
         				|| strtoupper($meta['DATA_TYPE']) == 'TIMESTAMP')
 				{
-					$flags |= FIELD_UPDATE_DATETIME;
+					$flags |= FIELD_UPDATE_DATETIME|FIELD_INSERT_DATETIME;
 					$readable[] = 'FIELD_UPDATE_DATETIME';
 				}
 				elseif (strtoupper($meta['DATA_TYPE']) == 'DATE')
 				{
-					$flags |= FIELD_UPDATE_DATE;
+					$flags |= FIELD_UPDATE_DATE|FIELD_INSERT_DATE;
 					$readable[] = 'FIELD_UPDATE_DATE';
 				}
 				else
 				{
-					$flags |= FIELD_UPDATE_TIMESTAMP;
+					$flags |= FIELD_UPDATE_TIMESTAMP|FIELD_INSERT_TIMESTAMP;
 					$readable[] = 'FIELD_UPDATE_TIMESTAMP';
 				}
 			}

@@ -1,45 +1,30 @@
 <?php
 
 /**
- * Table model for lib_address
+ * Table model for mobile_content
  */
-class Table_LibAddress extends Struct_Abstract_ModelTable
+class Table_MobileContent extends Struct_Abstract_ModelTable
 {
 
     /**
      * Database table name.
      */
-    protected $_name = 'lib_address';
+    protected $_name = 'mobile_content';
 
     /**
      * Data associations to other tables.
      */
-    protected $_referenceMap = array('LibCity' => array(
-            'columns' => 'lib_city_id',
-            'refTableClass' => 'Table_LibCity',
-            'refColumns' => 'id'
-            ));
+    protected $_referenceMap = array();
 
     /**
      * Tables dependant on this one.
      */
-    protected $_dependentTables = array('lib_contact' => 'Table_LibContact');
+    protected $_dependentTables = array();
 
     /**
      * Data dependancy chain.
      */
-    protected $dependancyChain = array('LibCity' => array(
-            array(
-                'columns' => 'lib_region_id',
-                'refTableClass' => 'Table_LibRegion',
-                'refColumns' => 'id'
-                ),
-            array(
-                'columns' => 'lib_country_id',
-                'refTableClass' => 'Table_LibCountry',
-                'refColumns' => 'id'
-                )
-            ));
+    protected $dependancyChain = array();
 
     /**
      * Field meta data.
@@ -47,7 +32,7 @@ class Table_LibAddress extends Struct_Abstract_ModelTable
     protected $_metadata = array(
         'id' => array(
             'SCHEMA_NAME' => null,
-            'TABLE_NAME' => 'lib_address',
+            'TABLE_NAME' => 'mobile_content',
             'COLUMN_NAME' => 'id',
             'COLUMN_POSITION' => 1,
             'DATA_TYPE' => 'int',
@@ -63,15 +48,15 @@ class Table_LibAddress extends Struct_Abstract_ModelTable
             'FLAGS' => 2051,
             'FLAG_LIST' => 'FIELD_AUTOKEY | FIELD_REQUIRED'
             ),
-        'name' => array(
+        'type' => array(
             'SCHEMA_NAME' => null,
-            'TABLE_NAME' => 'lib_address',
-            'COLUMN_NAME' => 'name',
+            'TABLE_NAME' => 'mobile_content',
+            'COLUMN_NAME' => 'type',
             'COLUMN_POSITION' => 2,
             'DATA_TYPE' => 'varchar',
             'DEFAULT' => null,
             'NULLABLE' => false,
-            'LENGTH' => '50',
+            'LENGTH' => '25',
             'SCALE' => null,
             'PRECISION' => null,
             'UNSIGNED' => null,
@@ -81,32 +66,14 @@ class Table_LibAddress extends Struct_Abstract_ModelTable
             'FLAGS' => 3,
             'FLAG_LIST' => 'FIELD_REQUIRED'
             ),
-        'lib_city_id' => array(
+        'name' => array(
             'SCHEMA_NAME' => null,
-            'TABLE_NAME' => 'lib_address',
-            'COLUMN_NAME' => 'lib_city_id',
+            'TABLE_NAME' => 'mobile_content',
+            'COLUMN_NAME' => 'name',
             'COLUMN_POSITION' => 3,
-            'DATA_TYPE' => 'int',
-            'DEFAULT' => null,
-            'NULLABLE' => false,
-            'LENGTH' => null,
-            'SCALE' => null,
-            'PRECISION' => null,
-            'UNSIGNED' => true,
-            'PRIMARY' => false,
-            'PRIMARY_POSITION' => null,
-            'IDENTITY' => false,
-            'FLAGS' => 3,
-            'FLAG_LIST' => 'FIELD_REQUIRED'
-            ),
-        'address' => array(
-            'SCHEMA_NAME' => null,
-            'TABLE_NAME' => 'lib_address',
-            'COLUMN_NAME' => 'address',
-            'COLUMN_POSITION' => 4,
             'DATA_TYPE' => 'varchar',
             'DEFAULT' => null,
-            'NULLABLE' => true,
+            'NULLABLE' => false,
             'LENGTH' => '250',
             'SCALE' => null,
             'PRECISION' => null,
@@ -114,18 +81,18 @@ class Table_LibAddress extends Struct_Abstract_ModelTable
             'PRIMARY' => false,
             'PRIMARY_POSITION' => null,
             'IDENTITY' => false,
-            'FLAGS' => 0,
-            'FLAG_LIST' => ''
+            'FLAGS' => 3,
+            'FLAG_LIST' => 'FIELD_REQUIRED'
             ),
-        'postal_code' => array(
+        'html' => array(
             'SCHEMA_NAME' => null,
-            'TABLE_NAME' => 'lib_address',
-            'COLUMN_NAME' => 'postal_code',
-            'COLUMN_POSITION' => 5,
-            'DATA_TYPE' => 'varchar',
+            'TABLE_NAME' => 'mobile_content',
+            'COLUMN_NAME' => 'html',
+            'COLUMN_POSITION' => 4,
+            'DATA_TYPE' => 'text',
             'DEFAULT' => null,
             'NULLABLE' => true,
-            'LENGTH' => '10',
+            'LENGTH' => null,
             'SCALE' => null,
             'PRECISION' => null,
             'UNSIGNED' => null,
@@ -135,36 +102,18 @@ class Table_LibAddress extends Struct_Abstract_ModelTable
             'FLAGS' => 0,
             'FLAG_LIST' => ''
             ),
-        'latitude' => array(
+        'js' => array(
             'SCHEMA_NAME' => null,
-            'TABLE_NAME' => 'lib_address',
-            'COLUMN_NAME' => 'latitude',
-            'COLUMN_POSITION' => 6,
-            'DATA_TYPE' => 'int',
+            'TABLE_NAME' => 'mobile_content',
+            'COLUMN_NAME' => 'js',
+            'COLUMN_POSITION' => 5,
+            'DATA_TYPE' => 'text',
             'DEFAULT' => null,
             'NULLABLE' => true,
             'LENGTH' => null,
             'SCALE' => null,
             'PRECISION' => null,
-            'UNSIGNED' => true,
-            'PRIMARY' => false,
-            'PRIMARY_POSITION' => null,
-            'IDENTITY' => false,
-            'FLAGS' => 0,
-            'FLAG_LIST' => ''
-            ),
-        'longitude' => array(
-            'SCHEMA_NAME' => null,
-            'TABLE_NAME' => 'lib_address',
-            'COLUMN_NAME' => 'longitude',
-            'COLUMN_POSITION' => 7,
-            'DATA_TYPE' => 'int',
-            'DEFAULT' => null,
-            'NULLABLE' => true,
-            'LENGTH' => null,
-            'SCALE' => null,
-            'PRECISION' => null,
-            'UNSIGNED' => true,
+            'UNSIGNED' => null,
             'PRIMARY' => false,
             'PRIMARY_POSITION' => null,
             'IDENTITY' => false,
@@ -173,9 +122,9 @@ class Table_LibAddress extends Struct_Abstract_ModelTable
             ),
         'created' => array(
             'SCHEMA_NAME' => null,
-            'TABLE_NAME' => 'lib_address',
+            'TABLE_NAME' => 'mobile_content',
             'COLUMN_NAME' => 'created',
-            'COLUMN_POSITION' => 8,
+            'COLUMN_POSITION' => 6,
             'DATA_TYPE' => 'datetime',
             'DEFAULT' => null,
             'NULLABLE' => false,
@@ -191,9 +140,9 @@ class Table_LibAddress extends Struct_Abstract_ModelTable
             ),
         'updated' => array(
             'SCHEMA_NAME' => null,
-            'TABLE_NAME' => 'lib_address',
+            'TABLE_NAME' => 'mobile_content',
             'COLUMN_NAME' => 'updated',
-            'COLUMN_POSITION' => 9,
+            'COLUMN_POSITION' => 7,
             'DATA_TYPE' => 'datetime',
             'DEFAULT' => null,
             'NULLABLE' => true,
@@ -206,51 +155,30 @@ class Table_LibAddress extends Struct_Abstract_ModelTable
             'IDENTITY' => false,
             'FLAGS' => 288,
             'FLAG_LIST' => 'FIELD_UPDATE_DATETIME'
-            ),
-        'archived' => array(
-            'SCHEMA_NAME' => null,
-            'TABLE_NAME' => 'lib_address',
-            'COLUMN_NAME' => 'archived',
-            'COLUMN_POSITION' => 10,
-            'DATA_TYPE' => 'tinyint',
-            'DEFAULT' => '0',
-            'NULLABLE' => false,
-            'LENGTH' => null,
-            'SCALE' => null,
-            'PRECISION' => null,
-            'UNSIGNED' => true,
-            'PRIMARY' => false,
-            'PRIMARY_POSITION' => null,
-            'IDENTITY' => false,
-            'FLAGS' => 0,
-            'FLAG_LIST' => ''
             )
         );
 
     /**
-     * TABLE_NO_DELETE | TABLE_PSEUDO_DELETE
+     * No flags
      */
-    protected $tableFlags = 12;
+    protected $tableFlags = 0;
 
     /**
      * Field used to flag entry as archived.
      */
-    protected $archiveField = 'archived';
+    protected $archiveField = false;
 
     /**
      * Field db-name to code-name mapping.
      */
     protected $fieldNames = array(
         'id' => 'Id',
+        'type' => 'Type',
         'name' => 'Name',
-        'lib_city_id' => 'LibCityId',
-        'address' => 'Address',
-        'postal_code' => 'PostalCode',
-        'latitude' => 'Latitude',
-        'longitude' => 'Longitude',
+        'html' => 'Html',
+        'js' => 'Js',
         'created' => 'Created',
-        'updated' => 'Updated',
-        'archived' => 'Archived'
+        'updated' => 'Updated'
         );
 
     /**
@@ -258,15 +186,12 @@ class Table_LibAddress extends Struct_Abstract_ModelTable
      */
     protected $newRow = array(
         'id' => null,
+        'type' => null,
         'name' => null,
-        'lib_city_id' => null,
-        'address' => null,
-        'postal_code' => null,
-        'latitude' => null,
-        'longitude' => null,
+        'html' => null,
+        'js' => null,
         'created' => null,
-        'updated' => null,
-        'archived' => '0'
+        'updated' => null
         );
 
     /**
@@ -277,7 +202,7 @@ class Table_LibAddress extends Struct_Abstract_ModelTable
     /**
      * Label format for list/dropdown display.
      */
-    protected $labelFormatForeign = '[lib_address_name]';
+    protected $labelFormatForeign = '[mobile_content_name]';
 
 
 }

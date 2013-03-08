@@ -8,7 +8,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * Create a new Profile entry.
-     * 
+     *
      * @param string $authToken
      * @param array $data
      * @return array
@@ -20,7 +20,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * Update existing Profile entry.
-     * 
+     *
      * @param string $authToken
      * @param array $data
      * @return array
@@ -32,7 +32,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * Delete a new Profile entry.
-     * 
+     *
      * @param string $authToken
      * @param array $data
      * @return array
@@ -44,7 +44,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * Find existing Profile entry by id.
-     * 
+     *
      * @param string $authToken
      * @param array $data
      * @return array
@@ -56,7 +56,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * key > value list of Profile entries.
-     * 
+     *
      * @param string $authToken
      * @param array $options
      * @return array
@@ -68,7 +68,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * Full data grid of Profile entries.
-     * 
+     *
      * @param string $authToken
      * @param array $options
      * @return array
@@ -80,7 +80,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * Create a new LibAddress entry.
-     * 
+     *
      * @param string $authToken
      * @param array $data
      * @return array
@@ -92,7 +92,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * Update existing LibAddress entry.
-     * 
+     *
      * @param string $authToken
      * @param array $data
      * @return array
@@ -104,7 +104,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * Delete a new LibAddress entry.
-     * 
+     *
      * @param string $authToken
      * @param array $data
      * @return array
@@ -116,7 +116,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * Find existing LibAddress entry by id.
-     * 
+     *
      * @param string $authToken
      * @param array $data
      * @return array
@@ -128,7 +128,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * key > value list of LibAddress entries.
-     * 
+     *
      * @param string $authToken
      * @param array $options
      * @return array
@@ -140,7 +140,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * Full data grid of LibAddress entries.
-     * 
+     *
      * @param string $authToken
      * @param array $options
      * @return array
@@ -152,7 +152,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * Create a new LibPhoto entry.
-     * 
+     *
      * @param string $authToken
      * @param array $data
      * @return array
@@ -164,7 +164,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * Update existing LibPhoto entry.
-     * 
+     *
      * @param string $authToken
      * @param array $data
      * @return array
@@ -176,7 +176,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * Delete a new LibPhoto entry.
-     * 
+     *
      * @param string $authToken
      * @param array $data
      * @return array
@@ -188,7 +188,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * Find existing LibPhoto entry by id.
-     * 
+     *
      * @param string $authToken
      * @param array $data
      * @return array
@@ -200,7 +200,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * key > value list of LibPhoto entries.
-     * 
+     *
      * @param string $authToken
      * @param array $options
      * @return array
@@ -212,7 +212,7 @@ class SynchGen extends Struct_Abstract_AmfService
 
     /**
      * Full data grid of LibPhoto entries.
-     * 
+     *
      * @param string $authToken
      * @param array $options
      * @return array

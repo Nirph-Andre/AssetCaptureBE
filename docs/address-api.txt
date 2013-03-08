@@ -1,0 +1,2 @@
+http://where.yahooapis.com/geocode?location=-25.8001788,28.3023579&gflags=R&flags=J
+http://maps.googleapis.com/maps/api/geocode/json?latlng=-25.8001788,28.3023579&sensor=false
