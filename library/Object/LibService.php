@@ -17,6 +17,11 @@ class Object_LibService extends Struct_Abstract_DataAccess
     protected $_table = 'lib_service';
 
     /**
+     * Unique identification field(s).
+     */
+    protected $_uniqueIdentifier = array();
+
+    /**
      * Validation meta-data.
      */
     protected $_validation = array(

@@ -50,7 +50,7 @@ class ReGen_Generate_Model_Data extends CodeSource
 		#-> Tools.
 		$filter = new Zend_Filter_Word_UnderscoreToCamelCase();
 		
-		#-> Grab csv and chew up first two rows for brekfast.
+		#-> Grab csv and chew up first two rows for breakfast.
 		$handle = fopen('c:\Apache2\htdocs\AssetCaptureBE\data\db.csv', "r");
 		$data = fgetcsv($handle);
 		$data = fgetcsv($handle);
@@ -64,6 +64,7 @@ class ReGen_Generate_Model_Data extends CodeSource
 		$haveLength = array('DECIMAL', 'CHAR', 'VARCHAR');
 		$numericTypes = array('TINYINT', 'SMALLINT', 'MEDIUMINT', 'INT', 'BIGINT', 'FLOAT', 'DOUBLE', 'FLOAT');
 		$insert = array();
+		$unique = array();
 		
 		#-> Process meta data for tables.
 		while (($data = fgetcsv($handle)) !== FALSE)
@@ -130,6 +131,7 @@ class ReGen_Generate_Model_Data extends CodeSource
 				$parts = explode(':', $data[0]);
 				$table = $parts[0];
 				$displayMeta[$table] = array();
+				$unique[$table] = array();
 				$label = isset($parts[1]) ? $parts[1] : false;
 				$create = array();
 				$create[] = "CREATE TABLE `$table` (" . "\n";
@@ -138,8 +140,10 @@ class ReGen_Generate_Model_Data extends CodeSource
 			}
 			
 			// collect
+			$parts = explode(':', $data[2]);
 			$field = $data[1];
-			$data_type = $data[2];
+			$data_type = $parts[0];
+			$data_type_extra = isset($parts[1]) ? $parts[1] : false;
 			$data_length = $data[3];
 			$data_enum = $data[4];
 			$data_null = $data[5];
@@ -182,8 +186,12 @@ class ReGen_Generate_Model_Data extends CodeSource
 			
 			// build create statements
 			$create[$field] = "  `$field` $fieldType " . (1 == $data_null ? 'NOT NULL ' : '') . (strlen($data_default) > 0 ? "DEFAULT '$data_default'" : '') . ',' . "\n";
+			if ('UNIQUE' == $data_type_extra)
+			{
+				$unique[$table][] = $field;
+			}
 		}
-		
+
 		// blank line, end of table definition
 		if ($table)
 		{
@@ -378,7 +386,7 @@ class ReGen_Generate_Model_Data extends CodeSource
 				continue;
 			}
 			$reference = $this->_createModel($tableName, $table, $fieldMeta, $tables, $dependentTables, $dependencyTables);
-			$this->_createDataObject($tableName, $table, $fieldMeta);
+			$this->_createDataObject($tableName, $table, $fieldMeta, $unique[$table]);
 			$this->_createDataController($tableName, $table, $fieldMeta[$table], $reference, $db, $dependencyTables);
 			$this->_createViews($tableName, $table, $fieldMeta[$table], $reference, $db, $dependencyTables);
 		}
@@ -1160,7 +1168,7 @@ App.Validate.$tableName = {";
 	}
 
 	
-	private function _createDataObject($tableName, $table_name, $fieldMeta)
+	private function _createDataObject($tableName, $table_name, $fieldMeta, $unique)
 	{
 		#-> Prepare validation meta.
 		$validate = array();
@@ -1440,6 +1448,14 @@ App.Validate.$tableName = {";
 				'defaultValue' => $table_name,
 				'docblock' => array(
 						'shortDescription' => 'Table this value object owns and may directly modify.'
+				)
+		));
+		$objectClass->setProperty(array(
+				'name' => '_uniqueIdentifier',
+				'visibility' => 'protected',
+				'defaultValue' => $unique,
+				'docblock' => array(
+						'shortDescription' => 'Unique identification field(s).'
 				)
 		));
 		$objectClass->setProperty(array(

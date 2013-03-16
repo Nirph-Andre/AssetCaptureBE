@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 07, 2013 at 10:44 AM
+-- Generation Time: Mar 16, 2013 at 05:57 PM
 -- Server version: 5.1.63-community
 -- PHP Version: 5.4.0-ZS5.6.0
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `app_audit_log` (
   `data_packet` mediumtext,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `app_audit_log`
@@ -46,7 +46,8 @@ CREATE TABLE IF NOT EXISTS `app_audit_log` (
 INSERT INTO `app_audit_log` (`id`, `customer_context`, `customer_id`, `action`, `table_name`, `record_id`, `data_packet`, `created`) VALUES
 (1, 'Seller', 2, 'Add', 'lib_authentication_log', 3, 'a:3:{s:5:"email";s:20:"jack.v@jackscars.com";s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"2";}', '2013-02-06 17:15:52'),
 (2, 'Seller', 2, 'Add', 'lib_authentication_log', 4, 'a:3:{s:5:"email";s:20:"jack.v@jackscars.com";s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"2";}', '2013-02-07 08:01:59'),
-(3, 'User', 2, 'Add', 'lib_authentication_log', 1, 'a:3:{s:5:"email";s:20:"jack.v@jackscars.com";s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"2";}', '2013-02-07 08:07:58');
+(3, 'User', 2, 'Add', 'lib_authentication_log', 1, 'a:3:{s:5:"email";s:20:"jack.v@jackscars.com";s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"2";}', '2013-02-07 08:07:58'),
+(4, 'User', 1, 'Add', 'lib_authentication_log', 2, 'a:3:{s:5:"email";s:23:"greg@simmons-cars.co.za";s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"1";}', '2013-03-16 19:34:45');
 
 -- --------------------------------------------------------
 
@@ -161,6 +162,33 @@ CREATE TABLE IF NOT EXISTS `contact_request` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `content`
+--
+
+DROP TABLE IF EXISTS `content`;
+CREATE TABLE IF NOT EXISTS `content` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(25) NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `html` text,
+  `js` text,
+  `created` datetime NOT NULL,
+  `updated` datetime DEFAULT NULL,
+  `archived` tinyint(3) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `content`
+--
+
+INSERT INTO `content` (`id`, `type`, `name`, `html`, `js`, `created`, `updated`, `archived`) VALUES
+(1, 'page', 'home', 'Hi, this is the home page!', 'alert("home page loaded");', '2013-03-16 19:30:00', '2013-03-16 19:30:00', 0),
+(2, 'page', 'settings', 'Hi! Setting page here :)', 'alert("settings page loaded");', '2013-03-16 19:30:00', '2013-03-16 19:30:00', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `lib_action_reference`
 --
 
@@ -236,14 +264,15 @@ CREATE TABLE IF NOT EXISTS `lib_authentication_log` (
   `profile_id` int(10) unsigned DEFAULT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `lib_authentication_log`
 --
 
 INSERT INTO `lib_authentication_log` (`id`, `email`, `ip_address`, `profile_id`, `created`) VALUES
-(1, 'jack.v@jackscars.com', '127.0.0.1', 2, '2013-02-07 08:07:58');
+(1, 'jack.v@jackscars.com', '127.0.0.1', 2, '2013-02-07 08:07:58'),
+(2, 'greg@simmons-cars.co.za', '127.0.0.1', 1, '2013-03-16 19:34:45');
 
 -- --------------------------------------------------------
 
@@ -621,7 +650,7 @@ CREATE TABLE IF NOT EXISTS `meta_table` (
   `hash` varchar(32) NOT NULL,
   `version` smallint(6) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`,`hash`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
 -- Dumping data for table `meta_table`
@@ -629,32 +658,34 @@ CREATE TABLE IF NOT EXISTS `meta_table` (
 
 INSERT INTO `meta_table` (`id`, `name`, `created`, `updated`, `hash`, `version`) VALUES
 (1, 'contact_request', '2013-02-06 00:00:00', NULL, 'c6281d8d77e2fb13fd1b1b908e69fce7', 1),
-(2, 'profile', '2013-02-06 00:00:00', '2013-02-07 00:00:00', '221d8783eab639a42c3f79a773c17774', 3),
+(2, 'profile', '2013-02-06 00:00:00', '2013-03-16 00:00:00', '221d8783eab639a42c3f79a773c17774', 6),
 (3, 'app_link_request', '2013-02-06 00:00:00', NULL, 'f43bdcb651541b245f2655558fb3d18d', 1),
-(4, 'config', '2013-02-06 00:00:00', '2013-02-07 00:00:00', 'e03531a6324decfbb1141c4f2892a0c5', 3),
+(4, 'config', '2013-02-06 00:00:00', '2013-03-16 00:00:00', 'e03531a6324decfbb1141c4f2892a0c5', 6),
 (5, 'lib_photo', '2013-02-06 00:00:00', NULL, '7bde09f24c7977b4721ca39fe327af08', 1),
 (6, 'lib_video', '2013-02-06 00:00:00', NULL, 'a69102d29787306f26ec5d6d0ee0d794', 1),
 (7, 'lib_document', '2013-02-06 00:00:00', NULL, 'c2a035d14c50dacbf0a8c67a14bd2851', 1),
 (8, 'lib_attachment', '2013-02-06 00:00:00', NULL, '38ab8b5d858df97a2456f2e624905b3a', 1),
-(9, 'lib_address', '2013-02-06 00:00:00', '2013-02-07 00:00:00', 'eda206b2bd3dcaf4822a4edfc279299e', 3),
+(9, 'lib_address', '2013-02-06 00:00:00', '2013-03-16 00:00:00', 'eda206b2bd3dcaf4822a4edfc279299e', 6),
 (10, 'lib_person', '2013-02-06 00:00:00', NULL, '33692ed654c410d64c3a1213d8333f73', 1),
-(11, 'lib_contact', '2013-02-06 00:00:00', '2013-02-07 00:00:00', '8d6f12942a2322c96b1f80a61cfea1ad', 3),
-(12, 'lib_newsletter_template', '2013-02-06 00:00:00', '2013-02-07 00:00:00', '71485ae092f3cffdc0950a6a78b1f3ae', 3),
+(11, 'lib_contact', '2013-02-06 00:00:00', '2013-03-16 00:00:00', '8d6f12942a2322c96b1f80a61cfea1ad', 6),
+(12, 'lib_newsletter_template', '2013-02-06 00:00:00', '2013-03-16 00:00:00', '71485ae092f3cffdc0950a6a78b1f3ae', 6),
 (13, 'lib_newsletter', '2013-02-06 00:00:00', NULL, '5acc042b8308cf92971bbfc35cdab562', 1),
 (14, 'lib_ip_country', '2013-02-06 00:00:00', NULL, '6e7553d3a5c89cad46393eebc24fafa5', 1),
-(15, 'lib_country', '2013-02-06 00:00:00', '2013-02-07 00:00:00', 'e76a17da9d1aa21dcb272b7fcd5cfb11', 3),
-(16, 'lib_region', '2013-02-06 00:00:00', '2013-02-07 00:00:00', '30d5d303e8665973611450aeecf03b90', 3),
-(17, 'lib_city', '2013-02-06 00:00:00', '2013-02-07 00:00:00', '6c5b2f2c7b8858933b4048bfdb603dba', 3),
+(15, 'lib_country', '2013-02-06 00:00:00', '2013-03-16 00:00:00', 'e76a17da9d1aa21dcb272b7fcd5cfb11', 6),
+(16, 'lib_region', '2013-02-06 00:00:00', '2013-03-16 00:00:00', '30d5d303e8665973611450aeecf03b90', 6),
+(17, 'lib_city', '2013-02-06 00:00:00', '2013-03-16 00:00:00', '6c5b2f2c7b8858933b4048bfdb603dba', 6),
 (18, 'lib_template', '2013-02-06 00:00:00', NULL, '1730e156a4631a9c34dd8867d1b62c79', 1),
 (19, 'lib_repeater_template', '2013-02-06 00:00:00', NULL, '6808b6e0d1d25cd9206da938a62b1085', 1),
 (20, 'lib_authentication_log', '2013-02-06 00:00:00', NULL, '7c3db173b60de0f7f2d31b5abb140661', 1),
 (21, 'lib_notification_log', '2013-02-06 00:00:00', NULL, 'ed4aa2a527e0e94a55b9023ae3ef9825', 1),
-(22, 'lib_service', '2013-02-06 00:00:00', '2013-02-07 00:00:00', 'ce8a58e087c7d5537c65a524032cd3e1', 3),
-(23, 'lib_currency', '2013-02-06 00:00:00', '2013-02-07 00:00:00', '66490a63a4b2802f902d2980426f8e4e', 3),
+(22, 'lib_service', '2013-02-06 00:00:00', '2013-03-16 00:00:00', 'ce8a58e087c7d5537c65a524032cd3e1', 6),
+(23, 'lib_currency', '2013-02-06 00:00:00', '2013-03-16 00:00:00', '66490a63a4b2802f902d2980426f8e4e', 6),
 (24, 'lib_xmlrpc_profile', '2013-02-06 00:00:00', NULL, '6137d78bc404d61f7894a5a7b01ab705', 1),
 (25, 'lib_action_reference', '2013-02-06 00:00:00', NULL, '7bd37aa43130e0ffa2466306f74725c7', 1),
 (26, 'bill_invoice', '2013-02-06 00:00:00', NULL, '37f95e7ed7065a5b6a3d533723692166', 1),
-(27, 'bill_invoice_line_item', '2013-02-06 00:00:00', NULL, 'b85a696bb89838b55ffae31d25ac5cc4', 1);
+(27, 'bill_invoice_line_item', '2013-02-06 00:00:00', NULL, 'b85a696bb89838b55ffae31d25ac5cc4', 1),
+(28, 'mobile_content', '2013-03-06 00:00:00', NULL, 'cb88ed57b97a6c99904f87e70dc13365', 1),
+(29, 'content', '2013-03-16 00:00:00', '2013-03-16 00:00:00', 'bf47045e2f05006d8d8bc9b0c1151f00', 2);
 
 -- --------------------------------------------------------
 

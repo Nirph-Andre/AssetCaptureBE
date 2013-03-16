@@ -682,6 +682,15 @@ abstract class Struct_Abstract_DataAccess
 	}
 	
 	/**
+	 * Unique identification fields for this table (besides id field).
+	 * @return array|boolean
+	 */
+	public function getUniqueIdentifier()
+	{
+		return $this->_uniqueIdentifier;
+	}
+	
+	/**
 	 * Pass back unstacked data results.
 	 * @param boolean $flatten
 	 * @return Struct_Abstract_DataAccess

@@ -17,6 +17,11 @@ class Object_Config extends Struct_Abstract_DataAccess
     protected $_table = 'config';
 
     /**
+     * Unique identification field(s).
+     */
+    protected $_uniqueIdentifier = array();
+
+    /**
      * Validation meta-data.
      */
     protected $_validation = array(

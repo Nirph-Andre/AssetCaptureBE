@@ -17,6 +17,11 @@ class Object_Profile extends Struct_Abstract_DataAccess
     protected $_table = 'profile';
 
     /**
+     * Unique identification field(s).
+     */
+    protected $_uniqueIdentifier = array();
+
+    /**
      * Validation meta-data.
      */
     protected $_validation = array(

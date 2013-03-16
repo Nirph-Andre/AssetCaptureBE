@@ -101,6 +101,156 @@ class Api_DataController extends Struct_Abstract_Controller
 	{
 		$this->jsonResult(Struct_ActionFeedback::success());
 	}
+	
+	public function synchAction()
+	{
+		#-> Upstream.
+		$synchDate = date('Y-m-d H:i:s', time() - 1);
+		$feedback = array();
+		$uniqueIdentifier = $this->_object->getUniqueIdentifier();
+		if (isset($this->_data['create']) && !empty($this->_data['create']))
+		{
+			if (empty($uniqueIdentifier))
+			{
+				// Nothing to test against for duplication, create as is.
+				foreach($this->_data['create'] as $synchEntry)
+				{
+					$remoteId = $synchEntry['id'];
+					$res = $this->_object->process(
+							new Struct_ActionRequest(
+									'Create',
+									$synchEntry
+							));
+					if ($res->ok())
+					{
+						$feedback[] = array('id' => $remoteId, 'sid' => $res->data['id']);
+					}
+				}
+			}
+			else
+			{
+				// Check for existing record.
+				foreach($this->_data['create'] as $synchEntry)
+				{
+					$remoteId = $synchEntry['id'];
+					$filter = array();
+					foreach ($uniqueIdentifier as $field)
+					{
+						if (isset($synchEntry[$field]))
+						{
+							$filter[$field] = $synchEntry[$field];
+						}
+					}
+					$item = $this->_object->view(null, $filter)->data;
+					if (isset($item['id']) && $item['id'])
+					{
+						// Update.
+						$synchEntry['id'] = $item['id'];
+						$res = $this->_object->process(
+								new Struct_ActionRequest(
+										'Update',
+										$synchEntry
+								));
+						if ($res->ok())
+						{
+							$feedback[] = array('id' => $remoteId, 'sid' => $item['id']);
+						}
+					}
+					else
+					{
+						// Insert.
+						$res = $this->_object->process(
+								new Struct_ActionRequest(
+										'Create',
+										$synchEntry
+								));
+						if ($res->ok())
+						{
+							$feedback[] = array('id' => $remoteId, 'sid' => $res->data['id']);
+						}
+					}
+				}
+			}
+		}
+		if (isset($this->_data['update']) && !empty($this->_data['update']))
+		{
+			foreach($this->_data['update'] as $synchEntry)
+			{
+				$remoteId = $synchEntry['id'];
+				$item = $this->_object->view($synchEntry['sid'])->data;
+				if (isset($item['id']) && $item['id'])
+				{
+					// Update.
+					$synchEntry['id'] = $item['id'];
+					$res = $this->_object->process(
+							new Struct_ActionRequest(
+									'Update',
+									$synchEntry
+							));
+					if ($res->ok())
+					{
+						$feedback[] = array('id' => $remoteId, 'sid' => $item['id']);
+					}
+				}
+			}
+		}
+		if (isset($this->_data['remove']) && !empty($this->_data['remove']))
+		{
+			foreach($this->_data['remove'] as $synchEntry)
+			{
+				$remoteId = $synchEntry['id'];
+				$item = $this->_object->view($synchEntry['sid'])->data;
+				if (isset($item['id']) && $item['id'])
+				{
+					// Delete.
+					$synchEntry['id'] = $item['id'];
+					$res = $this->_object->process(
+							new Struct_ActionRequest(
+									'Delete',
+									$item
+							));
+					if ($res->ok())
+					{
+						$feedback[] = array('id' => $remoteId, 'archive' => 'true');
+					}
+				}
+			}
+		}
+		
+		#-> Downstream.
+		$lastSynch = $this->_data['lastSynchDate'];
+		$extraFilter = isset($this->_data['filter'])
+										&& is_array($this->_data['filter'])
+			? $this->_data['filter']
+			: array();
+		$create = $this->_object->listAll(array_merge($extraFilter, array(
+				'created' => '>' . $lastSynch,
+				'created' => '<=' . $synchDate,
+				'archived' => 0
+		)), array(), true)->data;
+		$update = $this->_object->listAll(array_merge($extraFilter, array(
+				'created' => '<=' . $lastSynch,
+				'updated' => '>' . $lastSynch,
+				'updated' => '<=' . $synchDate,
+				'archived' => 0
+		)), array(), true)->data;
+		$remove = $this->_object->listAll(array_merge($extraFilter, array(
+				'updated' => '>' . $lastSynch,
+				'updated' => '<=' . $synchDate,
+				'archived' => 1
+		)), array(), true)->data;
+		
+		#-> Done, provide relevant feedback and downstream data.
+		$this->jsonNsResult(
+			Struct_ActionFeedback::successWithData(array(
+				'Feedback' => $feedback,
+				'Create' => $create,
+				'Update' => $update,
+				'Remove' => $remove
+			), array(
+				'synch_datetime' => $synchDate
+			)));
+	}
 
 	public function createAction()
 	{

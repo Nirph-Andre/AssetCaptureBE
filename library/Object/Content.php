@@ -1,20 +1,20 @@
 <?php
 
 /**
- * DataAccess Value Object for table lib_region
+ * DataAccess Value Object for table content
  */
-class Object_LibRegion extends Struct_Abstract_DataAccess
+class Object_Content extends Struct_Abstract_DataAccess
 {
 
     /**
      * Namespace used for raising events.
      */
-    protected $_eventNamespace = 'LibRegion';
+    protected $_eventNamespace = 'Content';
 
     /**
      * Table this value object owns and may directly modify.
      */
-    protected $_table = 'lib_region';
+    protected $_table = 'content';
 
     /**
      * Unique identification field(s).
@@ -32,35 +32,32 @@ class Object_LibRegion extends Struct_Abstract_DataAccess
                     'params' => array()
                     ))
             ),
-        'lib_country_id' => array(
+        'type' => array(
             'required' => true,
             'validators' => array(array(
-                    'type' => 'Between',
-                    'params' => array(
-                        'min' => 0,
-                        'max' => 4294967295
-                        )
+                    'type' => 'StringLength',
+                    'params' => array('max' => '25')
                     ))
             ),
         'name' => array(
             'required' => true,
             'validators' => array(array(
                     'type' => 'StringLength',
-                    'params' => array('max' => '75')
+                    'params' => array('max' => '250')
                     ))
             ),
-        'iso3166_2_code' => array(
+        'html' => array(
             'required' => false,
             'validators' => array(array(
                     'type' => 'StringLength',
-                    'params' => array('max' => '2')
+                    'params' => array('max' => 65535)
                     ))
             ),
-        'fips10_4_code' => array(
+        'js' => array(
             'required' => false,
             'validators' => array(array(
                     'type' => 'StringLength',
-                    'params' => array('max' => '2')
+                    'params' => array('max' => 65535)
                     ))
             ),
         'archived' => array(

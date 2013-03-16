@@ -17,6 +17,11 @@ class Object_LibNewsletterTemplate extends Struct_Abstract_DataAccess
     protected $_table = 'lib_newsletter_template';
 
     /**
+     * Unique identification field(s).
+     */
+    protected $_uniqueIdentifier = array();
+
+    /**
      * Validation meta-data.
      */
     protected $_validation = array(
