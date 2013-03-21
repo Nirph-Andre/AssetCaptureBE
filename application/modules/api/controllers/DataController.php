@@ -240,17 +240,33 @@ Struct_Debug::errorLog('synch', 'downstream');
 										&& is_array($this->_data['filter'])
 			? $this->_data['filter']
 			: array();
+Struct_Debug::errorLog('create', array_merge($extraFilter, array(
+				'created' => '>' . $lastSynch,
+				'created' => '<=' . $synchDate,
+				'archived' => 0
+		)));
 		$create = $this->_object->listAll(array_merge($extraFilter, array(
 				'created' => '>' . $lastSynch,
 				'created' => '<=' . $synchDate,
 				'archived' => 0
 		)), array(), true)->data;
+Struct_Debug::errorLog('update', array_merge($extraFilter, array(
+				'created' => '<=' . $lastSynch,
+				'updated' => '>' . $lastSynch,
+				'updated' => '<=' . $synchDate,
+				'archived' => 0
+		)));
 		$update = $this->_object->listAll(array_merge($extraFilter, array(
 				'created' => '<=' . $lastSynch,
 				'updated' => '>' . $lastSynch,
 				'updated' => '<=' . $synchDate,
 				'archived' => 0
 		)), array(), true)->data;
+Struct_Debug::errorLog('remove', array_merge($extraFilter, array(
+				'updated' => '>' . $lastSynch,
+				'updated' => '<=' . $synchDate,
+				'archived' => 1
+		)));
 		$remove = $this->_object->listAll(array_merge($extraFilter, array(
 				'updated' => '>' . $lastSynch,
 				'updated' => '<=' . $synchDate,
