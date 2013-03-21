@@ -1221,6 +1221,7 @@ abstract class Struct_Abstract_DataAccess
 				$where["$field = ?"] = $value;
 			}
 		}
+Struct_Debug::errorLog('where', $where);
 		return $where;
 	}
 	
