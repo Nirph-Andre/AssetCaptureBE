@@ -1142,83 +1142,87 @@ abstract class Struct_Abstract_DataAccess
 	protected function smartFilter(array $filter)
 	{
 		$where = array();
-		foreach ($filter as $field => $value)
+		foreach ($filter as $field => $valueStr)
 		{
-			$parts = explode('.', $field);
-			if (count($parts) == 1)
+			$values = explode(' AND ', $valueStr);
+			foreach ($values as $value)
 			{
-				$field = array_pop($parts);
-			}
-			else
-			{
-				$field = array_pop($parts);
-				$table = array_pop($parts);
-				$field = "$table.$field";
-			}
-			$search = array('>', '<', '=', '!=', '<>', '<=', '>=');
-			if (false !== strpos($value, '%'))
-			{
-				$where["$field LIKE ?"] = $value;
-			}
-			elseif ('BETWEEN' == substr(strtoupper($value), 0, 7))
-			{
-			  	list($x, $y) = explode(',', trim(substr($value, 7, strlen($value) - 2)));
-			  	if (is_numeric($x) && is_numeric($y))
-			  	{
-			  	  $where["$field BETWEEN $x AND $y"] = null;
-			  	}
-			}
-			elseif ('NOT IN' == substr(strtoupper($value), 0, 6))
-			{
-				$where["$field NOT IN (?)"] = explode(',', trim(substr($value, 6, strlen($value) - 6)));
-			}
-			elseif ('=NULL' == strtoupper($value))
-			{
-				$where["$field IS NULL"] = null;
-			}
-			elseif ('!NULL' == strtoupper($value))
-			{
-				$where["$field IS NOT NULL"] = null;
-			}
-			elseif ('IN ' == substr(strtoupper($value), 0, 3))
-			{
-				$where["$field IN (?)"] = explode(',', trim(substr($value, 3, strlen($value) - 3)));
-			}
-			elseif ('!=' == substr($value, 0, 2))
-			{
-				$where["$field != ?"] = trim(substr($value, 2, strlen($value) - 2));
-			}
-			elseif ('<>' == substr($value, 0, 2))
-			{
-				$where["$field <> ?"] = trim(substr($value, 2, strlen($value) - 2));
-			}
-			elseif ('<=' == substr($value, 0, 2))
-			{
-				$where["$field <= ?"] = trim(substr($value, 2, strlen($value) - 2));
-			}
-			elseif ('>=' == substr($value, 0, 2))
-			{
-				$where["$field >= ?"] = trim(substr($value, 2, strlen($value) - 2));
-			}
-			elseif ('>' == substr($value, 0, 1))
-			{
-				$where["$field > ?"] = trim(substr($value, 1, strlen($value) - 1));
-			}
-			elseif ('<' == substr($value, 0, 1))
-			{
-				$where["$field < ?"] = trim(substr($value, 1, strlen($value) - 1));
-			}
-			elseif ('=' == substr($value, 0, 1))
-			{
-				$where["$field = ?"] = trim(substr($value, 1, strlen($value) - 1));
-			}
-			elseif ('!' == substr($value, 0, 1))
-			{
-				$where["$field != ?"] = trim(substr($value, 1, strlen($value) - 1));
-			}
-			else
-			{
-				$where["$field = ?"] = $value;
+				$parts = explode('.', $field);
+				if (count($parts) == 1)
+				{
+					$field = array_pop($parts);
+				}
+				else
+				{
+					$field = array_pop($parts);
+					$table = array_pop($parts);
+					$field = "$table.$field";
+				}
+				$search = array('>', '<', '=', '!=', '<>', '<=', '>=');
+				if (false !== strpos($value, '%'))
+				{
+					$where["$field LIKE ?"] = $value;
+				}
+				elseif ('BETWEEN' == substr(strtoupper($value), 0, 7))
+				{
+				  	list($x, $y) = explode(',', trim(substr($value, 7, strlen($value) - 2)));
+				  	if (is_numeric($x) && is_numeric($y))
+				  	{
+				  	  $where["$field BETWEEN $x AND $y"] = null;
+				  	}
+				}
+				elseif ('NOT IN' == substr(strtoupper($value), 0, 6))
+				{
+					$where["$field NOT IN (?)"] = explode(',', trim(substr($value, 6, strlen($value) - 6)));
+				}
+				elseif ('=NULL' == strtoupper($value))
+				{
+					$where["$field IS NULL"] = null;
+				}
+				elseif ('!NULL' == strtoupper($value))
+				{
+					$where["$field IS NOT NULL"] = null;
+				}
+				elseif ('IN ' == substr(strtoupper($value), 0, 3))
+				{
+					$where["$field IN (?)"] = explode(',', trim(substr($value, 3, strlen($value) - 3)));
+				}
+				elseif ('!=' == substr($value, 0, 2))
+				{
+					$where["$field != ?"] = trim(substr($value, 2, strlen($value) - 2));
+				}
+				elseif ('<>' == substr($value, 0, 2))
+				{
+					$where["$field <> ?"] = trim(substr($value, 2, strlen($value) - 2));
+				}
+				elseif ('<=' == substr($value, 0, 2))
+				{
+					$where["$field <= ?"] = trim(substr($value, 2, strlen($value) - 2));
+				}
+				elseif ('>=' == substr($value, 0, 2))
+				{
+					$where["$field >= ?"] = trim(substr($value, 2, strlen($value) - 2));
+				}
+				elseif ('>' == substr($value, 0, 1))
+				{
+					$where["$field > ?"] = trim(substr($value, 1, strlen($value) - 1));
+				}
+				elseif ('<' == substr($value, 0, 1))
+				{
+					$where["$field < ?"] = trim(substr($value, 1, strlen($value) - 1));
+				}
+				elseif ('=' == substr($value, 0, 1))
+				{
+					$where["$field = ?"] = trim(substr($value, 1, strlen($value) - 1));
+				}
+				elseif ('!' == substr($value, 0, 1))
+				{
+					$where["$field != ?"] = trim(substr($value, 1, strlen($value) - 1));
+				}
+				else
+				{
+					$where["$field = ?"] = $value;
+				}
 			}
 		}
 Struct_Debug::errorLog('where', $where);
