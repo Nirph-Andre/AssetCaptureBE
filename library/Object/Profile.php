@@ -47,14 +47,14 @@ class Object_Profile extends Struct_Abstract_DataAccess
                     ))
             ),
         'id_number' => array(
-            'required' => true,
+            'required' => false,
             'validators' => array(array(
                     'type' => 'StringLength',
                     'params' => array('max' => '13')
                     ))
             ),
         'date_of_birth' => array(
-            'required' => true,
+            'required' => false,
             'validators' => array(array(
                     'type' => 'Regex',
                     'params' => array('pattern' => '/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/')
@@ -74,10 +74,17 @@ class Object_Profile extends Struct_Abstract_DataAccess
                 )
             ),
         'email' => array(
-            'required' => true,
+            'required' => false,
             'validators' => array(array(
                     'type' => 'EmailAddress',
                     'params' => array()
+                    ))
+            ),
+        'username' => array(
+            'required' => true,
+            'validators' => array(array(
+                    'type' => 'StringLength',
+                    'params' => array('max' => '40')
                     ))
             ),
         'password' => array(

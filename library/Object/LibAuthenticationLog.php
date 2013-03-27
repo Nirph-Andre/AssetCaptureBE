@@ -17,6 +17,11 @@ class Object_LibAuthenticationLog extends Struct_Abstract_DataAccess
     protected $_table = 'lib_authentication_log';
 
     /**
+     * Unique identification field(s).
+     */
+    protected $_uniqueIdentifier = array();
+
+    /**
      * Validation meta-data.
      */
     protected $_validation = array(
@@ -24,13 +29,6 @@ class Object_LibAuthenticationLog extends Struct_Abstract_DataAccess
             'required' => false,
             'validators' => array(array(
                     'type' => 'Digits',
-                    'params' => array()
-                    ))
-            ),
-        'email' => array(
-            'required' => true,
-            'validators' => array(array(
-                    'type' => 'EmailAddress',
                     'params' => array()
                     ))
             ),

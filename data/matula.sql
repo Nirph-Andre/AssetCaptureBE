@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 16, 2013 at 05:57 PM
+-- Generation Time: Mar 27, 2013 at 05:20 PM
 -- Server version: 5.1.63-community
 -- PHP Version: 5.4.0-ZS5.6.0
 
@@ -259,20 +259,11 @@ CREATE TABLE IF NOT EXISTS `lib_attachment` (
 DROP TABLE IF EXISTS `lib_authentication_log`;
 CREATE TABLE IF NOT EXISTS `lib_authentication_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(250) NOT NULL,
   `ip_address` varchar(50) NOT NULL,
   `profile_id` int(10) unsigned DEFAULT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `lib_authentication_log`
---
-
-INSERT INTO `lib_authentication_log` (`id`, `email`, `ip_address`, `profile_id`, `created`) VALUES
-(1, 'jack.v@jackscars.com', '127.0.0.1', 2, '2013-02-07 08:07:58'),
-(2, 'greg@simmons-cars.co.za', '127.0.0.1', 1, '2013-03-16 19:34:45');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -658,34 +649,34 @@ CREATE TABLE IF NOT EXISTS `meta_table` (
 
 INSERT INTO `meta_table` (`id`, `name`, `created`, `updated`, `hash`, `version`) VALUES
 (1, 'contact_request', '2013-02-06 00:00:00', NULL, 'c6281d8d77e2fb13fd1b1b908e69fce7', 1),
-(2, 'profile', '2013-02-06 00:00:00', '2013-03-16 00:00:00', '221d8783eab639a42c3f79a773c17774', 6),
+(2, 'profile', '2013-02-06 00:00:00', '2013-03-27 00:00:00', '74f6870f6740f14743f1648e51d26b70', 8),
 (3, 'app_link_request', '2013-02-06 00:00:00', NULL, 'f43bdcb651541b245f2655558fb3d18d', 1),
-(4, 'config', '2013-02-06 00:00:00', '2013-03-16 00:00:00', 'e03531a6324decfbb1141c4f2892a0c5', 6),
+(4, 'config', '2013-02-06 00:00:00', '2013-03-27 00:00:00', 'e03531a6324decfbb1141c4f2892a0c5', 8),
 (5, 'lib_photo', '2013-02-06 00:00:00', NULL, '7bde09f24c7977b4721ca39fe327af08', 1),
 (6, 'lib_video', '2013-02-06 00:00:00', NULL, 'a69102d29787306f26ec5d6d0ee0d794', 1),
 (7, 'lib_document', '2013-02-06 00:00:00', NULL, 'c2a035d14c50dacbf0a8c67a14bd2851', 1),
 (8, 'lib_attachment', '2013-02-06 00:00:00', NULL, '38ab8b5d858df97a2456f2e624905b3a', 1),
-(9, 'lib_address', '2013-02-06 00:00:00', '2013-03-16 00:00:00', 'eda206b2bd3dcaf4822a4edfc279299e', 6),
+(9, 'lib_address', '2013-02-06 00:00:00', '2013-03-27 00:00:00', 'eda206b2bd3dcaf4822a4edfc279299e', 8),
 (10, 'lib_person', '2013-02-06 00:00:00', NULL, '33692ed654c410d64c3a1213d8333f73', 1),
-(11, 'lib_contact', '2013-02-06 00:00:00', '2013-03-16 00:00:00', '8d6f12942a2322c96b1f80a61cfea1ad', 6),
-(12, 'lib_newsletter_template', '2013-02-06 00:00:00', '2013-03-16 00:00:00', '71485ae092f3cffdc0950a6a78b1f3ae', 6),
+(11, 'lib_contact', '2013-02-06 00:00:00', '2013-03-27 00:00:00', '8d6f12942a2322c96b1f80a61cfea1ad', 8),
+(12, 'lib_newsletter_template', '2013-02-06 00:00:00', '2013-03-27 00:00:00', '71485ae092f3cffdc0950a6a78b1f3ae', 8),
 (13, 'lib_newsletter', '2013-02-06 00:00:00', NULL, '5acc042b8308cf92971bbfc35cdab562', 1),
 (14, 'lib_ip_country', '2013-02-06 00:00:00', NULL, '6e7553d3a5c89cad46393eebc24fafa5', 1),
-(15, 'lib_country', '2013-02-06 00:00:00', '2013-03-16 00:00:00', 'e76a17da9d1aa21dcb272b7fcd5cfb11', 6),
-(16, 'lib_region', '2013-02-06 00:00:00', '2013-03-16 00:00:00', '30d5d303e8665973611450aeecf03b90', 6),
-(17, 'lib_city', '2013-02-06 00:00:00', '2013-03-16 00:00:00', '6c5b2f2c7b8858933b4048bfdb603dba', 6),
+(15, 'lib_country', '2013-02-06 00:00:00', '2013-03-27 00:00:00', 'e76a17da9d1aa21dcb272b7fcd5cfb11', 8),
+(16, 'lib_region', '2013-02-06 00:00:00', '2013-03-27 00:00:00', '30d5d303e8665973611450aeecf03b90', 8),
+(17, 'lib_city', '2013-02-06 00:00:00', '2013-03-27 00:00:00', '6c5b2f2c7b8858933b4048bfdb603dba', 8),
 (18, 'lib_template', '2013-02-06 00:00:00', NULL, '1730e156a4631a9c34dd8867d1b62c79', 1),
 (19, 'lib_repeater_template', '2013-02-06 00:00:00', NULL, '6808b6e0d1d25cd9206da938a62b1085', 1),
-(20, 'lib_authentication_log', '2013-02-06 00:00:00', NULL, '7c3db173b60de0f7f2d31b5abb140661', 1),
+(20, 'lib_authentication_log', '2013-02-06 00:00:00', '2013-03-27 00:00:00', 'd656bfcd19186809dded6a3be9d5844e', 2),
 (21, 'lib_notification_log', '2013-02-06 00:00:00', NULL, 'ed4aa2a527e0e94a55b9023ae3ef9825', 1),
-(22, 'lib_service', '2013-02-06 00:00:00', '2013-03-16 00:00:00', 'ce8a58e087c7d5537c65a524032cd3e1', 6),
-(23, 'lib_currency', '2013-02-06 00:00:00', '2013-03-16 00:00:00', '66490a63a4b2802f902d2980426f8e4e', 6),
+(22, 'lib_service', '2013-02-06 00:00:00', '2013-03-27 00:00:00', 'ce8a58e087c7d5537c65a524032cd3e1', 8),
+(23, 'lib_currency', '2013-02-06 00:00:00', '2013-03-27 00:00:00', '66490a63a4b2802f902d2980426f8e4e', 8),
 (24, 'lib_xmlrpc_profile', '2013-02-06 00:00:00', NULL, '6137d78bc404d61f7894a5a7b01ab705', 1),
 (25, 'lib_action_reference', '2013-02-06 00:00:00', NULL, '7bd37aa43130e0ffa2466306f74725c7', 1),
 (26, 'bill_invoice', '2013-02-06 00:00:00', NULL, '37f95e7ed7065a5b6a3d533723692166', 1),
 (27, 'bill_invoice_line_item', '2013-02-06 00:00:00', NULL, 'b85a696bb89838b55ffae31d25ac5cc4', 1),
 (28, 'mobile_content', '2013-03-06 00:00:00', NULL, 'cb88ed57b97a6c99904f87e70dc13365', 1),
-(29, 'content', '2013-03-16 00:00:00', '2013-03-16 00:00:00', 'bf47045e2f05006d8d8bc9b0c1151f00', 2);
+(29, 'content', '2013-03-16 00:00:00', '2013-03-27 00:00:00', 'bf47045e2f05006d8d8bc9b0c1151f00', 4);
 
 -- --------------------------------------------------------
 
@@ -698,10 +689,11 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(100) NOT NULL,
   `family_name` varchar(100) NOT NULL,
-  `id_number` varchar(13) NOT NULL,
-  `date_of_birth` date NOT NULL,
+  `id_number` varchar(13) DEFAULT NULL,
+  `date_of_birth` date DEFAULT NULL,
   `mobile` varchar(20) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `username` varchar(40) NOT NULL,
   `password` varchar(40) NOT NULL,
   `password_salt` varchar(40) NOT NULL,
   `user_type` enum('User','Administrator') DEFAULT NULL,
@@ -718,11 +710,11 @@ CREATE TABLE IF NOT EXISTS `profile` (
 -- Dumping data for table `profile`
 --
 
-INSERT INTO `profile` (`id`, `first_name`, `family_name`, `id_number`, `date_of_birth`, `mobile`, `email`, `password`, `password_salt`, `user_type`, `status`, `subscribe_newsletter`, `subscribe_reminders`, `last_login`, `created`, `archived`) VALUES
-(1, 'Greggory', 'Simmons', '7711225544000', '1977-11-22', '0840840840', 'greg@simmons-cars.co.za', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'User', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0),
-(2, 'Jack', 'Vredenweld', '7202029977333', '1972-02-02', '0820820820', 'jack.v@jackscars.com', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'User', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0),
-(3, 'Shannon', 'Bramson', '7703155544111', '1977-03-15', '0830830830', 'shannon@simmons-cars.co.za', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'Administrator', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0),
-(4, 'Lilith', 'Warchild', '7703155544111', '1977-03-15', '0730730730', 'lilith@rebel-traders.co.za', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'User', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0);
+INSERT INTO `profile` (`id`, `first_name`, `family_name`, `id_number`, `date_of_birth`, `mobile`, `email`, `username`, `password`, `password_salt`, `user_type`, `status`, `subscribe_newsletter`, `subscribe_reminders`, `last_login`, `created`, `archived`) VALUES
+(1, 'Greggory', 'Simmons', '7711225544000', '1977-11-22', '0840840840', 'greg@simmons-cars.co.za', 'greg', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'User', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0),
+(2, 'Jack', 'Vredenweld', '7202029977333', '1972-02-02', '0820820820', 'jack.v@jackscars.com', 'jack', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'User', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0),
+(3, 'Shannon', 'Bramson', '7703155544111', '1977-03-15', '0830830830', 'shannon@simmons-cars.co.za', 'shannon', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'Administrator', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0),
+(4, 'Lilith', 'Warchild', '7703155544111', '1977-03-15', '0730730730', 'lilith@rebel-traders.co.za', 'lilith', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'User', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

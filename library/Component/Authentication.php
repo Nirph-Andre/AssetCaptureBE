@@ -21,11 +21,11 @@ class Component_Authentication
 	 * @param	string $password
 	 * @return Struct_ActionFeedback
 	 */
-	static public function login($email, $password)
+	static public function login($username, $password)
 	{
 		#-> Retrieve data
 		$oProfile = new Object_Profile();
-		$filter = array('email' => $email);
+		$filter = array('username' => $username);
 		$data = $oProfile->view(null, $filter)->data;
 		#-> Match?
 		if (!empty($data)
@@ -55,7 +55,6 @@ class Component_Authentication
 			#-> Log auth event.
 			$oLog = new Object_LibAuthenticationLog();
 			$oLog->save(null, array(), array(
-					'email'      => $email,
 					'ip_address' => $_SERVER['REMOTE_ADDR'],
 					'profile_id' => $data['id']
 					));
