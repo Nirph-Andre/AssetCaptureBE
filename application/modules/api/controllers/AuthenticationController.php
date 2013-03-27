@@ -81,16 +81,16 @@ class Api_AuthenticationController extends Struct_Abstract_Controller
     	{
     		$params = json_decode(file_get_contents('php://input'), true);
     	}
-    	$email    = trim($params['email']);
+    	$username = trim($params['username']);
     	$password = trim($params['password']);
     	$remember = isset($params['remember'])
     		? $params['remember']
     		: 0;
     	
     	#-> Auth.
-    	$res = Component_Authentication::login($email, $password);
+    	$res = Component_Authentication::login($username, $password);
     	$rem = ($res->ok() && $remember)
-    		? $email
+    		? $username
     		: '';
     	setcookie( "UserEmail", $rem, strtotime( '+30 days' ) );
     	$this->jsonResult($res);
