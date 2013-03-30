@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navProfile").addClass("active");
 		searchHandler["srch-profile"] = {
-				action: "profile-grid",
+				action: theme + "/profile-grid",
 				container: "ProfileGrid"
 		};
     searchStack["srch-profile"] = wrapFunction(search, this, ["srch-profile"]);

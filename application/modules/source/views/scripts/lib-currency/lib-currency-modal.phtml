@@ -45,7 +45,7 @@
 		$("#libCurrencyForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("libCurrency", "libCurrency", "api/data/" + mode,
-			  	"LibCurrencyGrid", "lib-currency-grid",
+			  	"LibCurrencyGrid", theme + "/lib-currency-grid",
 					false, true, false, {});
 		  }
 		});

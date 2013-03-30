@@ -106,7 +106,7 @@
 		$("#profileForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("profile", "profile", "api/data/" + mode,
-			  	"ProfileGrid", "profile-grid",
+			  	"ProfileGrid", theme + "/profile-grid",
 					false, true, false, {});
 		  }
 		});

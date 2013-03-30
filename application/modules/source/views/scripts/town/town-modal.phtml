@@ -23,11 +23,6 @@
 						<input id="town_name" name="name" type="text"
 							form-id="town" class="span12 required" maxlength="100">
 					</div>
-		  		<div class="control-group">
-				  	<label for="town_updated"><b>Updated</b></label>
-						<input id="town_updated" name="updated" type="text"
-							form-id="town" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="town_id" name="id" form-id="town">
 			  </div>
 		  </div>
@@ -43,14 +38,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] Town: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] Town: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#townForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("town", "town", "api/data/" + mode,
-			  	"TownGrid", "town-grid",
+			  	"TownGrid", theme + "/town-grid",
 					false, true, false, {});
 		  }
 		});

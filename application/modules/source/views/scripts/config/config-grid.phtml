@@ -75,11 +75,11 @@ list($order, $direction) = each($this->result["Config"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["Config"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["config_date_format"]; ?></td>
-					<td><?php echo $record["config_time_format"]; ?></td>
+					<td><?php echo $record["date_format"]; ?></td>
+					<td><?php echo $record["time_format"]; ?></td>
 					<td><?php echo $record["lib_currency_prefix"]; ?></td>
-					<td><?php echo $record["config_currency_prefix"]; ?></td>
-					<td><?php echo $record["config_vat_percentage"]; ?></td>
+					<td><?php echo $record["currency_prefix"]; ?></td>
+					<td><?php echo $record["vat_percentage"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editConfig(<?php echo $id; ?>);">Edit</button>
 					</td>

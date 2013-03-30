@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navStreetLightType").addClass("active");
 		searchHandler["srch-streetLightType"] = {
-				action: "street-light-type-grid",
+				action: theme + "/street-light-type-grid",
 				container: "StreetLightTypeGrid"
 		};
     searchStack["srch-streetLightType"] = wrapFunction(search, this, ["srch-streetLightType"]);

@@ -23,11 +23,6 @@
 						<input id="street_name" name="name" type="text"
 							form-id="street" class="span12 required" maxlength="100">
 					</div>
-		  		<div class="control-group">
-				  	<label for="street_updated"><b>Updated</b></label>
-						<input id="street_updated" name="updated" type="text"
-							form-id="street" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="street_id" name="id" form-id="street">
 			  </div>
 		  </div>
@@ -43,14 +38,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] Street: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] Street: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#streetForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("street", "street", "api/data/" + mode,
-			  	"StreetGrid", "street-grid",
+			  	"StreetGrid", theme + "/street-grid",
 					false, true, false, {});
 		  }
 		});

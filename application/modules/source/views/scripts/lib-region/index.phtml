@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibRegion").addClass("active");
 		searchHandler["srch-libRegion"] = {
-				action: "lib-region-grid",
+				action: theme + "/lib-region-grid",
 				container: "LibRegionGrid"
 		};
     searchStack["srch-libRegion"] = wrapFunction(search, this, ["srch-libRegion"]);

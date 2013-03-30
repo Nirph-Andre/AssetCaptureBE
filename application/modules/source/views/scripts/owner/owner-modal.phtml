@@ -14,11 +14,6 @@
 						<input id="owner_name" name="name" type="text"
 							form-id="owner" class="span12 required" maxlength="100">
 					</div>
-		  		<div class="control-group">
-				  	<label for="owner_updated"><b>Updated</b></label>
-						<input id="owner_updated" name="updated" type="text"
-							form-id="owner" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="owner_id" name="id" form-id="owner">
 			  </div>
 		  </div>
@@ -34,14 +29,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] Owner: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] Owner: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#ownerForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("owner", "owner", "api/data/" + mode,
-			  	"OwnerGrid", "owner-grid",
+			  	"OwnerGrid", theme + "/owner-grid",
 					false, true, false, {});
 		  }
 		});

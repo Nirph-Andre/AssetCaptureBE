@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLocation").addClass("active");
 		searchHandler["srch-location"] = {
-				action: "location-grid",
+				action: theme + "/location-grid",
 				container: "LocationGrid"
 		};
     searchStack["srch-location"] = wrapFunction(search, this, ["srch-location"]);

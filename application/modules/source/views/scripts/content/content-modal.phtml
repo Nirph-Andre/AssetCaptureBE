@@ -29,11 +29,6 @@
 						<textarea id="content_js" name="js" rows="5"
 							form-id="content" class="span12 " maxlength="65535"></textarea>
 					</div>
-		  		<div class="control-group">
-				  	<label for="content_updated"><b>Updated</b></label>
-						<input id="content_updated" name="updated" type="text"
-							form-id="content" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="content_id" name="id" form-id="content">
 			  </div>
 		  </div>
@@ -49,14 +44,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] Content: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] Content: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#contentForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("content", "content", "api/data/" + mode,
-			  	"ContentGrid", "content-grid",
+			  	"ContentGrid", theme + "/content-grid",
 					false, true, false, {});
 		  }
 		});

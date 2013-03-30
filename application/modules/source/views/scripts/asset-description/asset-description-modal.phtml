@@ -23,11 +23,6 @@
 						<input id="assetDescription_name" name="name" type="text"
 							form-id="assetDescription" class="span12 required" maxlength="100">
 					</div>
-		  		<div class="control-group">
-				  	<label for="assetDescription_updated"><b>Updated</b></label>
-						<input id="assetDescription_updated" name="updated" type="text"
-							form-id="assetDescription" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="assetDescription_id" name="id" form-id="assetDescription">
 			  </div>
 		  </div>
@@ -43,14 +38,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] AssetDescription: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] AssetDescription: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#assetDescriptionForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("assetDescription", "assetDescription", "api/data/" + mode,
-			  	"AssetDescriptionGrid", "asset-description-grid",
+			  	"AssetDescriptionGrid", theme + "/asset-description-grid",
 					false, true, false, {});
 		  }
 		});

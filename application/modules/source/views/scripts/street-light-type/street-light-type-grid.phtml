@@ -57,9 +57,9 @@ list($order, $direction) = each($this->result["StreetLightType"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["StreetLightType"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["street_light_type_name"]; ?></td>
-					<td><?php echo $record["street_light_type_created"]; ?></td>
-					<td><?php echo $record["street_light_type_updated"]; ?></td>
+					<td><?php echo $record["name"]; ?></td>
+					<td><?php echo $record["created"]; ?></td>
+					<td><?php echo $record["updated"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editStreetLightType(<?php echo $id; ?>);">Edit</button>
 					</td>

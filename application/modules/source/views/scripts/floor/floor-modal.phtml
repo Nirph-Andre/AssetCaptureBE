@@ -23,11 +23,6 @@
 						<input id="floor_name" name="name" type="text"
 							form-id="floor" class="span12 required" maxlength="100">
 					</div>
-		  		<div class="control-group">
-				  	<label for="floor_updated"><b>Updated</b></label>
-						<input id="floor_updated" name="updated" type="text"
-							form-id="floor" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="floor_id" name="id" form-id="floor">
 			  </div>
 		  </div>
@@ -43,14 +38,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] Floor: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] Floor: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#floorForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("floor", "floor", "api/data/" + mode,
-			  	"FloorGrid", "floor-grid",
+			  	"FloorGrid", theme + "/floor-grid",
 					false, true, false, {});
 		  }
 		});

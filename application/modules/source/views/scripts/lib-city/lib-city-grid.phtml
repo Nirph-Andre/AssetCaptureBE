@@ -67,9 +67,9 @@ list($order, $direction) = each($this->result["LibCity"]["Order"]);
 				<?php foreach ($this->data["LibCity"] as $id => $record) { ?>
 				<tr>
 					<td><?php echo $record["lib_region_name"]; ?></td>
-					<td><?php echo $record["lib_city_name"]; ?></td>
-					<td><?php echo $record["lib_city_latitude"]; ?></td>
-					<td><?php echo $record["lib_city_longitude"]; ?></td>
+					<td><?php echo $record["name"]; ?></td>
+					<td><?php echo $record["latitude"]; ?></td>
+					<td><?php echo $record["longitude"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibCity(<?php echo $id; ?>);">Edit</button>
 					</td>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 30, 2013 at 07:58 AM
+-- Generation Time: Mar 30, 2013 at 10:32 AM
 -- Server version: 5.1.63-community
 -- PHP Version: 5.4.0-ZS5.6.0
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `app_audit_log` (
   `data_packet` mediumtext,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `app_audit_log`
@@ -47,7 +47,23 @@ INSERT INTO `app_audit_log` (`id`, `customer_context`, `customer_id`, `action`, 
 (1, 'Seller', 2, 'Add', 'lib_authentication_log', 3, 'a:3:{s:5:"email";s:20:"jack.v@jackscars.com";s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"2";}', '2013-02-06 17:15:52'),
 (2, 'Seller', 2, 'Add', 'lib_authentication_log', 4, 'a:3:{s:5:"email";s:20:"jack.v@jackscars.com";s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"2";}', '2013-02-07 08:01:59'),
 (3, 'User', 2, 'Add', 'lib_authentication_log', 1, 'a:3:{s:5:"email";s:20:"jack.v@jackscars.com";s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"2";}', '2013-02-07 08:07:58'),
-(4, 'User', 1, 'Add', 'lib_authentication_log', 2, 'a:3:{s:5:"email";s:23:"greg@simmons-cars.co.za";s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"1";}', '2013-03-16 19:34:45');
+(4, 'User', 1, 'Add', 'lib_authentication_log', 2, 'a:3:{s:5:"email";s:23:"greg@simmons-cars.co.za";s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"1";}', '2013-03-16 19:34:45'),
+(5, 'User', 2, 'Add', 'lib_authentication_log', 1, 'a:2:{s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"2";}', '2013-03-30 11:40:42'),
+(6, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:16:"INFRASTRUCTURE 2";}', '2013-03-30 11:55:14'),
+(7, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:14:"INFRASTRUCTURE";}', '2013-03-30 11:55:26'),
+(8, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:16:"INFRASTRUCTURE 4";}', '2013-03-30 11:56:36'),
+(9, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:15:"INFRASTRUCTURE5";}', '2013-03-30 11:56:51'),
+(10, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:14:"INFRASTRUCTURE";}', '2013-03-30 11:58:22'),
+(11, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:18:"INFRASTRUCTURE 222";}', '2013-03-30 11:58:47'),
+(12, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:14:"INFRASTRUCTURE";}', '2013-03-30 11:58:59'),
+(13, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:16:"INFRASTRUCTURE s";}', '2013-03-30 12:01:11'),
+(14, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:14:"INFRASTRUCTURE";}', '2013-03-30 12:01:15'),
+(15, 'User', 2, 'Update', 'street', 1, 'a:1:{s:4:"name";s:17:"A RE YENG STREETs";}', '2013-03-30 12:13:23'),
+(16, 'User', 2, 'Update', 'street', 1, 'a:1:{s:4:"name";s:16:"A RE YENG STREET";}', '2013-03-30 12:13:30'),
+(17, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:18:"INFRASTRUCTURE asd";}', '2013-03-30 12:18:08'),
+(18, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:19:"INFRASTRUCTURE asds";}', '2013-03-30 12:20:06'),
+(19, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:20:"INFRASTRUCTURE asdss";}', '2013-03-30 12:21:03'),
+(20, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:14:"INFRASTRUCTURE";}', '2013-03-30 12:21:46');
 
 -- --------------------------------------------------------
 
@@ -204,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `asset_type` (
 --
 
 INSERT INTO `asset_type` (`id`, `name`, `created`, `updated`, `archived`) VALUES
-(1, 'INFRASTRUCTURE', '2013-03-30 08:15:00', NULL, 0),
+(1, 'INFRASTRUCTURE', '2013-03-30 08:15:00', '2013-03-30 12:21:46', 0),
 (2, 'OTHER ASSETS', '2013-03-30 08:15:00', NULL, 0);
 
 -- --------------------------------------------------------
@@ -477,7 +493,14 @@ CREATE TABLE IF NOT EXISTS `lib_authentication_log` (
   `profile_id` int(10) unsigned DEFAULT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `lib_authentication_log`
+--
+
+INSERT INTO `lib_authentication_log` (`id`, `ip_address`, `profile_id`, `created`) VALUES
+(1, '127.0.0.1', 2, '2013-03-30 11:40:42');
 
 -- --------------------------------------------------------
 
@@ -913,49 +936,49 @@ CREATE TABLE IF NOT EXISTS `meta_table` (
 
 INSERT INTO `meta_table` (`id`, `name`, `created`, `updated`, `hash`, `version`) VALUES
 (1, 'contact_request', '2013-02-06 00:00:00', NULL, 'c6281d8d77e2fb13fd1b1b908e69fce7', 1),
-(2, 'profile', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '74f6870f6740f14743f1648e51d26b70', 16),
+(2, 'profile', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '74f6870f6740f14743f1648e51d26b70', 20),
 (3, 'app_link_request', '2013-02-06 00:00:00', NULL, 'f43bdcb651541b245f2655558fb3d18d', 1),
-(4, 'config', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'e03531a6324decfbb1141c4f2892a0c5', 16),
+(4, 'config', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'e03531a6324decfbb1141c4f2892a0c5', 20),
 (5, 'lib_photo', '2013-02-06 00:00:00', NULL, '7bde09f24c7977b4721ca39fe327af08', 1),
 (6, 'lib_video', '2013-02-06 00:00:00', NULL, 'a69102d29787306f26ec5d6d0ee0d794', 1),
 (7, 'lib_document', '2013-02-06 00:00:00', NULL, 'c2a035d14c50dacbf0a8c67a14bd2851', 1),
 (8, 'lib_attachment', '2013-02-06 00:00:00', NULL, '38ab8b5d858df97a2456f2e624905b3a', 1),
-(9, 'lib_address', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'eda206b2bd3dcaf4822a4edfc279299e', 16),
+(9, 'lib_address', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'eda206b2bd3dcaf4822a4edfc279299e', 20),
 (10, 'lib_person', '2013-02-06 00:00:00', NULL, '33692ed654c410d64c3a1213d8333f73', 1),
-(11, 'lib_contact', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '8d6f12942a2322c96b1f80a61cfea1ad', 16),
-(12, 'lib_newsletter_template', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '71485ae092f3cffdc0950a6a78b1f3ae', 16),
+(11, 'lib_contact', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '8d6f12942a2322c96b1f80a61cfea1ad', 20),
+(12, 'lib_newsletter_template', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '71485ae092f3cffdc0950a6a78b1f3ae', 20),
 (13, 'lib_newsletter', '2013-02-06 00:00:00', NULL, '5acc042b8308cf92971bbfc35cdab562', 1),
 (14, 'lib_ip_country', '2013-02-06 00:00:00', NULL, '6e7553d3a5c89cad46393eebc24fafa5', 1),
-(15, 'lib_country', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'e76a17da9d1aa21dcb272b7fcd5cfb11', 16),
-(16, 'lib_region', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '30d5d303e8665973611450aeecf03b90', 16),
-(17, 'lib_city', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '6c5b2f2c7b8858933b4048bfdb603dba', 16),
+(15, 'lib_country', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'e76a17da9d1aa21dcb272b7fcd5cfb11', 20),
+(16, 'lib_region', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '30d5d303e8665973611450aeecf03b90', 20),
+(17, 'lib_city', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '6c5b2f2c7b8858933b4048bfdb603dba', 20),
 (18, 'lib_template', '2013-02-06 00:00:00', NULL, '1730e156a4631a9c34dd8867d1b62c79', 1),
 (19, 'lib_repeater_template', '2013-02-06 00:00:00', NULL, '6808b6e0d1d25cd9206da938a62b1085', 1),
 (20, 'lib_authentication_log', '2013-02-06 00:00:00', '2013-03-27 00:00:00', 'd656bfcd19186809dded6a3be9d5844e', 2),
 (21, 'lib_notification_log', '2013-02-06 00:00:00', NULL, 'ed4aa2a527e0e94a55b9023ae3ef9825', 1),
-(22, 'lib_service', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'ce8a58e087c7d5537c65a524032cd3e1', 16),
-(23, 'lib_currency', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '66490a63a4b2802f902d2980426f8e4e', 16),
+(22, 'lib_service', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'ce8a58e087c7d5537c65a524032cd3e1', 20),
+(23, 'lib_currency', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '66490a63a4b2802f902d2980426f8e4e', 20),
 (24, 'lib_xmlrpc_profile', '2013-02-06 00:00:00', NULL, '6137d78bc404d61f7894a5a7b01ab705', 1),
 (25, 'lib_action_reference', '2013-02-06 00:00:00', NULL, '7bd37aa43130e0ffa2466306f74725c7', 1),
 (26, 'bill_invoice', '2013-02-06 00:00:00', NULL, '37f95e7ed7065a5b6a3d533723692166', 1),
 (27, 'bill_invoice_line_item', '2013-02-06 00:00:00', NULL, 'b85a696bb89838b55ffae31d25ac5cc4', 1),
 (28, 'mobile_content', '2013-03-06 00:00:00', NULL, 'cb88ed57b97a6c99904f87e70dc13365', 1),
-(29, 'content', '2013-03-16 00:00:00', '2013-03-30 00:00:00', 'bf47045e2f05006d8d8bc9b0c1151f00', 12),
-(30, 'location', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '961a1c8649c0994e82fb150f28f17cff', 3),
-(31, 'asset_type', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '75bc2e41d75fb2f38097ef483d03d2e5', 8),
-(32, 'asset_sub_type', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '8b9edf987516b70ebf2e3786a0e8e05b', 8),
-(33, 'asset_description', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '4ffe133b31b990d12461c5dc6b7744da', 8),
+(29, 'content', '2013-03-16 00:00:00', '2013-03-30 00:00:00', 'bf47045e2f05006d8d8bc9b0c1151f00', 16),
+(30, 'location', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '961a1c8649c0994e82fb150f28f17cff', 7),
+(31, 'asset_type', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '75bc2e41d75fb2f38097ef483d03d2e5', 12),
+(32, 'asset_sub_type', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '8b9edf987516b70ebf2e3786a0e8e05b', 12),
+(33, 'asset_description', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '4ffe133b31b990d12461c5dc6b7744da', 12),
 (34, 'asset_sub_description', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '6795cadd1217c01c589adbb04e876323', 2),
-(35, 'material', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '28be51e227ff429cac73d8db61be656e', 8),
+(35, 'material', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '28be51e227ff429cac73d8db61be656e', 12),
 (36, 'pole_length', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '549ccbe022f0fd5ea5e5f4b567110d61', 6),
-(37, 'town', '2013-03-30 00:00:00', '2013-03-30 00:00:00', 'bb651138df6717a8515a0f9840e29b2c', 2),
-(38, 'street', '2013-03-30 00:00:00', '2013-03-30 00:00:00', 'ab7d1b24a3851d5bc97abba16bcdf4a7', 2),
-(39, 'building', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '910ddb9c7f191325d5b9a60e4cbaf4df', 2),
-(40, 'floor', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '47c294ae1a59df083783e15a9260eda9', 2),
-(41, 'room', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '19c81626777ecc44a7972e2f544d750b', 2),
-(42, 'street_light_type', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '61075483e8516992cd36ab38378d47d4', 2),
-(43, 'condition', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '37664e54b5f9fba4a4389c89dee7b8f0', 2),
-(44, 'owner', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '6d349af96d1ce958d029d56093f15224', 2),
+(37, 'town', '2013-03-30 00:00:00', '2013-03-30 00:00:00', 'bb651138df6717a8515a0f9840e29b2c', 6),
+(38, 'street', '2013-03-30 00:00:00', '2013-03-30 00:00:00', 'ab7d1b24a3851d5bc97abba16bcdf4a7', 6),
+(39, 'building', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '910ddb9c7f191325d5b9a60e4cbaf4df', 6),
+(40, 'floor', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '47c294ae1a59df083783e15a9260eda9', 6),
+(41, 'room', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '19c81626777ecc44a7972e2f544d750b', 6),
+(42, 'street_light_type', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '61075483e8516992cd36ab38378d47d4', 6),
+(43, 'condition', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '37664e54b5f9fba4a4389c89dee7b8f0', 6),
+(44, 'owner', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '6d349af96d1ce958d029d56093f15224', 6),
 (45, 'asset', '2013-03-30 00:00:00', NULL, 'de69ada670a58e031d2c58fd871e7ec9', 1);
 
 -- --------------------------------------------------------

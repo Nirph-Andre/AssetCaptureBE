@@ -1902,9 +1902,9 @@ App.Validate.$tableName = {";
 				}
 				if ('_id' != substr($field, -3))
 				{
-					$fields[$table_name . '_' . $field] = $field;
-					$fieldToTable[$table_name . '_' . $field] = $table_name;
-					$fieldLabel[$table_name . '_' . $field] = $field;
+					$fields[$field] = $field;
+					$fieldToTable[$field] = $table_name;
+					$fieldLabel[$field] = $field;
 				}
 				else
 				{
@@ -2035,7 +2035,7 @@ App.Validate.$tableName = {";
 //Struct_Debug::errorLog($table_name, $dependancies);
 		#-> Prepare code
 		#-> What fields will we display?
-		$skipFields = array('password', 'password_salt', 'created', 'modified', 'archived');
+		$skipFields = array('password', 'password_salt', 'created', 'updated', 'archived');
 		foreach ($skipFields as $field)
 		{
 			unset($fieldMeta[$field]);
@@ -2516,7 +2516,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#nav[ItemName]").addClass("active");
 		searchHandler["srch-[itemName]"] = {
-				action: "[item-name]-grid",
+				action: theme + "/[item-name]-grid",
 				container: "[ItemName]Grid"
 		};
     searchStack["srch-[itemName]"] = wrapFunction(search, this, ["srch-[itemName]"]);
@@ -2654,7 +2654,7 @@ list($order, $direction) = each($this->result["[ItemName]"]["Order"]);
 		$("#[itemName]Form").validate({
 		  submitHandler: function(form) {
 			  doUpdate("[itemName]", "[itemName]", "api/data/" + mode,
-			  	"[ItemName]Grid", "[item-name]-grid",
+			  	"[ItemName]Grid", theme + "/[item-name]-grid",
 					false, true, false, {});
 		  }
 		});

@@ -23,11 +23,6 @@
 						<input id="room_name" name="name" type="text"
 							form-id="room" class="span12 required" maxlength="100">
 					</div>
-		  		<div class="control-group">
-				  	<label for="room_updated"><b>Updated</b></label>
-						<input id="room_updated" name="updated" type="text"
-							form-id="room" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="room_id" name="id" form-id="room">
 			  </div>
 		  </div>
@@ -43,14 +38,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] Room: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] Room: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#roomForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("room", "room", "api/data/" + mode,
-			  	"RoomGrid", "room-grid",
+			  	"RoomGrid", theme + "/room-grid",
 					false, true, false, {});
 		  }
 		});

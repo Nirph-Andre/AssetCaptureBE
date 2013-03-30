@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibCurrency").addClass("active");
 		searchHandler["srch-libCurrency"] = {
-				action: "lib-currency-grid",
+				action: theme + "/lib-currency-grid",
 				container: "LibCurrencyGrid"
 		};
     searchStack["srch-libCurrency"] = wrapFunction(search, this, ["srch-libCurrency"]);

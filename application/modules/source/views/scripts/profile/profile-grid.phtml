@@ -75,11 +75,11 @@ list($order, $direction) = each($this->result["Profile"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["Profile"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["profile_first_name"]; ?></td>
-					<td><?php echo $record["profile_family_name"]; ?></td>
-					<td><?php echo $record["profile_id_number"]; ?></td>
-					<td><?php echo $record["profile_date_of_birth"]; ?></td>
-					<td><?php echo $record["profile_mobile"]; ?></td>
+					<td><?php echo $record["first_name"]; ?></td>
+					<td><?php echo $record["family_name"]; ?></td>
+					<td><?php echo $record["id_number"]; ?></td>
+					<td><?php echo $record["date_of_birth"]; ?></td>
+					<td><?php echo $record["mobile"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editProfile(<?php echo $id; ?>);">Edit</button>
 					</td>

@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navMaterial").addClass("active");
 		searchHandler["srch-material"] = {
-				action: "material-grid",
+				action: theme + "/material-grid",
 				container: "MaterialGrid"
 		};
     searchStack["srch-material"] = wrapFunction(search, this, ["srch-material"]);

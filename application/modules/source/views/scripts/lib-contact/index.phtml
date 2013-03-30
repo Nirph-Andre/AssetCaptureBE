@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibContact").addClass("active");
 		searchHandler["srch-libContact"] = {
-				action: "lib-contact-grid",
+				action: theme + "/lib-contact-grid",
 				container: "LibContactGrid"
 		};
     searchStack["srch-libContact"] = wrapFunction(search, this, ["srch-libContact"]);

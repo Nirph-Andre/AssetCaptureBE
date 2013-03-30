@@ -57,9 +57,9 @@ list($order, $direction) = each($this->result["Condition"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["Condition"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["condition_name"]; ?></td>
-					<td><?php echo $record["condition_created"]; ?></td>
-					<td><?php echo $record["condition_updated"]; ?></td>
+					<td><?php echo $record["name"]; ?></td>
+					<td><?php echo $record["created"]; ?></td>
+					<td><?php echo $record["updated"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editCondition(<?php echo $id; ?>);">Edit</button>
 					</td>

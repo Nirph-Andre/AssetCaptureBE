@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navFloor").addClass("active");
 		searchHandler["srch-floor"] = {
-				action: "floor-grid",
+				action: theme + "/floor-grid",
 				container: "FloorGrid"
 		};
     searchStack["srch-floor"] = wrapFunction(search, this, ["srch-floor"]);

@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navAssetSubType").addClass("active");
 		searchHandler["srch-assetSubType"] = {
-				action: "asset-sub-type-grid",
+				action: theme + "/asset-sub-type-grid",
 				container: "AssetSubTypeGrid"
 		};
     searchStack["srch-assetSubType"] = wrapFunction(search, this, ["srch-assetSubType"]);

@@ -14,11 +14,6 @@
 						<input id="condition_name" name="name" type="text"
 							form-id="condition" class="span12 required" maxlength="100">
 					</div>
-		  		<div class="control-group">
-				  	<label for="condition_updated"><b>Updated</b></label>
-						<input id="condition_updated" name="updated" type="text"
-							form-id="condition" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="condition_id" name="id" form-id="condition">
 			  </div>
 		  </div>
@@ -34,14 +29,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] Condition: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] Condition: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#conditionForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("condition", "condition", "api/data/" + mode,
-			  	"ConditionGrid", "condition-grid",
+			  	"ConditionGrid", theme + "/condition-grid",
 					false, true, false, {});
 		  }
 		});

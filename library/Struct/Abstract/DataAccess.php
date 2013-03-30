@@ -115,7 +115,7 @@ abstract class Struct_Abstract_DataAccess
 	 * To stack or not stack the data.
 	 * @var boolean
 	 */
-	protected $_flatten = false;
+	protected $_flatten = true;
 	/**
 	 * Field meta.
 	 * @var array
@@ -1225,7 +1225,6 @@ abstract class Struct_Abstract_DataAccess
 				}
 			}
 		}
-Struct_Debug::errorLog('where', $where);
 		return $where;
 	}
 	

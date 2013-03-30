@@ -75,11 +75,11 @@ list($order, $direction) = each($this->result["LibAddress"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["LibAddress"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["lib_address_name"]; ?></td>
+					<td><?php echo $record["name"]; ?></td>
 					<td><?php echo $record["lib_city_name"]; ?></td>
-					<td><?php echo $record["lib_address_address"]; ?></td>
-					<td><?php echo $record["lib_address_postal_code"]; ?></td>
-					<td><?php echo $record["lib_address_latitude"]; ?></td>
+					<td><?php echo $record["address"]; ?></td>
+					<td><?php echo $record["postal_code"]; ?></td>
+					<td><?php echo $record["latitude"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibAddress(<?php echo $id; ?>);">Edit</button>
 					</td>

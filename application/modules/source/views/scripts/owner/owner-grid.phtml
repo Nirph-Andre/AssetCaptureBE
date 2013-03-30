@@ -57,9 +57,9 @@ list($order, $direction) = each($this->result["Owner"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["Owner"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["owner_name"]; ?></td>
-					<td><?php echo $record["owner_created"]; ?></td>
-					<td><?php echo $record["owner_updated"]; ?></td>
+					<td><?php echo $record["name"]; ?></td>
+					<td><?php echo $record["created"]; ?></td>
+					<td><?php echo $record["updated"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editOwner(<?php echo $id; ?>);">Edit</button>
 					</td>

@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navContent").addClass("active");
 		searchHandler["srch-content"] = {
-				action: "content-grid",
+				action: theme + "/content-grid",
 				container: "ContentGrid"
 		};
     searchStack["srch-content"] = wrapFunction(search, this, ["srch-content"]);

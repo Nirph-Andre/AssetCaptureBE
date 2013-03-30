@@ -497,6 +497,16 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 			}
 			foreach ($this->fieldNames as $field => $internal)
 			{
+				if ($this->checkFieldFlag($field, FIELD_UPDATE_DATETIME)
+						|| $this->checkFieldFlag($field, FIELD_UPDATE_DATE)
+						|| $this->checkFieldFlag($field, FIELD_UPDATE_TIMESTAMP))
+				{
+					if (isset($record[$field]))
+					{
+						unset($record[$field]);
+					}
+				}
+				
 				if ($this->checkFieldFlag($field, FIELD_INSERT_DATETIME))
 				{
 					$record[$field] = date('Y-m-d H:i:s');
@@ -508,16 +518,6 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 				if ($this->checkFieldFlag($field, FIELD_INSERT_TIMESTAMP))
 				{
 					$record[$field] = time();
-				}
-				
-				if ($this->checkFieldFlag($field, FIELD_UPDATE_DATETIME)
-						|| $this->checkFieldFlag($field, FIELD_UPDATE_DATE)
-						|| $this->checkFieldFlag($field, FIELD_UPDATE_TIMESTAMP))
-				{
-					if (isset($record[$field]))
-					{
-						unset($record[$field]);
-					}
 				}
 			}
 			try
@@ -568,6 +568,16 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 			}
 			foreach ($this->fieldNames as $field => $internal)
 			{
+				if ($this->checkFieldFlag($field, FIELD_INSERT_DATETIME)
+						|| $this->checkFieldFlag($field, FIELD_INSERT_DATE)
+						|| $this->checkFieldFlag($field, FIELD_INSERT_TIMESTAMP))
+				{
+					if (isset($record[$field]))
+					{
+						unset($record[$field]);
+					}
+				}
+				
 				if ($this->checkFieldFlag($field, FIELD_UPDATE_DATETIME))
 				{
 					$record[$field] = date('Y-m-d H:i:s');
@@ -580,19 +590,10 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 				{
 					$record[$field] = time();
 				}
-				
-				if ($this->checkFieldFlag($field, FIELD_INSERT_DATETIME)
-						|| $this->checkFieldFlag($field, FIELD_INSERT_DATE)
-						|| $this->checkFieldFlag($field, FIELD_INSERT_TIMESTAMP))
-				{
-					if (isset($record[$field]))
-					{
-						unset($record[$field]);
-					}
-				}
 			}
 			try
 			{
+Struct_Debug::errorLog('update date', $record);
 				$affectedRows = parent::update($record, array('id = ?' => $id));
 				if (($affectedRows) && Struct_Registry::isAuthenticated())
 				{
@@ -1654,13 +1655,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 						: false;
 				}
 				if ('archived' == $field
-						|| 'created' == $field
-						|| 'updated' == $field
-						|| 'status' == $field
-						|| '_id' == substr($field, -3)
 						|| '_archived' == substr($field, -9)
-						|| '_created' == substr($field, -8)
-						|| '_updated' == substr($field, -8)
 						|| 'mime_type' == substr($field, -9)
 						|| 'report_' == substr($field, 0, 7)
 						|| strpos($field, '_can_')

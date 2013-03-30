@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navConfig").addClass("active");
 		searchHandler["srch-config"] = {
-				action: "config-grid",
+				action: theme + "/config-grid",
 				container: "ConfigGrid"
 		};
     searchStack["srch-config"] = wrapFunction(search, this, ["srch-config"]);

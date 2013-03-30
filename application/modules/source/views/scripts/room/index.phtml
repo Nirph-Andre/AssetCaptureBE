@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navRoom").addClass("active");
 		searchHandler["srch-room"] = {
-				action: "room-grid",
+				action: theme + "/room-grid",
 				container: "RoomGrid"
 		};
     searchStack["srch-room"] = wrapFunction(search, this, ["srch-room"]);

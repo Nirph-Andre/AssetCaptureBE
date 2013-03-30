@@ -14,11 +14,6 @@
 						<input id="streetLightType_name" name="name" type="text"
 							form-id="streetLightType" class="span12 required" maxlength="100">
 					</div>
-		  		<div class="control-group">
-				  	<label for="streetLightType_updated"><b>Updated</b></label>
-						<input id="streetLightType_updated" name="updated" type="text"
-							form-id="streetLightType" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="streetLightType_id" name="id" form-id="streetLightType">
 			  </div>
 		  </div>
@@ -34,14 +29,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] StreetLightType: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] StreetLightType: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#streetLightTypeForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("streetLightType", "streetLightType", "api/data/" + mode,
-			  	"StreetLightTypeGrid", "street-light-type-grid",
+			  	"StreetLightTypeGrid", theme + "/street-light-type-grid",
 					false, true, false, {});
 		  }
 		});

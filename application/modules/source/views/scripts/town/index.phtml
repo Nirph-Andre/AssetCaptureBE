@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navTown").addClass("active");
 		searchHandler["srch-town"] = {
-				action: "town-grid",
+				action: theme + "/town-grid",
 				container: "TownGrid"
 		};
     searchStack["srch-town"] = wrapFunction(search, this, ["srch-town"]);

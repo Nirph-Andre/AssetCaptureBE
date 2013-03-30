@@ -70,7 +70,7 @@
 		$("#libContactForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("libContact", "libContact", "api/data/" + mode,
-			  	"LibContactGrid", "lib-contact-grid",
+			  	"LibContactGrid", theme + "/lib-contact-grid",
 					false, true, false, {});
 		  }
 		});

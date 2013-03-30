@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navOwner").addClass("active");
 		searchHandler["srch-owner"] = {
-				action: "owner-grid",
+				action: theme + "/owner-grid",
 				container: "OwnerGrid"
 		};
     searchStack["srch-owner"] = wrapFunction(search, this, ["srch-owner"]);

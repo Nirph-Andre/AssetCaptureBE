@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibAddress").addClass("active");
 		searchHandler["srch-libAddress"] = {
-				action: "lib-address-grid",
+				action: theme + "/lib-address-grid",
 				container: "LibAddressGrid"
 		};
     searchStack["srch-libAddress"] = wrapFunction(search, this, ["srch-libAddress"]);

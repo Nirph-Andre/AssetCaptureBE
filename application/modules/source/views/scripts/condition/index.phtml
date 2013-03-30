@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navCondition").addClass("active");
 		searchHandler["srch-condition"] = {
-				action: "condition-grid",
+				action: theme + "/condition-grid",
 				container: "ConditionGrid"
 		};
     searchStack["srch-condition"] = wrapFunction(search, this, ["srch-condition"]);

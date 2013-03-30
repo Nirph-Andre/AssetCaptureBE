@@ -67,9 +67,9 @@ list($order, $direction) = each($this->result["Town"]["Order"]);
 				<?php foreach ($this->data["Town"] as $id => $record) { ?>
 				<tr>
 					<td><?php echo $record["location_name"]; ?></td>
-					<td><?php echo $record["town_name"]; ?></td>
-					<td><?php echo $record["town_created"]; ?></td>
-					<td><?php echo $record["town_updated"]; ?></td>
+					<td><?php echo $record["name"]; ?></td>
+					<td><?php echo $record["created"]; ?></td>
+					<td><?php echo $record["updated"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editTown(<?php echo $id; ?>);">Edit</button>
 					</td>

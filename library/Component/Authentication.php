@@ -21,11 +21,14 @@ class Component_Authentication
 	 * @param	string $password
 	 * @return Struct_ActionFeedback
 	 */
-	static public function login($username, $password)
+	static public function login($email, $username, $password)
 	{
 		#-> Retrieve data
 		$oProfile = new Object_Profile();
-		$filter = array('username' => $username);
+
+		$filter = $email
+			? array('email' => $email)
+			: array('username' => $username);
 		$data = $oProfile->view(null, $filter)->data;
 		#-> Match?
 		if (!empty($data)

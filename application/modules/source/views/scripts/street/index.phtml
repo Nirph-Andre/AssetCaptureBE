@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navStreet").addClass("active");
 		searchHandler["srch-street"] = {
-				action: "street-grid",
+				action: theme + "/street-grid",
 				container: "StreetGrid"
 		};
     searchStack["srch-street"] = wrapFunction(search, this, ["srch-street"]);

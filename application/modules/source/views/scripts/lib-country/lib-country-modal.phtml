@@ -52,7 +52,7 @@
 		$("#libCountryForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("libCountry", "libCountry", "api/data/" + mode,
-			  	"LibCountryGrid", "lib-country-grid",
+			  	"LibCountryGrid", theme + "/lib-country-grid",
 					false, true, false, {});
 		  }
 		});

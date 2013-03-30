@@ -82,7 +82,7 @@
 		$("#configForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("config", "config", "api/data/" + mode,
-			  	"ConfigGrid", "config-grid",
+			  	"ConfigGrid", theme + "/config-grid",
 					false, true, false, {});
 		  }
 		});

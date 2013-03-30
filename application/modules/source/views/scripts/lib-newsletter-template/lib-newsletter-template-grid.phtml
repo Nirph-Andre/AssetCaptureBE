@@ -48,7 +48,7 @@ list($order, $direction) = each($this->result["LibNewsletterTemplate"]["Order"])
 			<tbody>
 				<?php foreach ($this->data["LibNewsletterTemplate"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["lib_newsletter_template_name"]; ?></td>
+					<td><?php echo $record["name"]; ?></td>
 					<td><?php echo $record["lib_photo_mime_type"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibNewsletterTemplate(<?php echo $id; ?>);">Edit</button>

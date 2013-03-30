@@ -14,11 +14,6 @@
 						<input id="material_name" name="name" type="text"
 							form-id="material" class="span12 required" maxlength="100">
 					</div>
-		  		<div class="control-group">
-				  	<label for="material_updated"><b>Updated</b></label>
-						<input id="material_updated" name="updated" type="text"
-							form-id="material" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="material_id" name="id" form-id="material">
 			  </div>
 		  </div>
@@ -34,14 +29,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] Material: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] Material: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#materialForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("material", "material", "api/data/" + mode,
-			  	"MaterialGrid", "material-grid",
+			  	"MaterialGrid", theme + "/material-grid",
 					false, true, false, {});
 		  }
 		});

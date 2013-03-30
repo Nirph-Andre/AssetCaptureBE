@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibService").addClass("active");
 		searchHandler["srch-libService"] = {
-				action: "lib-service-grid",
+				action: theme + "/lib-service-grid",
 				container: "LibServiceGrid"
 		};
     searchStack["srch-libService"] = wrapFunction(search, this, ["srch-libService"]);

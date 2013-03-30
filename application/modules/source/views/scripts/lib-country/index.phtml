@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibCountry").addClass("active");
 		searchHandler["srch-libCountry"] = {
-				action: "lib-country-grid",
+				action: theme + "/lib-country-grid",
 				container: "LibCountryGrid"
 		};
     searchStack["srch-libCountry"] = wrapFunction(search, this, ["srch-libCountry"]);

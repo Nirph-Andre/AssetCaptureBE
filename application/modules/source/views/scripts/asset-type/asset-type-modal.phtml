@@ -14,11 +14,6 @@
 						<input id="assetType_name" name="name" type="text"
 							form-id="assetType" class="span12 required" maxlength="100">
 					</div>
-		  		<div class="control-group">
-				  	<label for="assetType_updated"><b>Updated</b></label>
-						<input id="assetType_updated" name="updated" type="text"
-							form-id="assetType" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="assetType_id" name="id" form-id="assetType">
 			  </div>
 		  </div>
@@ -34,14 +29,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] AssetType: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] AssetType: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#assetTypeForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("assetType", "assetType", "api/data/" + mode,
-			  	"AssetTypeGrid", "asset-type-grid",
+			  	"AssetTypeGrid", theme + "/asset-type-grid",
 					false, true, false, {});
 		  }
 		});

@@ -54,7 +54,7 @@
 		$("#libRegionForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("libRegion", "libRegion", "api/data/" + mode,
-			  	"LibRegionGrid", "lib-region-grid",
+			  	"LibRegionGrid", theme + "/lib-region-grid",
 					false, true, false, {});
 		  }
 		});

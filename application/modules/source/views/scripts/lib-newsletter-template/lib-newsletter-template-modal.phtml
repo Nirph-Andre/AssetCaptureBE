@@ -53,7 +53,7 @@
 		$("#libNewsletterTemplateForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("libNewsletterTemplate", "libNewsletterTemplate", "api/data/" + mode,
-			  	"LibNewsletterTemplateGrid", "lib-newsletter-template-grid",
+			  	"LibNewsletterTemplateGrid", theme + "/lib-newsletter-template-grid",
 					false, true, false, {});
 		  }
 		});

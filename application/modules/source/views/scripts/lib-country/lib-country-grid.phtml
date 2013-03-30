@@ -66,10 +66,10 @@ list($order, $direction) = each($this->result["LibCountry"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["LibCountry"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["lib_country_name"]; ?></td>
-					<td><?php echo $record["lib_country_country_code_iso"]; ?></td>
-					<td><?php echo $record["lib_country_country_code_fips"]; ?></td>
-					<td><?php echo $record["lib_country_dialing_code"]; ?></td>
+					<td><?php echo $record["name"]; ?></td>
+					<td><?php echo $record["country_code_iso"]; ?></td>
+					<td><?php echo $record["country_code_fips"]; ?></td>
+					<td><?php echo $record["dialing_code"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibCountry(<?php echo $id; ?>);">Edit</button>
 					</td>

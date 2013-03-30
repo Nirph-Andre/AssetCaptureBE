@@ -23,11 +23,6 @@
 						<input id="building_name" name="name" type="text"
 							form-id="building" class="span12 required" maxlength="100">
 					</div>
-		  		<div class="control-group">
-				  	<label for="building_updated"><b>Updated</b></label>
-						<input id="building_updated" name="updated" type="text"
-							form-id="building" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="building_id" name="id" form-id="building">
 			  </div>
 		  </div>
@@ -43,14 +38,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] Building: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] Building: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#buildingForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("building", "building", "api/data/" + mode,
-			  	"BuildingGrid", "building-grid",
+			  	"BuildingGrid", theme + "/building-grid",
 					false, true, false, {});
 		  }
 		});
