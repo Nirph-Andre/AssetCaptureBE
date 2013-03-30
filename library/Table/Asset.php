@@ -465,18 +465,72 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'IDENTITY' => false,
             'FLAGS' => 0,
             'FLAG_LIST' => ''
+            ),
+        'created' => array(
+            'SCHEMA_NAME' => null,
+            'TABLE_NAME' => 'asset',
+            'COLUMN_NAME' => 'created',
+            'COLUMN_POSITION' => 21,
+            'DATA_TYPE' => 'datetime',
+            'DEFAULT' => null,
+            'NULLABLE' => false,
+            'LENGTH' => null,
+            'SCALE' => null,
+            'PRECISION' => null,
+            'UNSIGNED' => null,
+            'PRIMARY' => false,
+            'PRIMARY_POSITION' => null,
+            'IDENTITY' => false,
+            'FLAGS' => 35,
+            'FLAG_LIST' => 'FIELD_REQUIRED | FIELD_INSERT_DATETIME'
+            ),
+        'updated' => array(
+            'SCHEMA_NAME' => null,
+            'TABLE_NAME' => 'asset',
+            'COLUMN_NAME' => 'updated',
+            'COLUMN_POSITION' => 22,
+            'DATA_TYPE' => 'datetime',
+            'DEFAULT' => null,
+            'NULLABLE' => true,
+            'LENGTH' => null,
+            'SCALE' => null,
+            'PRECISION' => null,
+            'UNSIGNED' => null,
+            'PRIMARY' => false,
+            'PRIMARY_POSITION' => null,
+            'IDENTITY' => false,
+            'FLAGS' => 288,
+            'FLAG_LIST' => 'FIELD_UPDATE_DATETIME'
+            ),
+        'archived' => array(
+            'SCHEMA_NAME' => null,
+            'TABLE_NAME' => 'asset',
+            'COLUMN_NAME' => 'archived',
+            'COLUMN_POSITION' => 23,
+            'DATA_TYPE' => 'tinyint',
+            'DEFAULT' => '0',
+            'NULLABLE' => true,
+            'LENGTH' => null,
+            'SCALE' => null,
+            'PRECISION' => null,
+            'UNSIGNED' => true,
+            'PRIMARY' => false,
+            'PRIMARY_POSITION' => null,
+            'IDENTITY' => false,
+            'FLAGS' => 0,
+            'FLAG_LIST' => ''
             )
         );
 
     /**
-     * No flags
+     * TABLE_NO_DELETE | TABLE_PSEUDO_DELETE
      */
-    protected $tableFlags = 0;
+    protected $tableFlags = 12;
 
     /**
      * Field used to flag entry as archived.
      */
-    protected $archiveField = false;
+    protected $archiveField = 'archived';
 
     /**
      * Field db-name to code-name mapping.
@@ -501,7 +555,10 @@ class Table_Asset extends Struct_Abstract_ModelTable
         'material_id' => 'MaterialId',
         'pole_length_id' => 'PoleLengthId',
         'street_light_type_id' => 'StreetLightTypeId',
-        'condition_id' => 'ConditionId'
+        'condition_id' => 'ConditionId',
+        'created' => 'Created',
+        'updated' => 'Updated',
+        'archived' => 'Archived'
         );
 
     /**
@@ -527,7 +584,10 @@ class Table_Asset extends Struct_Abstract_ModelTable
         'material_id' => null,
         'pole_length_id' => null,
         'street_light_type_id' => null,
-        'condition_id' => null
+        'condition_id' => null,
+        'created' => null,
+        'updated' => null,
+        'archived' => '0'
         );
 
     /**

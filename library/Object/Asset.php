@@ -212,6 +212,16 @@ class Object_Asset extends Struct_Abstract_DataAccess
                         'max' => 4294967295
                         )
                     ))
+            ),
+        'archived' => array(
+            'required' => false,
+            'validators' => array(array(
+                    'type' => 'InArray',
+                    'params' => array(
+                        '0',
+                        '1'
+                        )
+                    ))
             )
         );
 

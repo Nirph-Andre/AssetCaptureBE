@@ -188,7 +188,7 @@
 		$("#assetForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("asset", "asset", "api/data/" + mode,
-			  	"AssetGrid", "asset-grid",
+			  	"AssetGrid", theme + "/asset-grid",
 					false, true, false, {});
 		  }
 		});
