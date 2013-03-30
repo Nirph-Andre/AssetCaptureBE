@@ -34,66 +34,10 @@ function generalNotice(header,body)
 	$('#modalGeneralNotice').modal('show');
 }
 
-$('input:text,input:password,textarea').focus(function (){
-	if (!hasPlaceholderSupport())
-	{
-		datepicker = false;
-		if ($(this).hasClass('datepicker'))
-		{
-			datepicker = true;
-			$(this).datepicker('remove');
-		}
-		$(this).val('');
-		if (datepicker)
-		{
-			$(this).datepicker();
-		}
-	}
-});
-	
-$('input:text,input:password,textarea').blur(function (){
-	if (!hasPlaceholderSupport() && $(this).val() == '')
-	{
-		datepicker = false;
-		text = $(this).attr('placeholder');
-		if ($(this).hasClass('datepicker'))
-		{
-			datepicker = true;
-			$(this).datepicker('remove');
-		}
-		if (text)
-		{
-			$(this).val(text);
-		}
-		if (datepicker)
-		{
-			$(this).datepicker();
-		}
-	}
-});
+
 
 $(document).ready(function() {
 	//$.prettyLoader();
-	if (!hasPlaceholderSupport())
-	{
-		$('input:text,input:password,textarea').each(function () {
-			datepicker = false;
-			text = $(this).attr('placeholder');
-			if ($(this).hasClass('datepicker'))
-			{
-				datepicker = true;
-				$(this).datepicker('remove');
-			}
-			if (text)
-			{
-				$(this).val(text);
-			}
-			if (datepicker)
-			{
-				$(this).datepicker();
-			}
-		});
-	}
 	$('.nav-vertical .nav-list:odd:not(:first)').slideToggle();
 	$('.nav-vertical .nav-header > span > i').toggleClass('icon-circle-arrow-down');
 	$('.nav-vertical .nav-list:even').click(function () {
@@ -125,6 +69,10 @@ $("#deleteForm").submit(function () {
 		false, true);
 	return false;
 });
+
+function loadUrl(url) {
+  window.location = url;
+}
 
 function loadPage(page, options) {
 	$("[rel=tooltip]").tooltip('hide');

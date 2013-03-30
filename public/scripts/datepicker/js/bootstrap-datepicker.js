@@ -133,7 +133,7 @@
 			// When going from the input to the picker, IE handles the blur/click
 			// events differently than other browsers, in such a way that the blur
 			// event triggers a hide before the click event can stop propagation.
-			if ($.browser.msie) {
+			if ($.browser && $.browser.msie) {
 				var t = this, args = arguments;
 
 				function cancel_hide(){

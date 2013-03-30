@@ -220,9 +220,70 @@
 
 
 	
-<div class="container">
+<div class="container-fluid">
 <div class="row-fluid">
- <div class="span12">
+ <div class="span3 well">
+ 		<div class="nav-vertical">
+		<!-- NAVIGATION -->
+		<ul class="nav nav-list">
+			<li class="divider"></li>
+			<li class="nav-header">
+				Asset Management
+				<span class="pull-right"><i class="icon-circle-arrow-up icon-circle-arrow-down"></i></span>
+			</li>
+		</ul>
+		<ul class="nav nav-list">
+			<li class=""><a class="handy" onclick="loadUrl('/source/asset');">Assets</a></li>
+			<li class=""><a class="handy" onclick="loadUrl('/source/import');">Import</a></li>
+			<li class=""><a class="handy" onclick="loadUrl('/source/export');">Export</a></li>
+		</ul>
+		<ul class="nav nav-list">
+			<li class="divider"></li>
+			<li class="nav-header">
+				Asset Descriptors
+				<span class="pull-right"><i class="icon-circle-arrow-up icon-circle-arrow-down"></i></span>
+			</li>
+		</ul>
+		<ul class="nav nav-list" style="display: none;">
+			<li class=""><a class="handy" onclick="loadUrl('/source/owner');">Ownership</a></li>
+			<li class=""><a class="handy" onclick="loadUrl('/source/asset-type');">Asset Type</a></li>
+			<li class=""><a class="handy" onclick="loadUrl('/source/asset-sub-type');">Asset Sub Type</a></li>
+			<li class=""><a class="handy" onclick="loadUrl('/source/asset-description');">Asset Description</a></li>
+			<li class=""><a class="handy" onclick="loadUrl('/source/asset-sub-description');">Asset Sub Description</a></li>
+			<li class=""><a class="handy" onclick="loadUrl('/source/material');">Material</a></li>
+			<li class=""><a class="handy" onclick="loadUrl('/source/condition');">Condition</a></li>
+			<li class=""><a class="handy" onclick="loadUrl('/source/pole-length');">Pole Length</a></li>
+			<li class=""><a class="handy" onclick="loadUrl('/source/street-light-type');">Street Light Type</a></li>
+		</ul>
+		<ul class="nav nav-list">
+			<li class="divider"></li>
+			<li class="nav-header">
+				Location Descriptors
+				<span class="pull-right"><i class="icon-circle-arrow-up icon-circle-arrow-down"></i></span>
+			</li>
+		</ul>
+		<ul class="nav nav-list" style="display: none;">
+			<li class=""><a class="handy" onclick="loadUrl('/source/location');">Location</a></li>
+			<li class=""><a class="handy" onclick="loadUrl('/source/town');">Town</a></li>
+			<li class=""><a class="handy" onclick="loadUrl('/source/street');">Street</a></li>
+			<li class=""><a class="handy" onclick="loadUrl('/source/building');">Building</a></li>
+			<li class=""><a class="handy" onclick="loadUrl('/source/floor');">Floor</a></li>
+			<li class=""><a class="handy" onclick="loadUrl('/source/room');">Room</a></li>
+		</ul>
+		<ul class="nav nav-list">
+			<li class="divider"></li>
+			<li class="nav-header">
+				Settings
+				<span class="pull-right"><i class="icon-circle-arrow-up icon-circle-arrow-down"></i></span>
+			</li>
+		</ul>
+		<ul class="nav nav-list" style="display: none;">
+			<li class=""><a class="handy" onclick="loadUrl('/source/profile');">Profiles</a></li>
+		</ul>
+	<!-- /NAVIGATION -->
+	</div>
+ </div>
+ <div class="span9">
  
 <?php echo $this->layout()->content; ?>
 
@@ -366,11 +427,14 @@
 	var mode = '';
 	
 	$(document).ready(function() {
+		$('.nav-vertical .nav-list:even').addClass('handy');
+		$('.nav-vertical .nav-list:odd').slideToggle();
+		$('.nav-vertical .nav-header > span > i').toggleClass('icon-circle-arrow-down');
 <?php if (!Struct_Registry::isAuthenticated()) { ?>
 		$("#loginForm").validate({
-		  submitHandler: function (form) {
-		    
-		    
+			submitHandler: function (form) {
+				
+				
 				theme = 'util/authentication';
 				doUpdate('login', false, 'api/authentication/login', false, false, 
 				{
@@ -378,10 +442,10 @@
 					"placement": "top",
 					"length": 4000
 				}, false, '/central');
-		  }
+			}
 		});
 		$("#registerForm").validate({
-		  submitHandler: function () {
+			submitHandler: function () {
 				theme = 'util/authentication';
 				doUpdate('register', false, 'api/authentication/register', false, false, 
 				{
@@ -389,7 +453,7 @@
 					"placement": "top",
 					"length": 4000
 				}, false, '/central');
-		  }
+			}
 		});
 <?php } ?>
 	});
