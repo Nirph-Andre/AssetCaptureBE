@@ -39,17 +39,14 @@ class Api_DataController extends Struct_Abstract_Controller
 					'You are not authenticated, please login.'
 			));
 		} */
-Struct_Debug::errorLog('data/synch', 'init');
 		$this->_helper->layout()->disableLayout();
 		//$this->_helper->viewRenderer->setNoRender(true);
 		$params = $this->getRequest()->getParams();
 		if (count($params) <= 3)
 		{
 			$params = json_decode(file_get_contents('php://input'), true);
-Struct_Debug::errorLog('params', $params);
 			if (empty($params))
 			{
-Struct_Debug::errorLog('params error', 'no data context');
 				$this->jsonResult(Struct_ActionFeedback::error(
 						'No data context',
 						'No data context specified, server could not service the request.'
@@ -95,11 +92,10 @@ Struct_Debug::errorLog('params error', 'no data context');
 			}
 		}
 Struct_Debug::errorLog('_nameSpace', $this->_nameSpace);
-Struct_Debug::errorLog($this->_nameSpace . '._data', $this->_data);
-Struct_Debug::errorLog($this->_nameSpace . '._options', $this->_options);
+//Struct_Debug::errorLog($this->_nameSpace . '._data', $this->_data);
+//Struct_Debug::errorLog($this->_nameSpace . '._options', $this->_options);
 		
 		$class = 'Object_' . str_replace('DropList', '', ucfirst($this->_nameSpace));
-Struct_Debug::errorLog($this->_nameSpace . '.data class', $class);
 		$this->_object = new $class();
 		return true;
 	}
@@ -111,15 +107,12 @@ Struct_Debug::errorLog($this->_nameSpace . '.data class', $class);
 	
 	public function synchAction()
 	{
-Struct_Debug::errorLog($this->_nameSpace . '.synchAction', 'init');
 		#-> Upstream.
 		$synchDate = date('Y-m-d H:i:s', time() - 1);
 		$feedback = array();
 		$uniqueIdentifier = $this->_object->getUniqueIdentifier();
-Struct_Debug::errorLog($this->_nameSpace . '.uniqueIdentifier', $uniqueIdentifier);
 		if (isset($this->_data['create']) && !empty($this->_data['create']))
 		{
-Struct_Debug::errorLog($this->_nameSpace . '.create', $this->_data['create']);
 			if (empty($uniqueIdentifier))
 			{
 				// Nothing to test against for duplication, create as is.
@@ -181,11 +174,9 @@ Struct_Debug::errorLog($this->_nameSpace . '.create', $this->_data['create']);
 					}
 				}
 			}
-Struct_Debug::errorLog($this->_nameSpace . '.create', 'done');
 		}
 		if (isset($this->_data['update']) && !empty($this->_data['update']))
 		{
-Struct_Debug::errorLog($this->_nameSpace . '.update', $this->_data['update']);
 			foreach($this->_data['update'] as $synchEntry)
 			{
 				$remoteId = $synchEntry['id'];
@@ -205,11 +196,9 @@ Struct_Debug::errorLog($this->_nameSpace . '.update', $this->_data['update']);
 					}
 				}
 			}
-Struct_Debug::errorLog($this->_nameSpace . '.update', 'done');
 		}
 		if (isset($this->_data['remove']) && !empty($this->_data['remove']))
 		{
-Struct_Debug::errorLog($this->_nameSpace . '.remove', $this->_data['remove']);
 			foreach($this->_data['remove'] as $synchEntry)
 			{
 				$remoteId = $synchEntry['id'];
@@ -229,7 +218,6 @@ Struct_Debug::errorLog($this->_nameSpace . '.remove', $this->_data['remove']);
 					}
 				}
 			}
-Struct_Debug::errorLog($this->_nameSpace . '.remove', 'done');
 		}
 		
 		#-> Downstream.
@@ -253,7 +241,6 @@ Struct_Debug::errorLog($this->_nameSpace . '.remove', 'done');
 		)), array(), true)->data;
 		
 		#-> Done, provide relevant feedback and downstream data.
-Struct_Debug::errorLog($this->_nameSpace . '.done', 'RETURN');
 		$this->jsonNsResult(
 			Struct_ActionFeedback::successWithData(array(
 				'Feedback' => $feedback,
