@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 30, 2013 at 06:35 AM
+-- Generation Time: Mar 30, 2013 at 07:58 AM
 -- Server version: 5.1.63-community
 -- PHP Version: 5.4.0-ZS5.6.0
 
@@ -74,6 +74,37 @@ CREATE TABLE IF NOT EXISTS `app_link_request` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `asset`
+--
+
+DROP TABLE IF EXISTS `asset`;
+CREATE TABLE IF NOT EXISTS `asset` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `location_id` int(10) unsigned NOT NULL,
+  `town_id` int(10) unsigned NOT NULL,
+  `street_id` int(10) unsigned DEFAULT NULL,
+  `building_id` int(10) unsigned DEFAULT NULL,
+  `floor_id` int(10) unsigned DEFAULT NULL,
+  `room_id` int(10) unsigned DEFAULT NULL,
+  `owner_id` int(10) unsigned NOT NULL,
+  `gps_relative` tinyint(3) unsigned DEFAULT NULL,
+  `gps_lat` varchar(50) DEFAULT NULL,
+  `gps_long` varchar(50) DEFAULT NULL,
+  `identifier` varchar(100) DEFAULT NULL,
+  `asset_type_id` int(10) unsigned NOT NULL,
+  `asset_sub_type_id` int(10) unsigned NOT NULL,
+  `asset_description_id` int(10) unsigned NOT NULL,
+  `asset_sub_description_id` int(10) unsigned DEFAULT NULL,
+  `material_id` int(10) unsigned DEFAULT NULL,
+  `pole_length_id` int(10) unsigned DEFAULT NULL,
+  `street_light_type_id` int(10) unsigned DEFAULT NULL,
+  `condition_id` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `asset_description`
 --
 
@@ -81,7 +112,7 @@ DROP TABLE IF EXISTS `asset_description`;
 CREATE TABLE IF NOT EXISTS `asset_description` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `asset_sub_type_id` int(10) unsigned NOT NULL,
-  `name` varchar(250) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
@@ -114,7 +145,7 @@ DROP TABLE IF EXISTS `asset_sub_description`;
 CREATE TABLE IF NOT EXISTS `asset_sub_description` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `asset_description_id` int(10) unsigned NOT NULL,
-  `name` varchar(250) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
@@ -131,7 +162,7 @@ DROP TABLE IF EXISTS `asset_sub_type`;
 CREATE TABLE IF NOT EXISTS `asset_sub_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `asset_type_id` int(10) unsigned NOT NULL,
-  `name` varchar(250) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
@@ -161,7 +192,7 @@ INSERT INTO `asset_sub_type` (`id`, `asset_type_id`, `name`, `created`, `updated
 DROP TABLE IF EXISTS `asset_type`;
 CREATE TABLE IF NOT EXISTS `asset_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(250) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
@@ -215,6 +246,59 @@ CREATE TABLE IF NOT EXISTS `bill_invoice_line_item` (
   `total` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `building`
+--
+
+DROP TABLE IF EXISTS `building`;
+CREATE TABLE IF NOT EXISTS `building` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `location_id` int(10) unsigned NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime DEFAULT NULL,
+  `archived` tinyint(3) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `building`
+--
+
+INSERT INTO `building` (`id`, `location_id`, `name`, `created`, `updated`, `archived`) VALUES
+(1, 1, 'COMMUNITY HALL', '2013-03-30 08:15:00', NULL, 0),
+(2, 1, 'MUNICIPAL BUILDING', '2013-03-30 08:15:00', NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `condition`
+--
+
+DROP TABLE IF EXISTS `condition`;
+CREATE TABLE IF NOT EXISTS `condition` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime DEFAULT NULL,
+  `archived` tinyint(3) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `condition`
+--
+
+INSERT INTO `condition` (`id`, `name`, `created`, `updated`, `archived`) VALUES
+(1, 'EXCELLENT', '2013-03-30 08:15:00', NULL, 0),
+(2, 'GOOD', '2013-03-30 08:15:00', NULL, 0),
+(3, 'FAIR', '2013-03-30 08:15:00', NULL, 0),
+(4, 'POOR', '2013-03-30 08:15:00', NULL, 0),
+(5, 'BROKEN', '2013-03-30 08:15:00', NULL, 0),
+(6, 'MISSING', '2013-03-30 08:15:00', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -274,7 +358,7 @@ DROP TABLE IF EXISTS `content`;
 CREATE TABLE IF NOT EXISTS `content` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(25) NOT NULL,
-  `name` varchar(250) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `html` text,
   `js` text,
   `created` datetime NOT NULL,
@@ -290,6 +374,31 @@ CREATE TABLE IF NOT EXISTS `content` (
 INSERT INTO `content` (`id`, `type`, `name`, `html`, `js`, `created`, `updated`, `archived`) VALUES
 (1, 'page', 'home', 'Hi, this is the home page!', 'alert("home page loaded");', '2013-03-16 19:30:00', '2013-03-16 19:30:00', 0),
 (2, 'page', 'settings', 'Hi! Setting page here :)', 'alert("settings page loaded");', '2013-03-16 19:30:00', '2013-03-16 19:30:00', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `floor`
+--
+
+DROP TABLE IF EXISTS `floor`;
+CREATE TABLE IF NOT EXISTS `floor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `building_id` int(10) unsigned NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime DEFAULT NULL,
+  `archived` tinyint(3) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `floor`
+--
+
+INSERT INTO `floor` (`id`, `building_id`, `name`, `created`, `updated`, `archived`) VALUES
+(1, 1, 'A1234', '2013-03-30 08:15:00', NULL, 0),
+(2, 1, 'A4321', '2013-03-30 08:15:00', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -740,21 +849,20 @@ CREATE TABLE IF NOT EXISTS `lib_xmlrpc_profile` (
 DROP TABLE IF EXISTS `location`;
 CREATE TABLE IF NOT EXISTS `location` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(250) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `location`
 --
 
 INSERT INTO `location` (`id`, `name`, `created`, `updated`, `archived`) VALUES
-(1, 'DEALESVILLE', '2013-03-30 08:15:00', NULL, 0),
-(2, 'HERTZOGVILLE', '2013-03-30 08:15:00', NULL, 0),
-(3, 'BOSHOF', '2013-03-30 08:15:00', NULL, 0);
+(1, 'BOSHOF', '2013-03-30 08:15:00', NULL, 0),
+(2, 'DEALESVILLE', '2013-03-30 08:15:00', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -765,7 +873,7 @@ INSERT INTO `location` (`id`, `name`, `created`, `updated`, `archived`) VALUES
 DROP TABLE IF EXISTS `material`;
 CREATE TABLE IF NOT EXISTS `material` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(250) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
@@ -780,7 +888,7 @@ INSERT INTO `material` (`id`, `name`, `created`, `updated`, `archived`) VALUES
 (1, 'STEEL', '2013-03-30 08:15:00', NULL, 0),
 (2, 'CEMENT', '2013-03-30 08:15:00', NULL, 0),
 (3, 'WOOD', '2013-03-30 08:15:00', NULL, 0),
-(4, 'ASBESTOR', '2013-03-30 08:15:00', NULL, 0);
+(4, 'ASBESTOS', '2013-03-30 08:15:00', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -797,7 +905,7 @@ CREATE TABLE IF NOT EXISTS `meta_table` (
   `hash` varchar(32) NOT NULL,
   `version` smallint(6) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`,`hash`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
 
 --
 -- Dumping data for table `meta_table`
@@ -805,41 +913,74 @@ CREATE TABLE IF NOT EXISTS `meta_table` (
 
 INSERT INTO `meta_table` (`id`, `name`, `created`, `updated`, `hash`, `version`) VALUES
 (1, 'contact_request', '2013-02-06 00:00:00', NULL, 'c6281d8d77e2fb13fd1b1b908e69fce7', 1),
-(2, 'profile', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '74f6870f6740f14743f1648e51d26b70', 9),
+(2, 'profile', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '74f6870f6740f14743f1648e51d26b70', 16),
 (3, 'app_link_request', '2013-02-06 00:00:00', NULL, 'f43bdcb651541b245f2655558fb3d18d', 1),
-(4, 'config', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'e03531a6324decfbb1141c4f2892a0c5', 9),
+(4, 'config', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'e03531a6324decfbb1141c4f2892a0c5', 16),
 (5, 'lib_photo', '2013-02-06 00:00:00', NULL, '7bde09f24c7977b4721ca39fe327af08', 1),
 (6, 'lib_video', '2013-02-06 00:00:00', NULL, 'a69102d29787306f26ec5d6d0ee0d794', 1),
 (7, 'lib_document', '2013-02-06 00:00:00', NULL, 'c2a035d14c50dacbf0a8c67a14bd2851', 1),
 (8, 'lib_attachment', '2013-02-06 00:00:00', NULL, '38ab8b5d858df97a2456f2e624905b3a', 1),
-(9, 'lib_address', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'eda206b2bd3dcaf4822a4edfc279299e', 9),
+(9, 'lib_address', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'eda206b2bd3dcaf4822a4edfc279299e', 16),
 (10, 'lib_person', '2013-02-06 00:00:00', NULL, '33692ed654c410d64c3a1213d8333f73', 1),
-(11, 'lib_contact', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '8d6f12942a2322c96b1f80a61cfea1ad', 9),
-(12, 'lib_newsletter_template', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '71485ae092f3cffdc0950a6a78b1f3ae', 9),
+(11, 'lib_contact', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '8d6f12942a2322c96b1f80a61cfea1ad', 16),
+(12, 'lib_newsletter_template', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '71485ae092f3cffdc0950a6a78b1f3ae', 16),
 (13, 'lib_newsletter', '2013-02-06 00:00:00', NULL, '5acc042b8308cf92971bbfc35cdab562', 1),
 (14, 'lib_ip_country', '2013-02-06 00:00:00', NULL, '6e7553d3a5c89cad46393eebc24fafa5', 1),
-(15, 'lib_country', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'e76a17da9d1aa21dcb272b7fcd5cfb11', 9),
-(16, 'lib_region', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '30d5d303e8665973611450aeecf03b90', 9),
-(17, 'lib_city', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '6c5b2f2c7b8858933b4048bfdb603dba', 9),
+(15, 'lib_country', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'e76a17da9d1aa21dcb272b7fcd5cfb11', 16),
+(16, 'lib_region', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '30d5d303e8665973611450aeecf03b90', 16),
+(17, 'lib_city', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '6c5b2f2c7b8858933b4048bfdb603dba', 16),
 (18, 'lib_template', '2013-02-06 00:00:00', NULL, '1730e156a4631a9c34dd8867d1b62c79', 1),
 (19, 'lib_repeater_template', '2013-02-06 00:00:00', NULL, '6808b6e0d1d25cd9206da938a62b1085', 1),
 (20, 'lib_authentication_log', '2013-02-06 00:00:00', '2013-03-27 00:00:00', 'd656bfcd19186809dded6a3be9d5844e', 2),
 (21, 'lib_notification_log', '2013-02-06 00:00:00', NULL, 'ed4aa2a527e0e94a55b9023ae3ef9825', 1),
-(22, 'lib_service', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'ce8a58e087c7d5537c65a524032cd3e1', 9),
-(23, 'lib_currency', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '66490a63a4b2802f902d2980426f8e4e', 9),
+(22, 'lib_service', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'ce8a58e087c7d5537c65a524032cd3e1', 16),
+(23, 'lib_currency', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '66490a63a4b2802f902d2980426f8e4e', 16),
 (24, 'lib_xmlrpc_profile', '2013-02-06 00:00:00', NULL, '6137d78bc404d61f7894a5a7b01ab705', 1),
 (25, 'lib_action_reference', '2013-02-06 00:00:00', NULL, '7bd37aa43130e0ffa2466306f74725c7', 1),
 (26, 'bill_invoice', '2013-02-06 00:00:00', NULL, '37f95e7ed7065a5b6a3d533723692166', 1),
 (27, 'bill_invoice_line_item', '2013-02-06 00:00:00', NULL, 'b85a696bb89838b55ffae31d25ac5cc4', 1),
 (28, 'mobile_content', '2013-03-06 00:00:00', NULL, 'cb88ed57b97a6c99904f87e70dc13365', 1),
-(29, 'content', '2013-03-16 00:00:00', '2013-03-30 00:00:00', 'bf47045e2f05006d8d8bc9b0c1151f00', 5),
-(30, 'location', '2013-03-30 00:00:00', NULL, 'ad4360e5760e7be301e7969f6ae1ef47', 1),
-(31, 'asset_type', '2013-03-30 00:00:00', NULL, '75bc2e41d75fb2f38097ef483d03d2e5', 1),
-(32, 'asset_sub_type', '2013-03-30 00:00:00', NULL, '8b9edf987516b70ebf2e3786a0e8e05b', 1),
-(33, 'asset_description', '2013-03-30 00:00:00', NULL, '4ffe133b31b990d12461c5dc6b7744da', 1),
-(34, 'asset_sub_description', '2013-03-30 00:00:00', NULL, '17193a4e17cf1328b05bc32143a5a19f', 1),
-(35, 'material', '2013-03-30 00:00:00', NULL, 'ab7a85c2c06579c53a810542b874ee90', 1),
-(36, 'pole_length', '2013-03-30 00:00:00', NULL, '549ccbe022f0fd5ea5e5f4b567110d61', 1);
+(29, 'content', '2013-03-16 00:00:00', '2013-03-30 00:00:00', 'bf47045e2f05006d8d8bc9b0c1151f00', 12),
+(30, 'location', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '961a1c8649c0994e82fb150f28f17cff', 3),
+(31, 'asset_type', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '75bc2e41d75fb2f38097ef483d03d2e5', 8),
+(32, 'asset_sub_type', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '8b9edf987516b70ebf2e3786a0e8e05b', 8),
+(33, 'asset_description', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '4ffe133b31b990d12461c5dc6b7744da', 8),
+(34, 'asset_sub_description', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '6795cadd1217c01c589adbb04e876323', 2),
+(35, 'material', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '28be51e227ff429cac73d8db61be656e', 8),
+(36, 'pole_length', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '549ccbe022f0fd5ea5e5f4b567110d61', 6),
+(37, 'town', '2013-03-30 00:00:00', '2013-03-30 00:00:00', 'bb651138df6717a8515a0f9840e29b2c', 2),
+(38, 'street', '2013-03-30 00:00:00', '2013-03-30 00:00:00', 'ab7d1b24a3851d5bc97abba16bcdf4a7', 2),
+(39, 'building', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '910ddb9c7f191325d5b9a60e4cbaf4df', 2),
+(40, 'floor', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '47c294ae1a59df083783e15a9260eda9', 2),
+(41, 'room', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '19c81626777ecc44a7972e2f544d750b', 2),
+(42, 'street_light_type', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '61075483e8516992cd36ab38378d47d4', 2),
+(43, 'condition', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '37664e54b5f9fba4a4389c89dee7b8f0', 2),
+(44, 'owner', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '6d349af96d1ce958d029d56093f15224', 2),
+(45, 'asset', '2013-03-30 00:00:00', NULL, 'de69ada670a58e031d2c58fd871e7ec9', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `owner`
+--
+
+DROP TABLE IF EXISTS `owner`;
+CREATE TABLE IF NOT EXISTS `owner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime DEFAULT NULL,
+  `archived` tinyint(3) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `owner`
+--
+
+INSERT INTO `owner` (`id`, `name`, `created`, `updated`, `archived`) VALUES
+(1, 'TOKOLOGO LOCAL MUNICIPALITY', '2013-03-30 08:15:00', NULL, 0),
+(2, 'TECHNICAL SERVICES', '2013-03-30 08:15:00', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -906,6 +1047,106 @@ INSERT INTO `profile` (`id`, `first_name`, `family_name`, `id_number`, `date_of_
 (2, 'Jack', 'Vredenweld', '7202029977333', '1972-02-02', '0820820820', 'jack.v@jackscars.com', 'jack', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'User', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0),
 (3, 'Shannon', 'Bramson', '7703155544111', '1977-03-15', '0830830830', 'shannon@simmons-cars.co.za', 'shannon', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'Administrator', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0),
 (4, 'Lilith', 'Warchild', '7703155544111', '1977-03-15', '0730730730', 'lilith@rebel-traders.co.za', 'lilith', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'User', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room`
+--
+
+DROP TABLE IF EXISTS `room`;
+CREATE TABLE IF NOT EXISTS `room` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `floor_id` int(10) unsigned NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime DEFAULT NULL,
+  `archived` tinyint(3) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`id`, `floor_id`, `name`, `created`, `updated`, `archived`) VALUES
+(1, 1, 'A234', '2013-03-30 08:15:00', NULL, 0),
+(2, 1, 'A432', '2013-03-30 08:15:00', NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `street`
+--
+
+DROP TABLE IF EXISTS `street`;
+CREATE TABLE IF NOT EXISTS `street` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `town_id` int(10) unsigned NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime DEFAULT NULL,
+  `archived` tinyint(3) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `street`
+--
+
+INSERT INTO `street` (`id`, `town_id`, `name`, `created`, `updated`, `archived`) VALUES
+(1, 1, 'A RE YENG STREET', '2013-03-30 08:15:00', NULL, 0),
+(2, 1, 'WESSELS STREET', '2013-03-30 08:15:00', NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `street_light_type`
+--
+
+DROP TABLE IF EXISTS `street_light_type`;
+CREATE TABLE IF NOT EXISTS `street_light_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime DEFAULT NULL,
+  `archived` tinyint(3) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `street_light_type`
+--
+
+INSERT INTO `street_light_type` (`id`, `name`, `created`, `updated`, `archived`) VALUES
+(1, 'NO LIGHT', '2013-03-30 08:15:00', NULL, 0),
+(2, 'SINGLE LIGHT', '2013-03-30 08:15:00', NULL, 0),
+(3, 'DOUBLE LIGHT', '2013-03-30 08:15:00', NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `town`
+--
+
+DROP TABLE IF EXISTS `town`;
+CREATE TABLE IF NOT EXISTS `town` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `location_id` int(10) unsigned NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime DEFAULT NULL,
+  `archived` tinyint(3) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `town`
+--
+
+INSERT INTO `town` (`id`, `location_id`, `name`, `created`, `updated`, `archived`) VALUES
+(1, 1, 'SERETSE', '2013-03-30 08:15:00', NULL, 0),
+(2, 1, 'DONKERHOEK', '2013-03-30 08:15:00', NULL, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -23,7 +23,7 @@ class Table_AssetSubDescription extends Struct_Abstract_ModelTable
     /**
      * Tables dependant on this one.
      */
-    protected $_dependentTables = array();
+    protected $_dependentTables = array('asset' => 'Table_Asset');
 
     /**
      * Data dependancy chain.
@@ -78,7 +78,7 @@ class Table_AssetSubDescription extends Struct_Abstract_ModelTable
             'DATA_TYPE' => 'varchar',
             'DEFAULT' => null,
             'NULLABLE' => false,
-            'LENGTH' => '250',
+            'LENGTH' => '100',
             'SCALE' => null,
             'PRECISION' => null,
             'UNSIGNED' => null,

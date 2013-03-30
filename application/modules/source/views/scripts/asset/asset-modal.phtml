@@ -1,0 +1,196 @@
+<!-- Asset: Modal Form -->
+<div class="row-fluid">
+  <div class="span12">
+	<div class="modal modal-wide modal-up hide fade" id="modalAsset">
+	  <div class="modal-header">
+		<button class="close" data-dismiss="modal">x</button>
+		<h3 id="assetModalHeading">Edit Asset</h3>
+	  </div>
+		<form id="assetForm" class="modal-form">
+		  <div class="modal-body modal-high">
+			  <div class="span6">
+		  		<div class="control-group">
+				  	<label for="asset_location_id"><b>Location *</b></label>
+						<select id="asset_location_id" name="location_id"
+							form-id="asset" class="span12 required" >
+							<option value="">-- Select Location * --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listLocation"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_town_id"><b>Town *</b></label>
+						<select id="asset_town_id" name="town_id"
+							form-id="asset" class="span12 required" >
+							<option value="">-- Select Town * --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listTown"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_street_id"><b>Street</b></label>
+						<select id="asset_street_id" name="street_id"
+							form-id="asset" class="span12 " >
+							<option value="">-- Select Street --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listStreet"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_building_id"><b>Building</b></label>
+						<select id="asset_building_id" name="building_id"
+							form-id="asset" class="span12 " >
+							<option value="">-- Select Building --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listBuilding"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_floor_id"><b>Floor</b></label>
+						<select id="asset_floor_id" name="floor_id"
+							form-id="asset" class="span12 " >
+							<option value="">-- Select Floor --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listFloor"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_room_id"><b>Room</b></label>
+						<select id="asset_room_id" name="room_id"
+							form-id="asset" class="span12 " >
+							<option value="">-- Select Room --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listRoom"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_owner_id"><b>Owner *</b></label>
+						<select id="asset_owner_id" name="owner_id"
+							form-id="asset" class="span12 required" >
+							<option value="">-- Select Owner * --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listOwner"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+		    		<label class="checkbox" for="asset_gps_relative">
+			    		<input type="checkbox" id="asset_gps_relative" name="gps_relative"
+			    			value="gps_relative" form-id="asset" checked>
+			    		&nbsp;<b>Gps Relative</b>
+		    		</label>
+					</div>
+		  		<div class="control-group">
+		    		<label for="asset_gps_lat"><b>Gps Lat</b></label>
+						<input id="asset_gps_lat" name="gps_lat" type="text"
+							form-id="asset" class="span12 " maxlength="50">
+					</div>
+		  		<div class="control-group">
+		    		<label for="asset_gps_long"><b>Gps Long</b></label>
+						<input id="asset_gps_long" name="gps_long" type="text"
+							form-id="asset" class="span12 " maxlength="50">
+					</div></div>
+			  <div class="span6">
+		  		<div class="control-group">
+		    		<label for="asset_identifier"><b>Identifier</b></label>
+						<input id="asset_identifier" name="identifier" type="text"
+							form-id="asset" class="span12 " maxlength="100">
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_asset_type_id"><b>Asset Type *</b></label>
+						<select id="asset_asset_type_id" name="asset_type_id"
+							form-id="asset" class="span12 required" >
+							<option value="">-- Select Asset Type * --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listAssetType"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_asset_sub_type_id"><b>Asset Sub Type *</b></label>
+						<select id="asset_asset_sub_type_id" name="asset_sub_type_id"
+							form-id="asset" class="span12 required" >
+							<option value="">-- Select Asset Sub Type * --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listAssetSubType"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_asset_description_id"><b>Asset Description *</b></label>
+						<select id="asset_asset_description_id" name="asset_description_id"
+							form-id="asset" class="span12 required" >
+							<option value="">-- Select Asset Description * --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listAssetDescription"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_asset_sub_description_id"><b>Asset Sub Description</b></label>
+						<select id="asset_asset_sub_description_id" name="asset_sub_description_id"
+							form-id="asset" class="span12 " >
+							<option value="">-- Select Asset Sub Description --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listAssetSubDescription"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_material_id"><b>Material</b></label>
+						<select id="asset_material_id" name="material_id"
+							form-id="asset" class="span12 " >
+							<option value="">-- Select Material --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listMaterial"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_pole_length_id"><b>Pole Length</b></label>
+						<select id="asset_pole_length_id" name="pole_length_id"
+							form-id="asset" class="span12 " >
+							<option value="">-- Select Pole Length --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listPoleLength"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_street_light_type_id"><b>Street Light Type</b></label>
+						<select id="asset_street_light_type_id" name="street_light_type_id"
+							form-id="asset" class="span12 " >
+							<option value="">-- Select Street Light Type --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listStreetLightType"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_condition_id"><b>Condition</b></label>
+						<select id="asset_condition_id" name="condition_id"
+							form-id="asset" class="span12 " >
+							<option value="">-- Select Condition --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listCondition"], false); ?>
+
+						</select>
+					</div>
+				<input type="hidden" id="asset_id" name="id" form-id="asset">
+			  </div>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>&nbsp;
+			<button type="submit" class="btn btn-success btn-warning btn-save"
+		  	data-loading-text="saving..."
+		  	data-complete-text="&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;&nbsp;">
+		  		&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;&nbsp;
+		  	</button>&nbsp;
+		  </div>
+		</form>
+	</div>
+  </div>
+</div>
+<!-- [End] Asset: Modal Form -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#assetForm").validate({
+		  submitHandler: function(form) {
+			  doUpdate("asset", "asset", "api/data/" + mode,
+			  	"AssetGrid", "asset-grid",
+					false, true, false, {});
+		  }
+		});
+	});
+</script>

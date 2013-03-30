@@ -2599,7 +2599,7 @@ list($order, $direction) = each($this->result["[ItemName]"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var [itemName]Data = <?php echo Zend_Json::encode($this->data["[ItemName]"]); ?>;

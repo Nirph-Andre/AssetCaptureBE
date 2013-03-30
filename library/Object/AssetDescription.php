@@ -46,7 +46,7 @@ class Object_AssetDescription extends Struct_Abstract_DataAccess
             'required' => true,
             'validators' => array(array(
                     'type' => 'StringLength',
-                    'params' => array('max' => '250')
+                    'params' => array('max' => '100')
                     ))
             ),
         'archived' => array(

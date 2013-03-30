@@ -74,7 +74,7 @@ class Table_Content extends Struct_Abstract_ModelTable
             'DATA_TYPE' => 'varchar',
             'DEFAULT' => null,
             'NULLABLE' => false,
-            'LENGTH' => '250',
+            'LENGTH' => '100',
             'SCALE' => null,
             'PRECISION' => null,
             'UNSIGNED' => null,
