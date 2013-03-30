@@ -75,11 +75,11 @@ list($order, $direction) = each($this->result["LibPerson"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["LibPerson"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["lib_person_first_name"]; ?></td>
-					<td><?php echo $record["lib_person_family_name"]; ?></td>
-					<td><?php echo $record["lib_person_id_number"]; ?></td>
-					<td><?php echo $record["lib_person_created"]; ?></td>
-					<td><?php echo $record["lib_person_updated"]; ?></td>
+					<td><?php echo $record["first_name"]; ?></td>
+					<td><?php echo $record["family_name"]; ?></td>
+					<td><?php echo $record["id_number"]; ?></td>
+					<td><?php echo $record["created"]; ?></td>
+					<td><?php echo $record["updated"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibPerson(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -95,7 +95,7 @@ list($order, $direction) = each($this->result["LibPerson"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var libPersonData = <?php echo Zend_Json::encode($this->data["LibPerson"]); ?>;

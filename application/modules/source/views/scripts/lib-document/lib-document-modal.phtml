@@ -35,7 +35,7 @@
 		$("#libDocumentForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("libDocument", "libDocument", "api/data/" + mode,
-			  	"LibDocumentGrid", "lib-document-grid",
+			  	"LibDocumentGrid", theme + "/lib-document-grid",
 					false, true, false, {});
 		  }
 		});

@@ -17,6 +17,11 @@ class Object_AppAuditLog extends Struct_Abstract_DataAccess
     protected $_table = 'app_audit_log';
 
     /**
+     * Unique identification field(s).
+     */
+    protected $_uniqueIdentifier = array();
+
+    /**
      * Validation meta-data.
      */
     protected $_validation = array(
@@ -39,13 +44,13 @@ class Object_AppAuditLog extends Struct_Abstract_DataAccess
             'validators' => array(array(
                     'type' => 'Between',
                     'params' => array(
-                        'min' => -2147483648,
-                        'max' => 2147483647
+                        'min' => 0,
+                        'max' => 4294967295
                         )
                     ))
             ),
         'action' => array(
-            'required' => true,
+            'required' => false,
             'validators' => array(array(
                     'type' => 'InArray',
                     'params' => array(
@@ -67,8 +72,8 @@ class Object_AppAuditLog extends Struct_Abstract_DataAccess
             'validators' => array(array(
                     'type' => 'Between',
                     'params' => array(
-                        'min' => -2147483648,
-                        'max' => 2147483647
+                        'min' => 0,
+                        'max' => 4294967295
                         )
                     ))
             ),

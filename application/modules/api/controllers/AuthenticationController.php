@@ -81,8 +81,9 @@ class Api_AuthenticationController extends Struct_Abstract_Controller
     	{
     		$params = json_decode(file_get_contents('php://input'), true);
     	}
-    	$email    = trim($params['email']);
-    	$email = !empty($email) ? $email : false;
+    	$email    = isset($params['email'])
+    		? trim($params['email'])
+    		: false;
     	$username = trim($params['username']);
     	$password = trim($params['password']);
     	$remember = isset($params['remember'])

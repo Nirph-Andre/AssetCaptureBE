@@ -95,7 +95,7 @@
 		$("#billInvoiceLineItemForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("billInvoiceLineItem", "billInvoiceLineItem", "api/data/" + mode,
-			  	"BillInvoiceLineItemGrid", "bill-invoice-line-item-grid",
+			  	"BillInvoiceLineItemGrid", theme + "/bill-invoice-line-item-grid",
 					false, true, false, {});
 		  }
 		});

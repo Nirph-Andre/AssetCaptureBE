@@ -57,9 +57,9 @@ list($order, $direction) = each($this->result["LibPhoto"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["LibPhoto"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["lib_photo_photo"]; ?></td>
-					<td><?php echo $record["lib_photo_thumbnail"]; ?></td>
-					<td><?php echo $record["lib_photo_mime_type"]; ?></td>
+					<td><?php echo $record["photo"]; ?></td>
+					<td><?php echo $record["thumbnail"]; ?></td>
+					<td><?php echo $record["mime_type"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibPhoto(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -75,7 +75,7 @@ list($order, $direction) = each($this->result["LibPhoto"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var libPhotoData = <?php echo Zend_Json::encode($this->data["LibPhoto"]); ?>;

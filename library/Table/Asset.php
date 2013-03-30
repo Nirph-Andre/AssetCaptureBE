@@ -75,11 +75,6 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'refTableClass' => 'Table_Material',
             'refColumns' => 'id'
             ),
-        'PoleLength' => array(
-            'columns' => 'pole_length_id',
-            'refTableClass' => 'Table_PoleLength',
-            'refColumns' => 'id'
-            ),
         'StreetLightType' => array(
             'columns' => 'street_light_type_id',
             'refTableClass' => 'Table_StreetLightType',

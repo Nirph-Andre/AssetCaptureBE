@@ -24,11 +24,6 @@
 						<input id="libPerson_id_number" name="id_number" type="text"
 							form-id="libPerson" class="span6 required" maxlength="13">
 					</div>
-		  		<div class="control-group">
-				  	<label for="libPerson_updated"><b>Updated</b></label>
-						<input id="libPerson_updated" name="updated" type="text"
-							form-id="libPerson" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="libPerson_id" name="id" form-id="libPerson">
 			  </div>
 		  </div>
@@ -44,14 +39,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] LibPerson: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] LibPerson: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#libPersonForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("libPerson", "libPerson", "api/data/" + mode,
-			  	"LibPersonGrid", "lib-person-grid",
+			  	"LibPersonGrid", theme + "/lib-person-grid",
 					false, true, false, {});
 		  }
 		});

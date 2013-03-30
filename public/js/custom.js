@@ -38,8 +38,7 @@ function generalNotice(header,body)
 
 $(document).ready(function() {
 	//$.prettyLoader();
-	$('.nav-vertical .nav-list:odd:not(:first)').slideToggle();
-	$('.nav-vertical .nav-header > span > i').toggleClass('icon-circle-arrow-down');
+  $('.nav-vertical .nav-list:even').addClass('handy');
 	$('.nav-vertical .nav-list:even').click(function () {
 		$(this).next().slideToggle();
 		$(this).find("i").toggleClass('icon-circle-arrow-down');

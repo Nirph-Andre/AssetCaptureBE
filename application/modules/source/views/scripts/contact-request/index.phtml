@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navContactRequest").addClass("active");
 		searchHandler["srch-contactRequest"] = {
-				action: "contact-request-grid",
+				action: theme + "/contact-request-grid",
 				container: "ContactRequestGrid"
 		};
     searchStack["srch-contactRequest"] = wrapFunction(search, this, ["srch-contactRequest"]);

@@ -75,11 +75,11 @@ list($order, $direction) = each($this->result["LibNotificationLog"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["LibNotificationLog"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["lib_notification_log_email_to"]; ?></td>
-					<td><?php echo $record["lib_notification_log_email_subject"]; ?></td>
-					<td><?php echo $record["lib_notification_log_sms_to"]; ?></td>
-					<td><?php echo $record["lib_notification_log_sms_status"]; ?></td>
-					<td><?php echo $record["lib_notification_log_created"]; ?></td>
+					<td><?php echo $record["email_to"]; ?></td>
+					<td><?php echo $record["email_subject"]; ?></td>
+					<td><?php echo $record["sms_to"]; ?></td>
+					<td><?php echo $record["sms_status"]; ?></td>
+					<td><?php echo $record["created"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibNotificationLog(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -95,7 +95,7 @@ list($order, $direction) = each($this->result["LibNotificationLog"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var libNotificationLogData = <?php echo Zend_Json::encode($this->data["LibNotificationLog"]); ?>;

@@ -75,11 +75,11 @@ list($order, $direction) = each($this->result["LibActionReference"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["LibActionReference"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["lib_action_reference_hash_code"]; ?></td>
-					<td><?php echo $record["lib_action_reference_component"]; ?></td>
-					<td><?php echo $record["lib_action_reference_action"]; ?></td>
-					<td><?php echo $record["lib_action_reference_params"]; ?></td>
-					<td><?php echo $record["lib_action_reference_created"]; ?></td>
+					<td><?php echo $record["hash_code"]; ?></td>
+					<td><?php echo $record["component"]; ?></td>
+					<td><?php echo $record["action"]; ?></td>
+					<td><?php echo $record["params"]; ?></td>
+					<td><?php echo $record["created"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibActionReference(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -95,7 +95,7 @@ list($order, $direction) = each($this->result["LibActionReference"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var libActionReferenceData = <?php echo Zend_Json::encode($this->data["LibActionReference"]); ?>;

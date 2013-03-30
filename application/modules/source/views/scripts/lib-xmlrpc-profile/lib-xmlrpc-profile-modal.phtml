@@ -24,11 +24,6 @@
 						<input id="libXmlrpcProfile_requests" name="requests" type="text"
 							form-id="libXmlrpcProfile" class="span4  digits" >
 					</div>
-		  		<div class="control-group">
-				  	<label for="libXmlrpcProfile_updated"><b>Updated</b></label>
-						<input id="libXmlrpcProfile_updated" name="updated" type="text"
-							form-id="libXmlrpcProfile" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="libXmlrpcProfile_id" name="id" form-id="libXmlrpcProfile">
 			  </div>
 		  </div>
@@ -44,14 +39,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] LibXmlrpcProfile: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] LibXmlrpcProfile: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#libXmlrpcProfileForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("libXmlrpcProfile", "libXmlrpcProfile", "api/data/" + mode,
-			  	"LibXmlrpcProfileGrid", "lib-xmlrpc-profile-grid",
+			  	"LibXmlrpcProfileGrid", theme + "/lib-xmlrpc-profile-grid",
 					false, true, false, {});
 		  }
 		});

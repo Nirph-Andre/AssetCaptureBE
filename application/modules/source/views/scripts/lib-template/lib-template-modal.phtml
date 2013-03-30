@@ -55,7 +55,7 @@
 		$("#libTemplateForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("libTemplate", "libTemplate", "api/data/" + mode,
-			  	"LibTemplateGrid", "lib-template-grid",
+			  	"LibTemplateGrid", theme + "/lib-template-grid",
 					false, true, false, {});
 		  }
 		});

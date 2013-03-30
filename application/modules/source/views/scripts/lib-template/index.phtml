@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibTemplate").addClass("active");
 		searchHandler["srch-libTemplate"] = {
-				action: "lib-template-grid",
+				action: theme + "/lib-template-grid",
 				container: "LibTemplateGrid"
 		};
     searchStack["srch-libTemplate"] = wrapFunction(search, this, ["srch-libTemplate"]);

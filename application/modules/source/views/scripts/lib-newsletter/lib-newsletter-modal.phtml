@@ -1,14 +1,14 @@
 <!-- LibNewsletter: Modal Form -->
 <div class="row-fluid">
   <div class="span12">
-	<div class="modal modal-wide modal-up hide fade" id="modalLibNewsletter">
+	<div class="modal modal-thinner hide fade" id="modalLibNewsletter">
 	  <div class="modal-header">
 		<button class="close" data-dismiss="modal">x</button>
 		<h3 id="libNewsletterModalHeading">Edit Lib Newsletter</h3>
 	  </div>
 		<form id="libNewsletterForm" class="modal-form">
-		  <div class="modal-body modal-high">
-			  <div class="span6">
+		  <div class="modal-body ">
+			  <div class="span12">
 		  		<div class="control-group">
 				  	<label for="libNewsletter_lib_newsletter_template_id"><b>Lib Newsletter Template *</b></label>
 						<select id="libNewsletter_lib_newsletter_template_id" name="lib_newsletter_template_id"
@@ -36,8 +36,7 @@
 							<?php echo $utilDisplay->buildDropdownOptions($this->data["listLibAttachment"], false); ?>
 
 						</select>
-					</div></div>
-			  <div class="span6">
+					</div>
 		  		<div class="control-group">
 				  	<label for="libNewsletter_status"><b>Status *</b></label>
 						<select id="libNewsletter_status" name="status"
@@ -54,11 +53,6 @@
 						<input id="libNewsletter_sent_to" name="sent_to" type="text"
 							form-id="libNewsletter" class="span4  digits" >
 					</div>
-		  		<div class="control-group">
-				  	<label for="libNewsletter_updated"><b>Updated</b></label>
-						<input id="libNewsletter_updated" name="updated" type="text"
-							form-id="libNewsletter" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="libNewsletter_id" name="id" form-id="libNewsletter">
 			  </div>
 		  </div>
@@ -74,14 +68,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] LibNewsletter: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] LibNewsletter: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#libNewsletterForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("libNewsletter", "libNewsletter", "api/data/" + mode,
-			  	"LibNewsletterGrid", "lib-newsletter-grid",
+			  	"LibNewsletterGrid", theme + "/lib-newsletter-grid",
 					false, true, false, {});
 		  }
 		});

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 30, 2013 at 11:06 AM
+-- Generation Time: Mar 30, 2013 at 05:18 PM
 -- Server version: 5.1.63-community
 -- PHP Version: 5.4.0-ZS5.6.0
 
@@ -30,40 +30,21 @@ DROP TABLE IF EXISTS `app_audit_log`;
 CREATE TABLE IF NOT EXISTS `app_audit_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_context` varchar(30) NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `action` enum('Add','Update','Delete') NOT NULL,
+  `customer_id` int(10) unsigned NOT NULL,
+  `action` enum('Add','Update','Delete') DEFAULT NULL,
   `table_name` varchar(50) NOT NULL,
-  `record_id` int(11) NOT NULL,
+  `record_id` int(10) unsigned NOT NULL,
   `data_packet` mediumtext,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `app_audit_log`
 --
 
 INSERT INTO `app_audit_log` (`id`, `customer_context`, `customer_id`, `action`, `table_name`, `record_id`, `data_packet`, `created`) VALUES
-(1, 'Seller', 2, 'Add', 'lib_authentication_log', 3, 'a:3:{s:5:"email";s:20:"jack.v@jackscars.com";s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"2";}', '2013-02-06 17:15:52'),
-(2, 'Seller', 2, 'Add', 'lib_authentication_log', 4, 'a:3:{s:5:"email";s:20:"jack.v@jackscars.com";s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"2";}', '2013-02-07 08:01:59'),
-(3, 'User', 2, 'Add', 'lib_authentication_log', 1, 'a:3:{s:5:"email";s:20:"jack.v@jackscars.com";s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"2";}', '2013-02-07 08:07:58'),
-(4, 'User', 1, 'Add', 'lib_authentication_log', 2, 'a:3:{s:5:"email";s:23:"greg@simmons-cars.co.za";s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"1";}', '2013-03-16 19:34:45'),
-(5, 'User', 2, 'Add', 'lib_authentication_log', 1, 'a:2:{s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"2";}', '2013-03-30 11:40:42'),
-(6, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:16:"INFRASTRUCTURE 2";}', '2013-03-30 11:55:14'),
-(7, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:14:"INFRASTRUCTURE";}', '2013-03-30 11:55:26'),
-(8, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:16:"INFRASTRUCTURE 4";}', '2013-03-30 11:56:36'),
-(9, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:15:"INFRASTRUCTURE5";}', '2013-03-30 11:56:51'),
-(10, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:14:"INFRASTRUCTURE";}', '2013-03-30 11:58:22'),
-(11, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:18:"INFRASTRUCTURE 222";}', '2013-03-30 11:58:47'),
-(12, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:14:"INFRASTRUCTURE";}', '2013-03-30 11:58:59'),
-(13, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:16:"INFRASTRUCTURE s";}', '2013-03-30 12:01:11'),
-(14, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:14:"INFRASTRUCTURE";}', '2013-03-30 12:01:15'),
-(15, 'User', 2, 'Update', 'street', 1, 'a:1:{s:4:"name";s:17:"A RE YENG STREETs";}', '2013-03-30 12:13:23'),
-(16, 'User', 2, 'Update', 'street', 1, 'a:1:{s:4:"name";s:16:"A RE YENG STREET";}', '2013-03-30 12:13:30'),
-(17, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:18:"INFRASTRUCTURE asd";}', '2013-03-30 12:18:08'),
-(18, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:19:"INFRASTRUCTURE asds";}', '2013-03-30 12:20:06'),
-(19, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:20:"INFRASTRUCTURE asdss";}', '2013-03-30 12:21:03'),
-(20, 'User', 2, 'Update', 'asset_type', 1, 'a:1:{s:4:"name";s:14:"INFRASTRUCTURE";}', '2013-03-30 12:21:46');
+(1, 'User', 2, 'Add', 'lib_authentication_log', 1, 'a:2:{s:10:"ip_address";s:9:"127.0.0.1";s:10:"profile_id";s:1:"2";}', '2013-03-30 19:08:03');
 
 -- --------------------------------------------------------
 
@@ -503,7 +484,7 @@ CREATE TABLE IF NOT EXISTS `lib_authentication_log` (
 --
 
 INSERT INTO `lib_authentication_log` (`id`, `ip_address`, `profile_id`, `created`) VALUES
-(1, '127.0.0.1', 2, '2013-03-30 11:40:42');
+(1, '127.0.0.1', 2, '2013-03-30 19:08:03');
 
 -- --------------------------------------------------------
 
@@ -822,17 +803,7 @@ CREATE TABLE IF NOT EXISTS `lib_template` (
   `email_template` text,
   `sms_template` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `lib_template`
---
-
-INSERT INTO `lib_template` (`id`, `name`, `subject`, `tags`, `email_template`, `sms_template`) VALUES
-(1, 'Contact Request', 'Contact Request', 'person_name,trading_name,email,mobile,telephone,subject,message', '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"\r\n    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\r\n<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">\r\n<head>\r\n	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />\r\n	<title></title>\r\n</head>\r\n<body style="padding:0;margin:0;">\r\n	<!-- Begin 100% Wrapping Table -->\r\n	<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center" style="margin:0; padding:0;border-collapse:collapse; border-spacing:0;width:100%;">\r\n		<tr>\r\n			<td style="padding:20px 0;">\r\n				<!-- Begin Main Template Table -->					\r\n				<table border="0" cellspacing="0" cellpadding="0" width="800" align="center" style="border-collapse:collapse; border-spacing:0; margin:0; padding:0; width:800px; font-family: Arial, Sans-serif; font-size:12px; margin:0 auto; line-height:1.33;">\r\n					<tr>\r\n						<td>\r\n						<img src="http://{APP_HOST}/images/EmailHeader.png" width="800" height="100" alt="Please set images to always display for our emails" style="display:block;" />\r\n						</td>\r\n					</tr>				\r\n					<tr>\r\n						<td style="background:#f6f6f6;padding:20px 0">\r\n							<!-- Main Content table -->\r\n							<table border="0" cellspacing="0" cellpadding="0" width="800" style="border-collapse:collapse; border-spacing:0; margin:0; padding:0; width:800px; font-family: Arial, Sans-serif; font-size:12px;">\r\n								<tr>\r\n									<!-- Spacing Column -->\r\n									<td width="20" valign="top" style="width:20px;">&nbsp;</td>\r\n									<!-- Main Column -->\r\n									<td width="420" valign="top" style="width:420px; font-family: Arial, Sans-serif; font-size:12px;">\r\n										<h1 style="font-size:18px;margin:0 0 0.5em;padding:0;font-weight:400;">Action Required</h1>\r\n										<p style="margin:0 0 1em;padding:0;">\r\n											You have a new contact request from the website. Details are as follows:\r\n										</p>\r\n										<p style="margin:0 0 1em;padding:0;">\r\n											<table border="0" cellspacing="0" cellpadding="3px" width="420" style="border-collapse:collapse; border-spacing:0; margin:0; padding:3px; width:420px; font-family: Arial, Sans-serif; font-size:12px;">\r\n												<tr>\r\n													<td width="150px"><b>Person:</b></td>\r\n													<td>[person_name]</td>\r\n												</tr>\r\n												<tr>\r\n													<td><b>Trading Name:</b></td>\r\n													<td>[trading_name]</td>\r\n												</tr>\r\n												<tr>\r\n													<td><b>Email Address:</b></td>\r\n													<td>[email]</td>\r\n												</tr>\r\n												<tr>\r\n													<td><b>Mobile Number:</b></td>\r\n													<td>[mobile]</td>\r\n												</tr>\r\n												<tr>\r\n													<td><b>Telephone Number:</b></td>\r\n													<td>[telephone]</td>\r\n												</tr>\r\n												<tr>\r\n													<td><b>Subject:</b></td>\r\n													<td>[subject]</td>\r\n												</tr>\r\n												<tr>\r\n													<td colspan="2"><b>Message:</b></td>\r\n												</tr>\r\n												<tr>\r\n													<td colspan="2">&nbsp;[message]</td>\r\n												</tr>\r\n											</table>\r\n										</p>\r\n									</td>\r\n									<!-- Spacing Column -->\r\n									<td width="40" valign="top" style="width:40px;">&nbsp;</td>\r\n									<!-- Side Column -->\r\n									<td width="300" valign="top" style="width:300px; font-family: Arial, Sans-serif; font-size:12px;">\r\n										<img src="http://{APP_HOST}/images/contact.jpg" width="300px" alt="Content Image" align="left" style="padding:5px;" />\r\n										<h2 style="font-size:18px;margin:20px 3px 0px;padding:0;font-weight:400;">Contact Request</h2>\r\n										<p style="margin:0 0 1em;padding:5px;">\r\n											A user filled in the contact form on the Bid4Cars website. \r\n											To change the email addres that this notification is sent to \r\n											please login as an Administrator and change the setting under\r\n											General Settings &gt; Site Configuration.\r\n										</p>			\r\n									</td>\r\n									<!-- Spacing Column -->\r\n									<td width="20" valign="top" style="width:20px;">&nbsp;</td>\r\n								</tr>\r\n							</table>\r\n							<!-- /Main Content Table -->			\r\n						</td>		\r\n					</tr>\r\n					<tr>\r\n						<td style="background:#ececec;padding:10px 0 0;">\r\n							<!-- Begin Footer table -->\r\n							<table border="0" cellspacing="0" cellpadding="0" width="600" style="border-collapse:collapse; border-spacing:0; margin:0; padding:0; width:600px; font-family: Arial, Sans-serif; font-size:12px;">\r\n								<tr>\r\n									<!-- Spacing Column -->\r\n									<td width="20" valign="top" style="width:20px;">&nbsp;</td>\r\n									<!-- Main Column -->\r\n									<td width="560" valign="top" style="width:560px; font-family: Arial, Sans-serif; font-size:12px;">\r\n										<p style="margin:0 0 1em;padding:0;"><b>demo.bid4cars.co.za</b></p>\r\n									</td>\r\n									<!-- Spacing Column -->								\r\n									<td width="20" valign="top" style="width:20px;">&nbsp;&nbsp;</td>\r\n								</tr>\r\n							</table>\r\n							<!-- /End Footer Table -->	\r\n						</td>\r\n					</tr>				\r\n				</table>\r\n				<!-- /End Main Template Table -->\r\n			</td>\r\n		</tr>\r\n	</table>\r\n<!-- /End 100% Wrapping Table  -->	\r\n</body>\r\n</html>\r\n', ''),
-(2, 'Profile Registered', 'Profile Registered', 'first_name,family_name,email,pin,user', '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"\r\n    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\r\n<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">\r\n<head>\r\n	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />\r\n	<title></title>\r\n</head>\r\n<body style="padding:0;margin:0;">\r\n	<!-- Begin 100% Wrapping Table -->\r\n	<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center" style="margin:0; padding:0;border-collapse:collapse; border-spacing:0;width:100%;">\r\n		<tr>\r\n			<td style="padding:20px 0;">\r\n				<!-- Begin Main Template Table -->					\r\n				<table border="0" cellspacing="0" cellpadding="0" width="800" align="center" style="border-collapse:collapse; border-spacing:0; margin:0; padding:0; width:800px; font-family: Arial, Sans-serif; font-size:12px; margin:0 auto; line-height:1.33;">\r\n					<tr>\r\n						<td>\r\n						<img src="http://{APP_HOST}/images/EmailHeader.png" width="800" height="100" alt="Please set images to always display for our emails" style="display:block;" />\r\n						</td>\r\n					</tr>				\r\n					<tr>\r\n						<td style="background:#f6f6f6;padding:20px 0">\r\n							<!-- Main Content table -->\r\n							<table border="0" cellspacing="0" cellpadding="0" width="800" style="border-collapse:collapse; border-spacing:0; margin:0; padding:0; width:800px; font-family: Arial, Sans-serif; font-size:12px;">\r\n								<tr>\r\n									<!-- Spacing Column -->\r\n									<td width="20" valign="top" style="width:20px;">&nbsp;</td>\r\n									<!-- Main Column -->\r\n									<td width="420" valign="top" style="width:420px; font-family: Arial, Sans-serif; font-size:12px;">\r\n										<h1 style="font-size:18px;margin:0 0 0.5em;padding:0;font-weight:400;">Profile created/updated</h1>\r\n										<p style="margin:0 0 1em;padding:0;">\r\n											&nbsp;\r\n										</p>\r\n										<p style="margin:0 0 1em;padding:0;">\r\n											Dear [first_name] [family_name],\r\n										</p>\r\n										<p style="margin:0 0 1em;padding:0;">\r\n										  A profile was registered/updated for you by [user] on the Bid4Cars website.\r\n											Here are your login details:\r\n											<table border="0" cellspacing="0" cellpadding="3px" width="420" style="border-collapse:collapse; border-spacing:0; margin:0; padding:3px; width:420px; font-family: Arial, Sans-serif; font-size:12px;">\r\n												<tr>\r\n													<td width="80px"><b>Username:</b></td>\r\n													<td><b>[email]</b></td>\r\n												</tr>\r\n												<tr>\r\n													<td><b>Pin:</b></td>\r\n													<td><b>[pin]</b></td>\r\n												</tr>\r\n											</table>\r\n										</p>\r\n										<p style="margin:0 0 1em;padding:0;">\r\n											&nbsp;\r\n										</p>\r\n										<p style="margin:0 0 1em;padding:0;">\r\n											To login please go to <i><a href="http://{APP_HOST}/login">{APP_HOST}/login</a></i>\r\n										</p>\r\n										<p style="margin:0 0 1em;padding:0;">\r\n											To reset your pin please go to <i><a href="http://{APP_HOST}/forgot">{APP_HOST}/forgot</a></i>\r\n										</p>\r\n										<p style="margin:0 0 1em;padding:0;">\r\n											And to help you get going please have a look at the FAQ''s <i><a href="http://{APP_HOST}/index/faq">{APP_HOST}/index/faq</a></i>\r\n										</p>\r\n                    <p style="margin:0 0 1em;padding:0;">\r\n                      Regards,<br/>\r\n                      The Bid4Cars Team\r\n                    </p>\r\n									</td>\r\n									<!-- Spacing Column -->\r\n									<td width="40" valign="top" style="width:40px;">&nbsp;</td>\r\n									<!-- Side Column -->\r\n									<td width="300" valign="top" style="width:300px; font-family: Arial, Sans-serif; font-size:12px;">\r\n										<img src="http://{APP_HOST}/images/handshake.png" width="300px" alt="Content Image" align="left" style="padding:5px;" />\r\n										<h2 style="font-size:18px;margin:20px 3px 0px;padding:0;font-weight:400;">Welcome</h2>\r\n										<p style="margin:0 0 1em;padding:5px;">\r\n											Online technology bringing buyers and sellers\r\n											together through the Dealer Network.\r\n										</p>			\r\n									</td>\r\n									<!-- Spacing Column -->\r\n									<td width="20" valign="top" style="width:20px;">&nbsp;</td>\r\n								</tr>\r\n							</table>\r\n							<!-- /Main Content Table -->			\r\n						</td>		\r\n					</tr>\r\n					<tr>\r\n						<td style="background:#ececec;padding:10px 0 0;">\r\n							<!-- Begin Footer table -->\r\n							<table border="0" cellspacing="0" cellpadding="0" width="600" style="border-collapse:collapse; border-spacing:0; margin:0; padding:0; width:600px; font-family: Arial, Sans-serif; font-size:12px;">\r\n								<tr>\r\n									<!-- Spacing Column -->\r\n									<td width="20" valign="top" style="width:20px;">&nbsp;</td>\r\n									<!-- Main Column -->\r\n									<td width="560" valign="top" style="width:560px; font-family: Arial, Sans-serif; font-size:12px;">\r\n										<p style="margin:0 0 1em;padding:0;"><b>demo.bid4cars.co.za</b></p>\r\n									</td>\r\n									<!-- Spacing Column -->								\r\n									<td width="20" valign="top" style="width:20px;">&nbsp;&nbsp;</td>\r\n								</tr>\r\n							</table>\r\n							<!-- /End Footer Table -->	\r\n						</td>\r\n					</tr>				\r\n				</table>\r\n				<!-- /End Main Template Table -->\r\n			</td>\r\n		</tr>\r\n	</table>\r\n<!-- /End 100% Wrapping Table  -->	\r\n</body>\r\n</html>\r\n', ''),
-(3, 'Forgot Pin', 'Your new pin', 'first_name,family_name,email,pin', '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"\r\n    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\r\n<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">\r\n<head>\r\n	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />\r\n	<title></title>\r\n</head>\r\n<body style="padding:0;margin:0;">\r\n	<!-- Begin 100% Wrapping Table -->\r\n	<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center" style="margin:0; padding:0;border-collapse:collapse; border-spacing:0;width:100%;">\r\n		<tr>\r\n			<td style="padding:20px 0;">\r\n				<!-- Begin Main Template Table -->					\r\n				<table border="0" cellspacing="0" cellpadding="0" width="800" align="center" style="border-collapse:collapse; border-spacing:0; margin:0; padding:0; width:800px; font-family: Arial, Sans-serif; font-size:12px; margin:0 auto; line-height:1.33;">\r\n					<tr>\r\n						<td>\r\n						<img src="http://{APP_HOST}/images/EmailHeader.png" width="800" height="100" alt="Please set images to always display for our emails" style="display:block;" />\r\n						</td>\r\n					</tr>				\r\n					<tr>\r\n						<td style="background:#f6f6f6;padding:20px 0">\r\n							<!-- Main Content table -->\r\n							<table border="0" cellspacing="0" cellpadding="0" width="800" style="border-collapse:collapse; border-spacing:0; margin:0; padding:0; width:800px; font-family: Arial, Sans-serif; font-size:12px;">\r\n								<tr>\r\n									<!-- Spacing Column -->\r\n									<td width="20" valign="top" style="width:20px;">&nbsp;</td>\r\n									<!-- Main Column -->\r\n									<td width="420" valign="top" style="width:420px; font-family: Arial, Sans-serif; font-size:12px;">\r\n										<h1 style="font-size:18px;margin:0 0 0.5em;padding:0;font-weight:400;">Pin Reset</h1>\r\n										<p style="margin:0 0 1em;padding:0;">\r\n											&nbsp;\r\n										</p>\r\n										<p style="margin:0 0 1em;padding:0;">\r\n											Dear [first_name] [family_name],\r\n										</p>\r\n										<p style="margin:0 0 1em;padding:0;">\r\n											Your pin was reset on the Bid 4 Cars website.\r\n											Here is your new login details:\r\n											<table border="0" cellspacing="0" cellpadding="3px" width="420" style="border-collapse:collapse; border-spacing:0; margin:0; padding:3px; width:420px; font-family: Arial, Sans-serif; font-size:12px;">\r\n												<tr>\r\n													<td width="80px"><b>Username:</b></td>\r\n													<td><b>[email]</b></td>\r\n												</tr>\r\n												<tr>\r\n													<td><b>Pin:</b></td>\r\n													<td><b>[pin]</b></td>\r\n												</tr>\r\n											</table>\r\n										</p>\r\n										<p style="margin:0 0 1em;padding:0;">\r\n											&nbsp;\r\n										</p>\r\n										<p style="margin:0 0 1em;padding:0;">\r\n											To login please go to <i><a href="http://{APP_HOST}/login">{APP_HOST}/login</a></i>\r\n										</p>\r\n                    <p style="margin:0 0 1em;padding:0;">\r\n                      Regards,<br/>\r\n                      The Bid4Cars Team\r\n                    </p>\r\n									</td>\r\n									<!-- Spacing Column -->\r\n									<td width="40" valign="top" style="width:40px;">&nbsp;</td>\r\n									<!-- Side Column -->\r\n									<td width="300" valign="top" style="width:300px; font-family: Arial, Sans-serif; font-size:12px;">\r\n										<img src="http://{APP_HOST}/images/reset-button.jpg" width="300px" alt="Content Image" align="left" style="padding:5px;" />\r\n										<h2 style="font-size:18px;margin:20px 3px 0px;padding:0;font-weight:400;">Reset</h2>\r\n										<p style="margin:0 0 1em;padding:5px;">\r\n											Please remember to change your pin once logged in.\r\n										</p>			\r\n									</td>\r\n									<!-- Spacing Column -->\r\n									<td width="20" valign="top" style="width:20px;">&nbsp;</td>\r\n								</tr>\r\n							</table>\r\n							<!-- /Main Content Table -->			\r\n						</td>		\r\n					</tr>\r\n					<tr>\r\n						<td style="background:#ececec;padding:10px 0 0;">\r\n							<!-- Begin Footer table -->\r\n							<table border="0" cellspacing="0" cellpadding="0" width="600" style="border-collapse:collapse; border-spacing:0; margin:0; padding:0; width:600px; font-family: Arial, Sans-serif; font-size:12px;">\r\n								<tr>\r\n									<!-- Spacing Column -->\r\n									<td width="20" valign="top" style="width:20px;">&nbsp;</td>\r\n									<!-- Main Column -->\r\n									<td width="560" valign="top" style="width:560px; font-family: Arial, Sans-serif; font-size:12px;">\r\n										<p style="margin:0 0 1em;padding:0;"><b>demo.bid4cars.co.za</b></p>\r\n									</td>\r\n									<!-- Spacing Column -->								\r\n									<td width="20" valign="top" style="width:20px;">&nbsp;&nbsp;</td>\r\n								</tr>\r\n							</table>\r\n							<!-- /End Footer Table -->	\r\n						</td>\r\n					</tr>				\r\n				</table>\r\n				<!-- /End Main Template Table -->\r\n			</td>\r\n		</tr>\r\n	</table>\r\n<!-- /End 100% Wrapping Table  -->	\r\n</body>\r\n</html>\r\n', 'Your new pin is [pin]. Details also sent via email.'),
-(4, 'Newsletter - Basic', '', 'HeaderImageSource,Body,FooterImageSource', '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"\n    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\n<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">\n<head>\n	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />\n	<title></title>\n</head>\n<body style="padding:0;margin:0;">\n	<!-- Begin 100% Wrapping Table -->\n	<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center" style="margin:0; padding:0;border-collapse:collapse; border-spacing:0;width:100%;">\n		<tr>\n			<td style="padding:20px 0;">\n				<!-- Begin Main Template Table -->					\n				<table border="0" cellspacing="0" cellpadding="0" width="800" align="center" style="border-collapse:collapse; border-spacing:0; margin:0; padding:0; width:800px; font-family: Arial, Sans-serif; font-size:12px; margin:0 auto; line-height:1.33;">\n					<tr>\n						<td>\n							<img src="[HeaderImageSource]" width="800" height="100" alt="Please set images to always display for our emails" style="display:block;" />\n						</td>\n					</tr>				\n					<tr>\n						<td style="background:#f6f6f6;padding:20px">\n							[Body]\n						</td>		\n					</tr>\n					<tr>\n						<td style="background:#ececec;padding:10px 0 0;">\n							<!-- Begin Footer table -->\n							<table border="0" cellspacing="0" cellpadding="0" width="800" style="border-collapse:collapse; border-spacing:0; margin:0; padding:0; width:800px; font-family: Arial, Sans-serif; font-size:12px;">\n								<tr>\n									<!-- Spacing Column -->\n									<td width="20" valign="top" style="width:20px;">&nbsp;</td>\n									<!-- Main Column -->\n									<td width="380" valign="top" style="width:380px; font-family: Arial, Sans-serif; font-size:12px;">\n										&nbsp;\n									</td>\n									<!-- Spacing Column -->								\n									<td width="380" valign="top" align="right" style="width:380px;">\n										Click <a href="http://{APP_HOST}/unsubscribe/newsletter">here</a> to unsubscribe from newsletters.\n									</td>\n									<!-- Spacing Column -->\n									<td width="20" valign="top" style="width:20px;">&nbsp;</td>\n								</tr>\n							</table>\n							<!-- /End Footer Table -->\n						</td>\n					</tr>\n					<tr>\n						<td>\n							<img src="[FooterImageSource]" width="800" height="50" alt="Please set images to always display for our emails" style="display:block;" />\n						</td>\n					</tr>\n				</table>\n				<!-- /End Main Template Table -->\n			</td>\n		</tr>\n	</table>\n<!-- /End 100% Wrapping Table  -->	\n</body>\n</html>', '');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -931,58 +902,57 @@ CREATE TABLE IF NOT EXISTS `meta_table` (
   `hash` varchar(32) NOT NULL,
   `version` smallint(6) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`,`hash`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
 
 --
 -- Dumping data for table `meta_table`
 --
 
 INSERT INTO `meta_table` (`id`, `name`, `created`, `updated`, `hash`, `version`) VALUES
-(1, 'contact_request', '2013-02-06 00:00:00', NULL, 'c6281d8d77e2fb13fd1b1b908e69fce7', 1),
-(2, 'profile', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '74f6870f6740f14743f1648e51d26b70', 21),
-(3, 'app_link_request', '2013-02-06 00:00:00', NULL, 'f43bdcb651541b245f2655558fb3d18d', 1),
-(4, 'config', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'e03531a6324decfbb1141c4f2892a0c5', 21),
-(5, 'lib_photo', '2013-02-06 00:00:00', NULL, '7bde09f24c7977b4721ca39fe327af08', 1),
-(6, 'lib_video', '2013-02-06 00:00:00', NULL, 'a69102d29787306f26ec5d6d0ee0d794', 1),
-(7, 'lib_document', '2013-02-06 00:00:00', NULL, 'c2a035d14c50dacbf0a8c67a14bd2851', 1),
-(8, 'lib_attachment', '2013-02-06 00:00:00', NULL, '38ab8b5d858df97a2456f2e624905b3a', 1),
-(9, 'lib_address', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'eda206b2bd3dcaf4822a4edfc279299e', 21),
-(10, 'lib_person', '2013-02-06 00:00:00', NULL, '33692ed654c410d64c3a1213d8333f73', 1),
-(11, 'lib_contact', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '8d6f12942a2322c96b1f80a61cfea1ad', 21),
-(12, 'lib_newsletter_template', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '71485ae092f3cffdc0950a6a78b1f3ae', 21),
-(13, 'lib_newsletter', '2013-02-06 00:00:00', NULL, '5acc042b8308cf92971bbfc35cdab562', 1),
-(14, 'lib_ip_country', '2013-02-06 00:00:00', NULL, '6e7553d3a5c89cad46393eebc24fafa5', 1),
-(15, 'lib_country', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'e76a17da9d1aa21dcb272b7fcd5cfb11', 21),
-(16, 'lib_region', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '30d5d303e8665973611450aeecf03b90', 21),
-(17, 'lib_city', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '6c5b2f2c7b8858933b4048bfdb603dba', 21),
-(18, 'lib_template', '2013-02-06 00:00:00', NULL, '1730e156a4631a9c34dd8867d1b62c79', 1),
-(19, 'lib_repeater_template', '2013-02-06 00:00:00', NULL, '6808b6e0d1d25cd9206da938a62b1085', 1),
-(20, 'lib_authentication_log', '2013-02-06 00:00:00', '2013-03-27 00:00:00', 'd656bfcd19186809dded6a3be9d5844e', 2),
-(21, 'lib_notification_log', '2013-02-06 00:00:00', NULL, 'ed4aa2a527e0e94a55b9023ae3ef9825', 1),
-(22, 'lib_service', '2013-02-06 00:00:00', '2013-03-30 00:00:00', 'ce8a58e087c7d5537c65a524032cd3e1', 21),
-(23, 'lib_currency', '2013-02-06 00:00:00', '2013-03-30 00:00:00', '66490a63a4b2802f902d2980426f8e4e', 21),
-(24, 'lib_xmlrpc_profile', '2013-02-06 00:00:00', NULL, '6137d78bc404d61f7894a5a7b01ab705', 1),
-(25, 'lib_action_reference', '2013-02-06 00:00:00', NULL, '7bd37aa43130e0ffa2466306f74725c7', 1),
-(26, 'bill_invoice', '2013-02-06 00:00:00', NULL, '37f95e7ed7065a5b6a3d533723692166', 1),
-(27, 'bill_invoice_line_item', '2013-02-06 00:00:00', NULL, 'b85a696bb89838b55ffae31d25ac5cc4', 1),
-(28, 'mobile_content', '2013-03-06 00:00:00', NULL, 'cb88ed57b97a6c99904f87e70dc13365', 1),
-(29, 'content', '2013-03-16 00:00:00', '2013-03-30 00:00:00', 'bf47045e2f05006d8d8bc9b0c1151f00', 17),
-(30, 'location', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '961a1c8649c0994e82fb150f28f17cff', 8),
-(31, 'asset_type', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '75bc2e41d75fb2f38097ef483d03d2e5', 13),
-(32, 'asset_sub_type', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '8b9edf987516b70ebf2e3786a0e8e05b', 13),
-(33, 'asset_description', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '4ffe133b31b990d12461c5dc6b7744da', 13),
-(34, 'asset_sub_description', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '6795cadd1217c01c589adbb04e876323', 2),
-(35, 'material', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '28be51e227ff429cac73d8db61be656e', 13),
-(36, 'pole_length', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '549ccbe022f0fd5ea5e5f4b567110d61', 6),
-(37, 'town', '2013-03-30 00:00:00', '2013-03-30 00:00:00', 'bb651138df6717a8515a0f9840e29b2c', 7),
-(38, 'street', '2013-03-30 00:00:00', '2013-03-30 00:00:00', 'ab7d1b24a3851d5bc97abba16bcdf4a7', 7),
-(39, 'building', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '910ddb9c7f191325d5b9a60e4cbaf4df', 7),
-(40, 'floor', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '47c294ae1a59df083783e15a9260eda9', 7),
-(41, 'room', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '19c81626777ecc44a7972e2f544d750b', 7),
-(42, 'street_light_type', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '61075483e8516992cd36ab38378d47d4', 7),
-(43, 'condition', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '37664e54b5f9fba4a4389c89dee7b8f0', 7),
-(44, 'owner', '2013-03-30 00:00:00', '2013-03-30 00:00:00', '6d349af96d1ce958d029d56093f15224', 7),
-(45, 'asset', '2013-03-30 00:00:00', '2013-03-30 00:00:00', 'bd82ddbd4e47d96eb545258d7c40ad14', 2);
+(1, 'content', '2013-03-30 00:00:00', NULL, 'bf47045e2f05006d8d8bc9b0c1151f00', 1),
+(2, 'location', '2013-03-30 00:00:00', NULL, '961a1c8649c0994e82fb150f28f17cff', 1),
+(3, 'town', '2013-03-30 00:00:00', NULL, 'bb651138df6717a8515a0f9840e29b2c', 1),
+(4, 'street', '2013-03-30 00:00:00', NULL, 'ab7d1b24a3851d5bc97abba16bcdf4a7', 1),
+(5, 'building', '2013-03-30 00:00:00', NULL, '910ddb9c7f191325d5b9a60e4cbaf4df', 1),
+(6, 'floor', '2013-03-30 00:00:00', NULL, '47c294ae1a59df083783e15a9260eda9', 1),
+(7, 'room', '2013-03-30 00:00:00', NULL, '19c81626777ecc44a7972e2f544d750b', 1),
+(8, 'asset_type', '2013-03-30 00:00:00', NULL, '75bc2e41d75fb2f38097ef483d03d2e5', 1),
+(9, 'asset_sub_type', '2013-03-30 00:00:00', NULL, '8b9edf987516b70ebf2e3786a0e8e05b', 1),
+(10, 'asset_description', '2013-03-30 00:00:00', NULL, '4ffe133b31b990d12461c5dc6b7744da', 1),
+(11, 'asset_sub_description', '2013-03-30 00:00:00', NULL, '6795cadd1217c01c589adbb04e876323', 1),
+(12, 'material', '2013-03-30 00:00:00', NULL, '28be51e227ff429cac73d8db61be656e', 1),
+(13, 'street_light_type', '2013-03-30 00:00:00', NULL, '61075483e8516992cd36ab38378d47d4', 1),
+(14, 'condition', '2013-03-30 00:00:00', NULL, '37664e54b5f9fba4a4389c89dee7b8f0', 1),
+(15, 'owner', '2013-03-30 00:00:00', NULL, '6d349af96d1ce958d029d56093f15224', 1),
+(16, 'asset', '2013-03-30 00:00:00', NULL, 'bd82ddbd4e47d96eb545258d7c40ad14', 1),
+(17, 'profile', '2013-03-30 00:00:00', NULL, '74f6870f6740f14743f1648e51d26b70', 1),
+(18, 'contact_request', '2013-03-30 00:00:00', NULL, 'c6281d8d77e2fb13fd1b1b908e69fce7', 1),
+(19, 'app_audit_log', '2013-03-30 00:00:00', NULL, 'f0ad8d2f5234d9e55ce6860f3e7d443c', 1),
+(20, 'app_link_request', '2013-03-30 00:00:00', NULL, 'f43bdcb651541b245f2655558fb3d18d', 1),
+(21, 'config', '2013-03-30 00:00:00', NULL, 'e03531a6324decfbb1141c4f2892a0c5', 1),
+(22, 'lib_photo', '2013-03-30 00:00:00', NULL, '7bde09f24c7977b4721ca39fe327af08', 1),
+(23, 'lib_video', '2013-03-30 00:00:00', NULL, 'a69102d29787306f26ec5d6d0ee0d794', 1),
+(24, 'lib_document', '2013-03-30 00:00:00', NULL, 'c2a035d14c50dacbf0a8c67a14bd2851', 1),
+(25, 'lib_attachment', '2013-03-30 00:00:00', NULL, '38ab8b5d858df97a2456f2e624905b3a', 1),
+(26, 'lib_address', '2013-03-30 00:00:00', NULL, 'eda206b2bd3dcaf4822a4edfc279299e', 1),
+(27, 'lib_person', '2013-03-30 00:00:00', NULL, '33692ed654c410d64c3a1213d8333f73', 1),
+(28, 'lib_contact', '2013-03-30 00:00:00', NULL, '8d6f12942a2322c96b1f80a61cfea1ad', 1),
+(29, 'lib_newsletter_template', '2013-03-30 00:00:00', NULL, '71485ae092f3cffdc0950a6a78b1f3ae', 1),
+(30, 'lib_newsletter', '2013-03-30 00:00:00', NULL, '5acc042b8308cf92971bbfc35cdab562', 1),
+(31, 'lib_ip_country', '2013-03-30 00:00:00', NULL, '6e7553d3a5c89cad46393eebc24fafa5', 1),
+(32, 'lib_country', '2013-03-30 00:00:00', NULL, 'e76a17da9d1aa21dcb272b7fcd5cfb11', 1),
+(33, 'lib_region', '2013-03-30 00:00:00', NULL, '30d5d303e8665973611450aeecf03b90', 1),
+(34, 'lib_city', '2013-03-30 00:00:00', NULL, '6c5b2f2c7b8858933b4048bfdb603dba', 1),
+(35, 'lib_template', '2013-03-30 00:00:00', NULL, '1730e156a4631a9c34dd8867d1b62c79', 1),
+(36, 'lib_repeater_template', '2013-03-30 00:00:00', NULL, '6808b6e0d1d25cd9206da938a62b1085', 1),
+(37, 'lib_authentication_log', '2013-03-30 00:00:00', NULL, 'd656bfcd19186809dded6a3be9d5844e', 1),
+(38, 'lib_notification_log', '2013-03-30 00:00:00', NULL, 'ed4aa2a527e0e94a55b9023ae3ef9825', 1),
+(39, 'lib_service', '2013-03-30 00:00:00', NULL, 'ce8a58e087c7d5537c65a524032cd3e1', 1),
+(40, 'lib_currency', '2013-03-30 00:00:00', NULL, '66490a63a4b2802f902d2980426f8e4e', 1),
+(41, 'lib_xmlrpc_profile', '2013-03-30 00:00:00', NULL, '6137d78bc404d61f7894a5a7b01ab705', 1),
+(42, 'lib_action_reference', '2013-03-30 00:00:00', NULL, '7bd37aa43130e0ffa2466306f74725c7', 1),
+(43, 'bill_invoice', '2013-03-30 00:00:00', NULL, '37f95e7ed7065a5b6a3d533723692166', 1),
+(44, 'bill_invoice_line_item', '2013-03-30 00:00:00', NULL, 'b85a696bb89838b55ffae31d25ac5cc4', 1);
 
 -- --------------------------------------------------------
 
@@ -1007,34 +977,6 @@ CREATE TABLE IF NOT EXISTS `owner` (
 INSERT INTO `owner` (`id`, `name`, `created`, `updated`, `archived`) VALUES
 (1, 'TOKOLOGO LOCAL MUNICIPALITY', '2013-03-30 08:15:00', NULL, 0),
 (2, 'TECHNICAL SERVICES', '2013-03-30 08:15:00', NULL, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pole_length`
---
-
-DROP TABLE IF EXISTS `pole_length`;
-CREATE TABLE IF NOT EXISTS `pole_length` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(250) NOT NULL,
-  `created` datetime NOT NULL,
-  `updated` datetime DEFAULT NULL,
-  `archived` tinyint(3) unsigned DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `pole_length`
---
-
-INSERT INTO `pole_length` (`id`, `name`, `created`, `updated`, `archived`) VALUES
-(1, '6M AND LESS', '2013-03-30 08:15:00', NULL, 0),
-(2, '8M', '2013-03-30 08:15:00', NULL, 0),
-(3, '10M', '2013-03-30 08:15:00', NULL, 0),
-(4, '14M', '2013-03-30 08:15:00', NULL, 0),
-(5, '25M', '2013-03-30 08:15:00', NULL, 0),
-(6, 'MORE THAN 25M', '2013-03-30 08:15:00', NULL, 0);
 
 -- --------------------------------------------------------
 

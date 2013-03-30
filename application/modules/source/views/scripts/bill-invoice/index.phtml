@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navBillInvoice").addClass("active");
 		searchHandler["srch-billInvoice"] = {
-				action: "bill-invoice-grid",
+				action: theme + "/bill-invoice-grid",
 				container: "BillInvoiceGrid"
 		};
     searchStack["srch-billInvoice"] = wrapFunction(search, this, ["srch-billInvoice"]);

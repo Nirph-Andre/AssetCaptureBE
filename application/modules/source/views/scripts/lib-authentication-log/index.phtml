@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibAuthenticationLog").addClass("active");
 		searchHandler["srch-libAuthenticationLog"] = {
-				action: "lib-authentication-log-grid",
+				action: theme + "/lib-authentication-log-grid",
 				container: "LibAuthenticationLogGrid"
 		};
     searchStack["srch-libAuthenticationLog"] = wrapFunction(search, this, ["srch-libAuthenticationLog"]);

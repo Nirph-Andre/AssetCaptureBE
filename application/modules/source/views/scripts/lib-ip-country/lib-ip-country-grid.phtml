@@ -75,11 +75,11 @@ list($order, $direction) = each($this->result["LibIpCountry"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["LibIpCountry"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["lib_ip_country_ip_from"]; ?></td>
-					<td><?php echo $record["lib_ip_country_ip_to"]; ?></td>
-					<td><?php echo $record["lib_ip_country_provider"]; ?></td>
-					<td><?php echo $record["lib_ip_country_assigned"]; ?></td>
-					<td><?php echo $record["lib_ip_country_country_code"]; ?></td>
+					<td><?php echo $record["ip_from"]; ?></td>
+					<td><?php echo $record["ip_to"]; ?></td>
+					<td><?php echo $record["provider"]; ?></td>
+					<td><?php echo $record["assigned"]; ?></td>
+					<td><?php echo $record["country_code"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibIpCountry(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -95,7 +95,7 @@ list($order, $direction) = each($this->result["LibIpCountry"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var libIpCountryData = <?php echo Zend_Json::encode($this->data["LibIpCountry"]); ?>;

@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibPhoto").addClass("active");
 		searchHandler["srch-libPhoto"] = {
-				action: "lib-photo-grid",
+				action: theme + "/lib-photo-grid",
 				container: "LibPhotoGrid"
 		};
     searchStack["srch-libPhoto"] = wrapFunction(search, this, ["srch-libPhoto"]);

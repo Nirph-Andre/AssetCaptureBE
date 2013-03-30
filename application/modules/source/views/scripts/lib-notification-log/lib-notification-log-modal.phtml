@@ -45,11 +45,6 @@
 						<input id="libNotificationLog_sms_status" name="sms_status" type="text"
 							form-id="libNotificationLog" class="span12 " maxlength="50">
 					</div>
-		  		<div class="control-group">
-				  	<label for="libNotificationLog_updated"><b>Updated</b></label>
-						<input id="libNotificationLog_updated" name="updated" type="text"
-							form-id="libNotificationLog" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="libNotificationLog_id" name="id" form-id="libNotificationLog">
 			  </div>
 		  </div>
@@ -65,14 +60,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] LibNotificationLog: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] LibNotificationLog: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#libNotificationLogForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("libNotificationLog", "libNotificationLog", "api/data/" + mode,
-			  	"LibNotificationLogGrid", "lib-notification-log-grid",
+			  	"LibNotificationLogGrid", theme + "/lib-notification-log-grid",
 					false, true, false, {});
 		  }
 		});

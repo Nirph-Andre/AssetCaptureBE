@@ -76,8 +76,6 @@ class Source_AssetController extends Struct_Abstract_Controller
         $this->listDataReturnView("Object_AssetSubDescription");
         $this->dataContext = "listMaterial";
         $this->listDataReturnView("Object_Material");
-        $this->dataContext = "listPoleLength";
-        $this->listDataReturnView("Object_PoleLength");
         $this->dataContext = "listStreetLightType";
         $this->listDataReturnView("Object_StreetLightType");
         $this->dataContext = "listCondition";

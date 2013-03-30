@@ -77,9 +77,9 @@ list($order, $direction) = each($this->result["BillInvoiceLineItem"]["Order"]);
 				<tr>
 					<td><?php echo $record["bill_invoice_invoice_nr"]; ?></td>
 					<td><?php echo $record["lib_service_name"]; ?></td>
-					<td><?php echo $record["bill_invoice_line_item_description"]; ?></td>
-					<td><?php echo $record["bill_invoice_line_item_units"]; ?></td>
-					<td><?php echo $record["bill_invoice_line_item_months"]; ?></td>
+					<td><?php echo $record["description"]; ?></td>
+					<td><?php echo $record["units"]; ?></td>
+					<td><?php echo $record["months"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editBillInvoiceLineItem(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -95,7 +95,7 @@ list($order, $direction) = each($this->result["BillInvoiceLineItem"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var billInvoiceLineItemData = <?php echo Zend_Json::encode($this->data["BillInvoiceLineItem"]); ?>;

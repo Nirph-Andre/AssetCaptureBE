@@ -57,9 +57,9 @@ list($order, $direction) = each($this->result["LibAttachment"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["LibAttachment"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["lib_attachment_filename"]; ?></td>
-					<td><?php echo $record["lib_attachment_document"]; ?></td>
-					<td><?php echo $record["lib_attachment_mime_type"]; ?></td>
+					<td><?php echo $record["filename"]; ?></td>
+					<td><?php echo $record["document"]; ?></td>
+					<td><?php echo $record["mime_type"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibAttachment(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -75,7 +75,7 @@ list($order, $direction) = each($this->result["LibAttachment"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var libAttachmentData = <?php echo Zend_Json::encode($this->data["LibAttachment"]); ?>;

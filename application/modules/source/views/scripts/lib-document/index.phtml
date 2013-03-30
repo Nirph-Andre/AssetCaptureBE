@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibDocument").addClass("active");
 		searchHandler["srch-libDocument"] = {
-				action: "lib-document-grid",
+				action: theme + "/lib-document-grid",
 				container: "LibDocumentGrid"
 		};
     searchStack["srch-libDocument"] = wrapFunction(search, this, ["srch-libDocument"]);

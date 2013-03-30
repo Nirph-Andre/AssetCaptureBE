@@ -14,11 +14,7 @@ class Table_AppAuditLog extends Struct_Abstract_ModelTable
     /**
      * Data associations to other tables.
      */
-    protected $_referenceMap = array('Customer' => array(
-            'columns' => 'customer_id',
-            'refTableClass' => 'Table_Customer',
-            'refColumns' => 'id'
-            ));
+    protected $_referenceMap = array();
 
     /**
      * Tables dependant on this one.
@@ -81,7 +77,7 @@ class Table_AppAuditLog extends Struct_Abstract_ModelTable
             'LENGTH' => null,
             'SCALE' => null,
             'PRECISION' => null,
-            'UNSIGNED' => null,
+            'UNSIGNED' => true,
             'PRIMARY' => false,
             'PRIMARY_POSITION' => null,
             'IDENTITY' => false,
@@ -95,7 +91,7 @@ class Table_AppAuditLog extends Struct_Abstract_ModelTable
             'COLUMN_POSITION' => 4,
             'DATA_TYPE' => 'enum(\'Add\',\'Update\',\'Delete\')',
             'DEFAULT' => null,
-            'NULLABLE' => false,
+            'NULLABLE' => true,
             'LENGTH' => null,
             'SCALE' => null,
             'PRECISION' => null,
@@ -103,8 +99,8 @@ class Table_AppAuditLog extends Struct_Abstract_ModelTable
             'PRIMARY' => false,
             'PRIMARY_POSITION' => null,
             'IDENTITY' => false,
-            'FLAGS' => 3,
-            'FLAG_LIST' => 'FIELD_REQUIRED'
+            'FLAGS' => 0,
+            'FLAG_LIST' => ''
             ),
         'table_name' => array(
             'SCHEMA_NAME' => null,
@@ -135,7 +131,7 @@ class Table_AppAuditLog extends Struct_Abstract_ModelTable
             'LENGTH' => null,
             'SCALE' => null,
             'PRECISION' => null,
-            'UNSIGNED' => null,
+            'UNSIGNED' => true,
             'PRIMARY' => false,
             'PRIMARY_POSITION' => null,
             'IDENTITY' => false,

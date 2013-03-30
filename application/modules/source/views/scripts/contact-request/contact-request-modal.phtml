@@ -66,7 +66,7 @@
 		$("#contactRequestForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("contactRequest", "contactRequest", "api/data/" + mode,
-			  	"ContactRequestGrid", "contact-request-grid",
+			  	"ContactRequestGrid", theme + "/contact-request-grid",
 					false, true, false, {});
 		  }
 		});

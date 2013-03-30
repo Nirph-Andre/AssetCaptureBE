@@ -75,11 +75,11 @@ list($order, $direction) = each($this->result["LibXmlrpcProfile"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["LibXmlrpcProfile"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["lib_xmlrpc_profile_name"]; ?></td>
-					<td><?php echo $record["lib_xmlrpc_profile_auth_token"]; ?></td>
-					<td><?php echo $record["lib_xmlrpc_profile_requests"]; ?></td>
-					<td><?php echo $record["lib_xmlrpc_profile_created"]; ?></td>
-					<td><?php echo $record["lib_xmlrpc_profile_updated"]; ?></td>
+					<td><?php echo $record["name"]; ?></td>
+					<td><?php echo $record["auth_token"]; ?></td>
+					<td><?php echo $record["requests"]; ?></td>
+					<td><?php echo $record["created"]; ?></td>
+					<td><?php echo $record["updated"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibXmlrpcProfile(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -95,7 +95,7 @@ list($order, $direction) = each($this->result["LibXmlrpcProfile"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var libXmlrpcProfileData = <?php echo Zend_Json::encode($this->data["LibXmlrpcProfile"]); ?>;

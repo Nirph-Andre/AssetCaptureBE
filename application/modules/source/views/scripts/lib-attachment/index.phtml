@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibAttachment").addClass("active");
 		searchHandler["srch-libAttachment"] = {
-				action: "lib-attachment-grid",
+				action: theme + "/lib-attachment-grid",
 				container: "LibAttachmentGrid"
 		};
     searchStack["srch-libAttachment"] = wrapFunction(search, this, ["srch-libAttachment"]);

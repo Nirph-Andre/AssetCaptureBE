@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibRepeaterTemplate").addClass("active");
 		searchHandler["srch-libRepeaterTemplate"] = {
-				action: "lib-repeater-template-grid",
+				action: theme + "/lib-repeater-template-grid",
 				container: "LibRepeaterTemplateGrid"
 		};
     searchStack["srch-libRepeaterTemplate"] = wrapFunction(search, this, ["srch-libRepeaterTemplate"]);

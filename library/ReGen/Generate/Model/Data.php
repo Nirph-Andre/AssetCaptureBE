@@ -82,6 +82,8 @@ class ReGen_Generate_Model_Data extends CodeSource
 					if (!isset($currentHash[$table]))
 					{
 						// new table
+						$statements[] = "DROP TABLE IF EXISTS `$table`;";
+						$db->query("DROP TABLE IF EXISTS `$table`;");
 						$statements[] = $query;
 						$db->query($query);
 						$csvTables[] = $table;

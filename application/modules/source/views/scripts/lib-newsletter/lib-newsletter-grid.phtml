@@ -76,10 +76,10 @@ list($order, $direction) = each($this->result["LibNewsletter"]["Order"]);
 				<?php foreach ($this->data["LibNewsletter"] as $id => $record) { ?>
 				<tr>
 					<td><?php echo $record["lib_newsletter_template_name"]; ?></td>
-					<td><?php echo $record["lib_newsletter_subject"]; ?></td>
+					<td><?php echo $record["subject"]; ?></td>
 					<td><?php echo $record["lib_attachment_filename"]; ?></td>
-					<td><?php echo $record["lib_newsletter_status"]; ?></td>
-					<td><?php echo $record["lib_newsletter_sent_to"]; ?></td>
+					<td><?php echo $record["status"]; ?></td>
+					<td><?php echo $record["sent_to"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibNewsletter(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -95,7 +95,7 @@ list($order, $direction) = each($this->result["LibNewsletter"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var libNewsletterData = <?php echo Zend_Json::encode($this->data["LibNewsletter"]); ?>;

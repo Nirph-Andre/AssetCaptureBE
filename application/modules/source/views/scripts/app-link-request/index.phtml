@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navAppLinkRequest").addClass("active");
 		searchHandler["srch-appLinkRequest"] = {
-				action: "app-link-request-grid",
+				action: theme + "/app-link-request-grid",
 				container: "AppLinkRequestGrid"
 		};
     searchStack["srch-appLinkRequest"] = wrapFunction(search, this, ["srch-appLinkRequest"]);

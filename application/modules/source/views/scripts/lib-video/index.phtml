@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibVideo").addClass("active");
 		searchHandler["srch-libVideo"] = {
-				action: "lib-video-grid",
+				action: theme + "/lib-video-grid",
 				container: "LibVideoGrid"
 		};
     searchStack["srch-libVideo"] = wrapFunction(search, this, ["srch-libVideo"]);

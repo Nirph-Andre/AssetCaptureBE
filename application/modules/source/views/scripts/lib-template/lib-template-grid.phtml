@@ -48,8 +48,8 @@ list($order, $direction) = each($this->result["LibTemplate"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["LibTemplate"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["lib_template_name"]; ?></td>
-					<td><?php echo $record["lib_template_subject"]; ?></td>
+					<td><?php echo $record["name"]; ?></td>
+					<td><?php echo $record["subject"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibTemplate(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -65,7 +65,7 @@ list($order, $direction) = each($this->result["LibTemplate"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var libTemplateData = <?php echo Zend_Json::encode($this->data["LibTemplate"]); ?>;

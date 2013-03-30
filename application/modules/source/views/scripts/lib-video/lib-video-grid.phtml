@@ -48,8 +48,8 @@ list($order, $direction) = each($this->result["LibVideo"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["LibVideo"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["lib_video_video"]; ?></td>
-					<td><?php echo $record["lib_video_mime_type"]; ?></td>
+					<td><?php echo $record["video"]; ?></td>
+					<td><?php echo $record["mime_type"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibVideo(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -65,7 +65,7 @@ list($order, $direction) = each($this->result["LibVideo"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var libVideoData = <?php echo Zend_Json::encode($this->data["LibVideo"]); ?>;

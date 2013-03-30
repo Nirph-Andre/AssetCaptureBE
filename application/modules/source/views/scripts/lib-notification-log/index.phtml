@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibNotificationLog").addClass("active");
 		searchHandler["srch-libNotificationLog"] = {
-				action: "lib-notification-log-grid",
+				action: theme + "/lib-notification-log-grid",
 				container: "LibNotificationLogGrid"
 		};
     searchStack["srch-libNotificationLog"] = wrapFunction(search, this, ["srch-libNotificationLog"]);

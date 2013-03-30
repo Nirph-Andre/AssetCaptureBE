@@ -1,14 +1,14 @@
 <!-- BillInvoice: Modal Form -->
 <div class="row-fluid">
   <div class="span12">
-	<div class="modal modal-wide modal-up hide fade" id="modalBillInvoice">
+	<div class="modal modal-thinner hide fade" id="modalBillInvoice">
 	  <div class="modal-header">
 		<button class="close" data-dismiss="modal">x</button>
 		<h3 id="billInvoiceModalHeading">Edit Bill Invoice</h3>
 	  </div>
 		<form id="billInvoiceForm" class="modal-form">
-		  <div class="modal-body modal-high">
-			  <div class="span6">
+		  <div class="modal-body ">
+			  <div class="span12">
 		  		<div class="control-group">
 		    		<label for="billInvoice_invoice_nr"><b>Invoice Nr *</b></label>
 						<input id="billInvoice_invoice_nr" name="invoice_nr" type="text"
@@ -42,8 +42,7 @@
 							<?php echo $utilDisplay->buildDropdownOptions($this->data["listLibCurrency"], false); ?>
 
 						</select>
-					</div></div>
-			  <div class="span6">
+					</div>
 		  		<div class="control-group">
 		    		<label for="billInvoice_vat"><b>Vat</b></label>
 						<input id="billInvoice_vat" name="vat" type="text"
@@ -68,11 +67,6 @@
 			    		&nbsp;<b>Amount *</b>
 		    		</label>
 					</div>
-		  		<div class="control-group">
-				  	<label for="billInvoice_updated"><b>Updated</b></label>
-						<input id="billInvoice_updated" name="updated" type="text"
-							form-id="billInvoice" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="billInvoice_id" name="id" form-id="billInvoice">
 			  </div>
 		  </div>
@@ -88,14 +82,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] BillInvoice: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] BillInvoice: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#billInvoiceForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("billInvoice", "billInvoice", "api/data/" + mode,
-			  	"BillInvoiceGrid", "bill-invoice-grid",
+			  	"BillInvoiceGrid", theme + "/bill-invoice-grid",
 					false, true, false, {});
 		  }
 		});

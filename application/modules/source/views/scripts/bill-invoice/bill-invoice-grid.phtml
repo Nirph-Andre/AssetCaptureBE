@@ -75,11 +75,11 @@ list($order, $direction) = each($this->result["BillInvoice"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["BillInvoice"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["bill_invoice_invoice_nr"]; ?></td>
-					<td><?php echo $record["bill_invoice_type"]; ?></td>
+					<td><?php echo $record["invoice_nr"]; ?></td>
+					<td><?php echo $record["type"]; ?></td>
 					<td><?php echo $record["profile_first_name"]; ?></td>
 					<td><?php echo $record["lib_currency_prefix"]; ?></td>
-					<td><?php echo $record["bill_invoice_vat"]; ?></td>
+					<td><?php echo $record["vat"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editBillInvoice(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -95,7 +95,7 @@ list($order, $direction) = each($this->result["BillInvoice"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var billInvoiceData = <?php echo Zend_Json::encode($this->data["BillInvoice"]); ?>;

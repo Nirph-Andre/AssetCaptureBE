@@ -57,9 +57,9 @@ list($order, $direction) = each($this->result["LibAuthenticationLog"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["LibAuthenticationLog"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["lib_authentication_log_ip_address"]; ?></td>
+					<td><?php echo $record["ip_address"]; ?></td>
 					<td><?php echo $record["profile_first_name"]; ?></td>
-					<td><?php echo $record["lib_authentication_log_created"]; ?></td>
+					<td><?php echo $record["created"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibAuthenticationLog(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -75,7 +75,7 @@ list($order, $direction) = each($this->result["LibAuthenticationLog"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var libAuthenticationLogData = <?php echo Zend_Json::encode($this->data["LibAuthenticationLog"]); ?>;

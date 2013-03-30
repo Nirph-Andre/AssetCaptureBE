@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibPerson").addClass("active");
 		searchHandler["srch-libPerson"] = {
-				action: "lib-person-grid",
+				action: theme + "/lib-person-grid",
 				container: "LibPersonGrid"
 		};
     searchStack["srch-libPerson"] = wrapFunction(search, this, ["srch-libPerson"]);

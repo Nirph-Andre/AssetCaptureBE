@@ -49,7 +49,7 @@ list($order, $direction) = each($this->result["LibRepeaterTemplate"]["Order"]);
 				<?php foreach ($this->data["LibRepeaterTemplate"] as $id => $record) { ?>
 				<tr>
 					<td><?php echo $record["lib_template_name"]; ?></td>
-					<td><?php echo $record["lib_repeater_template_group_field"]; ?></td>
+					<td><?php echo $record["group_field"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibRepeaterTemplate(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -65,7 +65,7 @@ list($order, $direction) = each($this->result["LibRepeaterTemplate"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var libRepeaterTemplateData = <?php echo Zend_Json::encode($this->data["LibRepeaterTemplate"]); ?>;

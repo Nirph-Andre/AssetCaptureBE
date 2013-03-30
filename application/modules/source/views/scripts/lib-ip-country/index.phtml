@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibIpCountry").addClass("active");
 		searchHandler["srch-libIpCountry"] = {
-				action: "lib-ip-country-grid",
+				action: theme + "/lib-ip-country-grid",
 				container: "LibIpCountryGrid"
 		};
     searchStack["srch-libIpCountry"] = wrapFunction(search, this, ["srch-libIpCountry"]);

@@ -211,7 +211,7 @@ class Table_AppLinkRequest extends Struct_Abstract_ModelTable
             'PRIMARY' => false,
             'PRIMARY_POSITION' => null,
             'IDENTITY' => false,
-            'FLAGS' => 256,
+            'FLAGS' => 288,
             'FLAG_LIST' => 'FIELD_UPDATE_DATETIME'
             ),
         'archived' => array(

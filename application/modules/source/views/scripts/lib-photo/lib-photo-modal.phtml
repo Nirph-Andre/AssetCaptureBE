@@ -35,7 +35,7 @@
 		$("#libPhotoForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("libPhoto", "libPhoto", "api/data/" + mode,
-			  	"LibPhotoGrid", "lib-photo-grid",
+			  	"LibPhotoGrid", theme + "/lib-photo-grid",
 					false, true, false, {});
 		  }
 		});

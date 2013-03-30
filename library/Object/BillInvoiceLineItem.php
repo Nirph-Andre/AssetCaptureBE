@@ -17,6 +17,11 @@ class Object_BillInvoiceLineItem extends Struct_Abstract_DataAccess
     protected $_table = 'bill_invoice_line_item';
 
     /**
+     * Unique identification field(s).
+     */
+    protected $_uniqueIdentifier = array();
+
+    /**
      * Validation meta-data.
      */
     protected $_validation = array(

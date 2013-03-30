@@ -75,11 +75,11 @@ list($order, $direction) = each($this->result["ContactRequest"]["Order"]);
 			<tbody>
 				<?php foreach ($this->data["ContactRequest"] as $id => $record) { ?>
 				<tr>
-					<td><?php echo $record["contact_request_person_name"]; ?></td>
-					<td><?php echo $record["contact_request_trading_name"]; ?></td>
-					<td><?php echo $record["contact_request_email"]; ?></td>
-					<td><?php echo $record["contact_request_mobile"]; ?></td>
-					<td><?php echo $record["contact_request_telephone"]; ?></td>
+					<td><?php echo $record["person_name"]; ?></td>
+					<td><?php echo $record["trading_name"]; ?></td>
+					<td><?php echo $record["email"]; ?></td>
+					<td><?php echo $record["mobile"]; ?></td>
+					<td><?php echo $record["telephone"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editContactRequest(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -95,7 +95,7 @@ list($order, $direction) = each($this->result["ContactRequest"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var contactRequestData = <?php echo Zend_Json::encode($this->data["ContactRequest"]); ?>;

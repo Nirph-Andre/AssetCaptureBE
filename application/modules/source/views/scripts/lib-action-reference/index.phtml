@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibActionReference").addClass("active");
 		searchHandler["srch-libActionReference"] = {
-				action: "lib-action-reference-grid",
+				action: theme + "/lib-action-reference-grid",
 				container: "LibActionReferenceGrid"
 		};
     searchStack["srch-libActionReference"] = wrapFunction(search, this, ["srch-libActionReference"]);

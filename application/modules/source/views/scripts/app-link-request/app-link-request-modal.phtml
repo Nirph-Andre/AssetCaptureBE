@@ -61,11 +61,6 @@
 
 						</select>
 					</div>
-		  		<div class="control-group">
-				  	<label for="appLinkRequest_updated"><b>Updated</b></label>
-						<input id="appLinkRequest_updated" name="updated" type="text"
-							form-id="appLinkRequest" class="span6 datepicker  datetime" >
-					</div>
 				<input type="hidden" id="appLinkRequest_id" name="id" form-id="appLinkRequest">
 			  </div>
 		  </div>
@@ -81,14 +76,13 @@
 	</div>
   </div>
 </div>
-<!-- [End] AppLinkRequest: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
-
+<!-- [End] AppLinkRequest: Modal Form -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#appLinkRequestForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("appLinkRequest", "appLinkRequest", "api/data/" + mode,
-			  	"AppLinkRequestGrid", "app-link-request-grid",
+			  	"AppLinkRequestGrid", theme + "/app-link-request-grid",
 					false, true, false, {});
 		  }
 		});

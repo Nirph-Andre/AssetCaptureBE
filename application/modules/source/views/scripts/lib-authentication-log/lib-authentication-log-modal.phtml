@@ -44,7 +44,7 @@
 		$("#libAuthenticationLogForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("libAuthenticationLog", "libAuthenticationLog", "api/data/" + mode,
-			  	"LibAuthenticationLogGrid", "lib-authentication-log-grid",
+			  	"LibAuthenticationLogGrid", theme + "/lib-authentication-log-grid",
 					false, true, false, {});
 		  }
 		});

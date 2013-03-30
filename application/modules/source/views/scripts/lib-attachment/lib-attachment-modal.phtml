@@ -40,7 +40,7 @@
 		$("#libAttachmentForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("libAttachment", "libAttachment", "api/data/" + mode,
-			  	"LibAttachmentGrid", "lib-attachment-grid",
+			  	"LibAttachmentGrid", theme + "/lib-attachment-grid",
 					false, true, false, {});
 		  }
 		});

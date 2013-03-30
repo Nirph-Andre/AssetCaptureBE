@@ -55,7 +55,7 @@
 		$("#libActionReferenceForm").validate({
 		  submitHandler: function(form) {
 			  doUpdate("libActionReference", "libActionReference", "api/data/" + mode,
-			  	"LibActionReferenceGrid", "lib-action-reference-grid",
+			  	"LibActionReferenceGrid", theme + "/lib-action-reference-grid",
 					false, true, false, {});
 		  }
 		});

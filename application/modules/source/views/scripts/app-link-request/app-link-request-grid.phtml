@@ -76,10 +76,10 @@ list($order, $direction) = each($this->result["AppLinkRequest"]["Order"]);
 				<?php foreach ($this->data["AppLinkRequest"] as $id => $record) { ?>
 				<tr>
 					<td><?php echo $record["profile_first_name"]; ?></td>
-					<td><?php echo $record["app_link_request_device_os"]; ?></td>
-					<td><?php echo $record["app_link_request_device_cpu"]; ?></td>
-					<td><?php echo $record["app_link_request_ip_address"]; ?></td>
-					<td><?php echo $record["app_link_request_is_blacklisted"]; ?></td>
+					<td><?php echo $record["device_os"]; ?></td>
+					<td><?php echo $record["device_cpu"]; ?></td>
+					<td><?php echo $record["ip_address"]; ?></td>
+					<td><?php echo $record["is_blacklisted"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editAppLinkRequest(<?php echo $id; ?>);">Edit</button>
 					</td>
@@ -95,7 +95,7 @@ list($order, $direction) = each($this->result["AppLinkRequest"]["Order"]);
 		</table>
 	</div>
 </div>
-<?php echo echo $pager; ?>
+<?php echo $pager; ?>
 <script type="text/javascript">
 
 	var appLinkRequestData = <?php echo Zend_Json::encode($this->data["AppLinkRequest"]); ?>;

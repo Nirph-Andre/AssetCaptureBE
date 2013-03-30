@@ -232,7 +232,7 @@
 				<span class="pull-right"><i class="icon-circle-arrow-up icon-circle-arrow-down"></i></span>
 			</li>
 		</ul>
-		<ul class="nav nav-list">
+		<ul class="nav nav-list" style="display: none;">
 			<li class=""><a class="handy" onclick="loadUrl('/source/asset');">Assets</a></li>
 			<li class=""><a class="handy" onclick="loadUrl('/source/import');">Import</a></li>
 			<li class=""><a class="handy" onclick="loadUrl('/source/export');">Export</a></li>
@@ -427,9 +427,6 @@
 	var mode = '';
 	
 	$(document).ready(function() {
-		$('.nav-vertical .nav-list:even').addClass('handy');
-		$('.nav-vertical .nav-list:odd').slideToggle();
-		$('.nav-vertical .nav-header > span > i').toggleClass('icon-circle-arrow-down');
 <?php if (!Struct_Registry::isAuthenticated()) { ?>
 		$("#loginForm").validate({
 			submitHandler: function (form) {

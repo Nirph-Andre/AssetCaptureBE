@@ -21,7 +21,7 @@ $utilDisplay = new Struct_Util_Display();
 	$(document).ready(function() {
 		$("#navLibXmlrpcProfile").addClass("active");
 		searchHandler["srch-libXmlrpcProfile"] = {
-				action: "lib-xmlrpc-profile-grid",
+				action: theme + "/lib-xmlrpc-profile-grid",
 				container: "LibXmlrpcProfileGrid"
 		};
     searchStack["srch-libXmlrpcProfile"] = wrapFunction(search, this, ["srch-libXmlrpcProfile"]);
