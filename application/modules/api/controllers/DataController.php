@@ -245,6 +245,12 @@ Struct_Debug::errorLog('_nameSpace', $this->_nameSpace);
 				'updated' => '>' . $lastSynch . ' AND <=' . $synchDate,
 				'archived' => 1
 		)), array(), true)->data;
+		Struct_Debug::errorLog($this->_nameSpace . '.downstream', array(
+				'Feedback' => $feedback,
+				'Create' => $create,
+				'Update' => $update,
+				'Remove' => $remove
+			));
 
 		#-> Done, provide relevant feedback and downstream data.
 		$this->jsonNsResult(
