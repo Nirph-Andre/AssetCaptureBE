@@ -2,115 +2,115 @@
 
 
 /**
- * Generic db table handling. 
+ * Generic db table handling.
  * @author andre.fourie
  */
 abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 {
-	
-	
+
+
 	/**
 	 * Table for logging data changes.
 	 * @var Table_NirphAuditLog
 	 */
 	static protected $auditTable = null;
-	
+
 	/**
 	 * Field meta data.
 	 * @var array
 	 */
 	protected $_metadata = null;
-	
+
 	/**
 	 * Tables dependant on this one.
 	 * @var array
 	 */
 	protected $_dependentTables = null;
-	
+
 	/**
 	 * Data dependancy chain.
 	 * @var array
 	 */
 	protected $dependancyChain = array();
-	
+
 	/**
 	 * Table flags.
 	 * @var array
 	 */
 	protected $tableFlags = null;
-	
+
 	/**
 	 * Field used to flag entry as archived.
 	 * @var string
 	 */
 	protected $archiveField = null;
-	
+
 	/**
 	 * Field db-name to code-name mapping.
 	 * @var array
 	 */
 	protected $fieldNames = null;
-	
+
 	/**
 	 * Default values for new data entry.
 	 * @var array
 	 */
 	protected $newRow = null;
-	
+
 	/**
 	 * Label format for list/dropdown display.
 	 * @var string
 	 */
 	protected $labelFormat = null;
-	
+
 	/**
 	 * Label format for list/dropdown display when accessed as foreign table.
 	 * @var string
 	 */
 	protected $labelFormatForeign = null;
-	
+
 	/**
 	 * Switch to enable html encoding of return data.
 	 * @var boolean
 	 */
 	protected $htmlEncodeReturnData = false;
-	
+
 	/**
 	 * Data tags active on current data filter.
 	 * @var array
 	 */
 	protected $activeDataTags = array();
-	
+
 	/**
 	 * Map for extended fields pulled into query.
 	 * @var array
 	 */
 	protected $buildMap = false;
-	
+
 	/**
 	 * Recurse map for correct stacking of chained data.
 	 * @var array
 	 */
 	protected $stackMap = false;
-	
+
 	/**
 	 * Show/hide password fields in results.
 	 * @var boolean
 	 */
 	protected $showPassFields = false;
-	
+
 	/**
 	 * Cater for temporary custom joins, used for extra filtering capability.
 	 * @var array
 	 */
 	protected $tempJoin = null;
-	
+
 	/**
 	 * Cater for temporary custom joins, used for extra data linkage.
 	 * @var array
 	 */
 	protected $tempJoinAfter = null;
-	
+
 	/**
 	 * To stack or not stack the data.
 	 * @var boolean
@@ -121,9 +121,9 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 	 * @var boolean
 	 */
 	protected $index = false;
-	
-	
-	
+
+
+
 	/**
 	 * Constructor.
 	 *
@@ -148,7 +148,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 		parent::__construct($config);
 		parent::getDefaultAdapter()->setFetchMode(Zend_Db::FETCH_ASSOC);
 	}
-	
+
 	/**
 	 * Retrieve table name.
 	 * @return string
@@ -157,7 +157,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 	{
 		return $this->_name;
 	}
-	
+
 	/**
 	 * Retrieve list of fields for this table.
 	 * @return array
@@ -166,7 +166,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 	{
 		return $this->fieldNames;
 	}
-	
+
 	/**
 	 * Retrieve field meta data.
 	 * @return array
@@ -175,7 +175,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 	{
 		return $this->_metadata;
 	}
-	
+
 	/**
 	 * Retrieve field meta data.
 	 * @return array
@@ -184,7 +184,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 	{
 		return $this->_referenceMap;
 	}
-	
+
 	/**
 	 * Retrieve foreign label format.
 	 * @return string
@@ -193,7 +193,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 	{
 		return $this->labelFormatForeign;
 	}
-	
+
 	/**
 	 * Encode all return data for html display.
 	 * @param  boolean $encode
@@ -204,7 +204,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 		$this->htmlEncodeReturnData = $encode;
 		return $this;
 	}
-	
+
 	/**
 	 * Set to remove/not remove password fields from results.
 	 * @param boolean $show
@@ -215,7 +215,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 		$this->showPassFields = $show;
 		return $this;
 	}
-	
+
 	/**
 	 * Retrieve active data flag filters.
 	 * @return array
@@ -228,7 +228,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 		$this->activeDataTags = array();
 		return $tags;
 	}
-	
+
 	/**
 	 * Pass back unstacked data results.
 	 * @param boolean $flatten
@@ -239,7 +239,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 		$this->flatten = $flatten;
 		return $this;
 	}
-	
+
 	/**
 	 * Pass back results indexed by primary key.
 	 * @param boolean $index
@@ -250,7 +250,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 		$this->index = $index;
 		return $this;
 	}
-	
+
 	/**
 	 * Add a temporary join to the beginning of the next extended data query.
 	 * @param  string $table
@@ -267,7 +267,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 				);
 		return $this;
 	}
-	
+
 	/**
 	 * Add a temporary join to the end of the next extended data query.
 	 * @param  string $table
@@ -284,7 +284,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 				);
 		return $this;
 	}
-	
+
 	/**
 	 * Add temporary joins to the beginning of the next extended data query.
 	 * @param  array:null $joins
@@ -295,7 +295,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 		$this->tempJoin = $joins;
 		return $this;
 	}
-	
+
 	/**
 	 * Add temporary joins to the end of the next extended data query.
 	 * @param  array:null $joins
@@ -306,7 +306,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 		$this->tempJoinAfter = $joins;
 		return $this;
 	}
-	
+
 	/**
 	 * Check if flag is set on the field.
 	 * @param  string  $field
@@ -317,7 +317,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 	{
 		return ($flag == ($this->_metadata[$field]['FLAGS'] & $flag));
 	}
-	
+
 	/**
 	 * Check if flag is set on the table.
 	 * @param  integer $flag
@@ -327,7 +327,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 	{
 		return ($flag == ($this->tableFlags & $flag));
 	}
-	
+
 	/**
 	 * Create new table row entry without saving.
 	 * @param  array $data
@@ -345,7 +345,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 		}
 		return $this->_appendAutoData($record);
 	}
-	
+
 	/**
 	 * Save multilink data for single foreign table.
 	 * @param  integer $id
@@ -360,14 +360,14 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 		{
 			return Struct_ActionFeedback::success();
 		}
-		
+
 		#-> Establish foreign key and class.
 		$contextIdField = $this->_name . '_id';
 		$className = $this->_dependentTables[$table];
 		$tableClass = new $className();
 		$secondaryIdField = false;
 		$thirdIdField = false;
-		
+
 		#-> Save link entries.
 		foreach ($linkData as $entryData)
 		{
@@ -410,7 +410,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 		}
 		return Struct_ActionFeedback::success();
 	}
-	
+
 	protected function cleanAuditData($logData)
 	{
 		if (isset($logData['video']))
@@ -431,7 +431,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 		}
 		return $logData;
 	}
-	
+
 	/**
 	 * Save item entry.
 	 * linkData takes multiple foreign tables in format table_name => [tableEntries]
@@ -472,7 +472,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 			}
 		}
 		$record = $this->_appendAutoData($record);
-		
+
 		if ( (!isset($record['id']) || null == $record['id']) && !empty($where) )
 		{
 			$current = $this->viewSingle($where);
@@ -481,7 +481,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 				$record['id'] = $current->data['id'];
 			}
 		}
-		
+
 		if (!isset($record['id']) || null == $record['id'])
 		{
 			#-> Insert
@@ -506,7 +506,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 						unset($record[$field]);
 					}
 				}
-				
+
 				if ($this->checkFieldFlag($field, FIELD_INSERT_DATETIME))
 				{
 					$record[$field] = date('Y-m-d H:i:s');
@@ -577,7 +577,7 @@ abstract class Struct_Abstract_ModelTable extends Zend_Db_Table_Abstract
 						unset($record[$field]);
 					}
 				}
-				
+
 				if ($this->checkFieldFlag($field, FIELD_UPDATE_DATETIME))
 				{
 					$record[$field] = date('Y-m-d H:i:s');
@@ -631,7 +631,7 @@ Struct_Debug::errorLog('update date', $record);
 			}
 		}
 	}
-	
+
 	/**
 	 * Update multiple item entries.
 	 * @param  array  $where
@@ -649,7 +649,7 @@ Struct_Debug::errorLog('update date', $record);
 				&& $record[$field] = $data[$field];
 		}
 		$record = $this->_appendAutoData($record);
-		
+
 		#-> Update entries.
 		try
 		{
@@ -666,7 +666,7 @@ Struct_Debug::errorLog('update date', $record);
 			);
 		}
 	}
-	
+
 	/**
 	 * Remove item entry.
 	 * @param  array  $where
@@ -680,7 +680,7 @@ Struct_Debug::errorLog('update date', $record);
 		{
 			return Struct_ActionFeedback::success(array('affectedRows' => 0));
 		}
-		
+
 		#-> Audit log changes.
 		if (Struct_Registry::isAuthenticated())
 		{
@@ -701,7 +701,7 @@ Struct_Debug::errorLog('update date', $record);
 					'data_packet'      => serialize($this->cleanAuditData($logData))
 			));
 		}
-		
+
 		#-> Delete entry.
 		if ($this->checkTableFlag(TABLE_PSEUDO_DELETE))
 		{
@@ -748,7 +748,7 @@ Struct_Debug::errorLog('update date', $record);
 			}
 		}
 	}
-	
+
 	/**
 	 * Remove multiple item entries.
 	 * @param  array  $where
@@ -770,7 +770,7 @@ Struct_Debug::errorLog('update date', $record);
 			{
 				return Struct_ActionFeedback::error(
 						'Exception for pseudo-delete on table: ' . $this->_name,
-						ERROR_SYSTEM_INTERNAL_DATA, 
+						ERROR_SYSTEM_INTERNAL_DATA,
 						array(), $e
 				);
 			}
@@ -793,13 +793,13 @@ Struct_Debug::errorLog('update date', $record);
 			{
 				return Struct_ActionFeedback::error(
 						'Exception for delete on table: ' . $this->_name,
-						ERROR_SYSTEM_INTERNAL_DATA, 
+						ERROR_SYSTEM_INTERNAL_DATA,
 						array(), $e
 				);
 			}
 		}
 	}
-	
+
 	/**
 	 * Fetch one entry for a query.
 	 * @param  array $where
@@ -813,7 +813,7 @@ Struct_Debug::errorLog('update date', $record);
 			? array_shift($entries)
 			: array();
 	}
-	
+
 	/**
 	 * Fetch entries for a query.
 	 * @param  array   $where
@@ -826,7 +826,7 @@ Struct_Debug::errorLog('update date', $record);
 	{
 		return $this->_flattenRecordSet(parent::fetchAll($where, $order, $count, $offset));
 	}
-	
+
 	/**
 	 * Retrieve item entry.
 	 * @param  array   $where
@@ -843,7 +843,7 @@ Struct_Debug::errorLog('update date', $record);
 		}
 		return Struct_ActionFeedback::successWithData($this->fetchOne($where));
 	}
-	
+
 	/**
 	 * Retrieve item entry with all associated data.
 	 * @param  array  $where
@@ -858,7 +858,7 @@ Struct_Debug::errorLog('update date', $record);
 	{
 		#-> Get joined selector.
 		$select = $this->_buildJoins($excludeTables, $chain, false);
-		
+
 		#-> Filtering.
 		$where = $this->_appendArrayAutoFilter($where);
 		foreach ($where as $spec => $value)
@@ -869,7 +869,7 @@ Struct_Debug::errorLog('update date', $record);
 		{
 			$select->where($this->_name . '.archived = 0');
 		}
-		
+
 		#-> Limit to 1 entry and fetch data.
 		$record = $select->limit(1, 0)
 			->query()
@@ -889,13 +889,13 @@ Struct_Debug::errorLog('update date', $record);
 				$record[$field] = htmlentities($value);
 			}
 		}
-		
+
 		#-> Flatten data and return to caller.
 		return Struct_ActionFeedback::successWithData(
 				$record
 				);
 	}
-	
+
 	/**
 	 * Retrieve full list of recursively stacked dependancies.
 	 * @param array $chain
@@ -921,7 +921,7 @@ Struct_Debug::errorLog('update date', $record);
 		{
 			$dataset[$row['id']] = $row + $subPrep;
 		}
-		
+
 		$idField = $this->_name . '_id';
 		foreach ($subs as $stackName => $className)
 		{
@@ -934,11 +934,11 @@ Struct_Debug::errorLog('update date', $record);
 					&& $dataset[$row[$idField]][$stackName][$row['id']] = $row;
 			}
 		}
-		
+
 		#-> Return to caller.
 		return Struct_ActionFeedback::successWithData($dataset);
 	}
-	
+
 	/**
 	 * Retrieve list of item entries (dropdown list format).
 	 * @param  array   $where
@@ -949,6 +949,7 @@ Struct_Debug::errorLog('update date', $record);
 	public function listAll(array $where, array $order = array(), $allColumns = false)
 	{
 		$where = $this->_appendArrayAutoFilter($where);
+Struct_Debug::errorLog('listAll', $where);
 		$recordSet = $this->fetchAll($where, $order);
 		$entries = array();
 		if (!$allColumns)
@@ -969,11 +970,11 @@ Struct_Debug::errorLog('update date', $record);
 		{
 			$entries = $recordSet;
 		}
-		
+
 		#-> Return to caller.
 		return Struct_ActionFeedback::successWithData($entries);
 	}
-	
+
 	/**
 	 * Retrieve data grid of item entries.
 	 * @param  array   $where
@@ -997,7 +998,7 @@ Struct_Debug::errorLog('update date', $record);
 			: false;
 		$this->activeDataTags = array();
 		$select = $this->_buildJoins($excludeTables, $chain, $liveOnly);
-		
+
 		#-> Filtering.
 		$where = $this->_appendArrayAutoFilter($where);
 		foreach ($where as $spec => $value)
@@ -1009,13 +1010,13 @@ Struct_Debug::errorLog('update date', $record);
 		{
 			$select->where($this->_name . '.' . $this->archiveField . ' = ?', 0);
 		}
-		
+
 		#-> Group.
 		foreach ($group as $spec)
 		{
 			$select->group($spec);
 		}
-		
+
 		#-> Order.
 		$ordering = array();
 		foreach ($order as $spec)
@@ -1025,13 +1026,13 @@ Struct_Debug::errorLog('update date', $record);
 				&& $ordering[$field] = $direction;
 			$select->order($spec);
 		}
-		
+
 		#-> Limit rows fetched.
 		if (!is_null($numRecordsPerPage) && !is_null($numPage))
 		{
 			$select->limit($numRecordsPerPage, ($numPage - 1) * $numRecordsPerPage);
 		}
-		
+
 		#-> Fetch data.
 		$sql = str_replace('SELECT', 'SELECT SQL_CALC_FOUND_ROWS DISTINCT', $select->assemble());
 	//IS_DEV_ENV && Struct_Debug::errorLog('Query', $sql);
@@ -1042,7 +1043,7 @@ Struct_Debug::errorLog('update date', $record);
 		$numPages = !is_null($numRecordsPerPage)
 			? ceil($rows / $numRecordsPerPage)
 			: '';
-		
+
 		#-> Flatten data and return to caller.
 		return Struct_ActionFeedback::successWithData(
 				$this->_flattenRecordSet($recordSet, $chain),
@@ -1059,7 +1060,7 @@ Struct_Debug::errorLog('update date', $record);
 						)
 				);
 	}
-	
+
 	/**
 	 * Count table entries relevant to filters supplied.
 	 * @param array $where
@@ -1085,7 +1086,7 @@ Struct_Debug::errorLog('update date', $record);
 			->fetch()
 			->total;
 	}
-	
+
 	/**
 	 * Table for logging data changes.
 	 * @return Table_NirphAuditLog
@@ -1096,7 +1097,7 @@ Struct_Debug::errorLog('update date', $record);
 			|| self::$auditTable = new Object_AppAuditLog();
 		return self::$auditTable;
 	}
-	
+
 	/**
 	 * Establish data tag filters to apply to this table.
 	 * @return array
@@ -1108,7 +1109,7 @@ Struct_Debug::errorLog('update date', $record);
 		{
 			return array();
 		}
-		
+
 		#-> Establish filters.
 		$filters = array();
 		foreach ($filter as $field => $data)
@@ -1162,10 +1163,10 @@ Struct_Debug::errorLog('update date', $record);
 				$filters[$field] = $value;
 			}
 		}
-		
+
 		return $filters;
 	}
-	
+
 	/**
 	 * Add data context to a new/existing data entry.
 	 * @param  array $record
@@ -1187,7 +1188,7 @@ Struct_Debug::errorLog('update date', $record);
 		}
 		return $record;
 	}
-	
+
 	/**
 	 * Add data context filtering.
 	 * @param  array $where
@@ -1209,7 +1210,7 @@ Struct_Debug::errorLog('update date', $record);
 		}
 		return $where;
 	}
-	
+
 	/**
 	 * Add data context filter to a select statement.
 	 * @param  Zend_Db_Select $select
@@ -1231,7 +1232,7 @@ Struct_Debug::errorLog('update date', $record);
 		}
 		return $select;
 	}
-	
+
 	/**
 	 * Unpack chain-link request into convenient format.
 	 * @param array $chain
@@ -1259,7 +1260,7 @@ Struct_Debug::errorLog('update date', $record);
 		}
 		return $links;
 	}
-	
+
 	/**
 	 * Recursive chain joining, BOORAH!
 	 * @param  Zend_Db_Select $select
@@ -1328,7 +1329,7 @@ Struct_Debug::errorLog('update date', $record);
 			}
 			$this->buildMap[$ref_table_prepend . $tableName] = $fieldMap;
 			$this->stackMap[$ref_table_prepend . $tableName] = $baseTable;
-				
+
 			$foreignFilters = $joinTable->retrieveFilters();
 			$joinFilters = array();
 			foreach ($foreignFilters as $field => $label)
@@ -1350,7 +1351,7 @@ Struct_Debug::errorLog('update date', $record);
 					$fieldSpec
 			);
 			$refs[] = $ref_table_prepend . $tableName;
-			
+
 			#-> Recurvatus
 			if (isset($chain[$ref_table_prepend . $tableName]))
 			{
@@ -1364,7 +1365,7 @@ Struct_Debug::errorLog('update date', $record);
 		}
 		return $select;
 	}
-	
+
 	/**
 	 * Build joins required to pull in associated data.
 	 * @param  array $excludeTables
@@ -1397,7 +1398,7 @@ Struct_Debug::errorLog('update date', $record);
 		$select = $table->getAdapter()
 			->select()
 			->from(array ($this->_name => $this->_name), $fieldSpec);
-		
+
 		#-> Handle temporary joins.
 		if (is_array($this->tempJoin))
 		{
@@ -1413,7 +1414,7 @@ Struct_Debug::errorLog('update date', $record);
 			}
 			$this->tempJoin = null;
 		}
-		
+
 		#-> Joined associated tables.
 		foreach ($this->_referenceMap as $joinName => $joinSpec)
 		{
@@ -1456,7 +1457,7 @@ Struct_Debug::errorLog('update date', $record);
 				}
 			}
 			$this->buildMap[$ref_table_prepend . $tableName] = $fieldMap;
-			
+
 			$foreignFilters = $joinTable->retrieveFilters();
 			$joinFilters = array();
 			foreach ($foreignFilters as $field => $label)
@@ -1471,7 +1472,7 @@ Struct_Debug::errorLog('update date', $record);
 			{
 				$joinFilters[] = $ref_table_prepend . $tableName . '.archived = 0';
 			}
-						
+
 			$joinType = $this->_metadata[$joinSpec['columns']]['NULLABLE']
 				? 'outer'
 				: 'inner';
@@ -1495,7 +1496,7 @@ Struct_Debug::errorLog('update date', $record);
 						);
 			}
 			$refs[] = $ref_table_prepend . $tableName;
-			
+
 			#-> Recurvatus
 			if (isset($chain[$ref_table_prepend . $tableName]))
 			{
@@ -1507,7 +1508,7 @@ Struct_Debug::errorLog('update date', $record);
 						$liveOnly, $refs
 						);
 			}
-			
+
 			if (isset($this->dependancyChain[$joinName]))
 			{
 				$chainLen = count($this->dependancyChain[$joinName]);
@@ -1547,7 +1548,7 @@ Struct_Debug::errorLog('update date', $record);
 					$archiveFilter = ($liveOnly && $joinTable->checkTableFlag(TABLE_PSEUDO_DELETE))
 						? ' AND ' . $ref_table_prepend . $tableName . '.archived = 0'
 						: '';
-					
+
 					$joinType = $nullable
 						? 'outer'
 						: 'inner';
@@ -1572,7 +1573,7 @@ Struct_Debug::errorLog('update date', $record);
 				}
 			}
 		}
-		
+
 		#-> Handle temporary joins.
 		if (is_array($this->tempJoinAfter))
 		{
@@ -1588,11 +1589,11 @@ Struct_Debug::errorLog('update date', $record);
 			}
 			$this->tempJoinAfter = null;
 		}
-		
+
 		#-> Return selector.
 		return $select;
 	}
-	
+
 	/**
 	 * Get rid of the objects, pack everything into an array.
 	 * @param  Zend_Db_Table_Rowset_Abstract $recordSet
@@ -1635,7 +1636,7 @@ Struct_Debug::errorLog('update date', $record);
 		$this->buildMap = false;
 		return $entries;
 	}
-	
+
 	/**
 	 * Unpack an extended query into stacked object format.
 	 * @param array $row
@@ -1700,7 +1701,7 @@ Struct_Debug::errorLog('update date', $record);
 		}
 		return $row;
 	}
-	
+
 	/**
 	 * Recursive data stacking for recursive chain joins, BOORAH!
 	 * @param array $row
@@ -1716,7 +1717,7 @@ Struct_Debug::errorLog('update date', $record);
 			$row[$root][$baseTable] = $data;
 			if (isset($row[$root][$baseTable . '_id']))
 			{
-				unset($row[$root][$baseTable . '_id']);				
+				unset($row[$root][$baseTable . '_id']);
 			}
 			return $row;
 		}
@@ -1734,7 +1735,7 @@ Struct_Debug::errorLog('update date', $record);
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Auto-construct joins for all directly related
 	 * @return Ambigous <Zend_Db_Select, Zend_Db_Select>
@@ -1784,10 +1785,10 @@ Struct_Debug::errorLog('update date', $record);
 				//}
 			}
 		}
-		
+
 		#-> Fin
 		return $select;
 	}
-	
-	
+
+
 }
