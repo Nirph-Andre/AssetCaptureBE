@@ -263,11 +263,29 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'FLAGS' => 0,
             'FLAG_LIST' => ''
             ),
+        'gps_accuracy' => array(
+            'SCHEMA_NAME' => null,
+            'TABLE_NAME' => 'asset',
+            'COLUMN_NAME' => 'gps_accuracy',
+            'COLUMN_POSITION' => 10,
+            'DATA_TYPE' => 'varchar',
+            'DEFAULT' => null,
+            'NULLABLE' => true,
+            'LENGTH' => '50',
+            'SCALE' => null,
+            'PRECISION' => null,
+            'UNSIGNED' => null,
+            'PRIMARY' => false,
+            'PRIMARY_POSITION' => null,
+            'IDENTITY' => false,
+            'FLAGS' => 0,
+            'FLAG_LIST' => ''
+            ),
         'gps_lat' => array(
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'gps_lat',
-            'COLUMN_POSITION' => 10,
+            'COLUMN_POSITION' => 11,
             'DATA_TYPE' => 'varchar',
             'DEFAULT' => null,
             'NULLABLE' => true,
@@ -285,7 +303,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'gps_long',
-            'COLUMN_POSITION' => 11,
+            'COLUMN_POSITION' => 12,
             'DATA_TYPE' => 'varchar',
             'DEFAULT' => null,
             'NULLABLE' => true,
@@ -303,7 +321,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'identifier',
-            'COLUMN_POSITION' => 12,
+            'COLUMN_POSITION' => 13,
             'DATA_TYPE' => 'varchar',
             'DEFAULT' => null,
             'NULLABLE' => true,
@@ -321,7 +339,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'asset_type_id',
-            'COLUMN_POSITION' => 13,
+            'COLUMN_POSITION' => 14,
             'DATA_TYPE' => 'int',
             'DEFAULT' => null,
             'NULLABLE' => false,
@@ -339,7 +357,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'asset_sub_type_id',
-            'COLUMN_POSITION' => 14,
+            'COLUMN_POSITION' => 15,
             'DATA_TYPE' => 'int',
             'DEFAULT' => null,
             'NULLABLE' => false,
@@ -357,7 +375,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'asset_description_id',
-            'COLUMN_POSITION' => 15,
+            'COLUMN_POSITION' => 16,
             'DATA_TYPE' => 'int',
             'DEFAULT' => null,
             'NULLABLE' => false,
@@ -375,7 +393,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'asset_sub_description_id',
-            'COLUMN_POSITION' => 16,
+            'COLUMN_POSITION' => 17,
             'DATA_TYPE' => 'int',
             'DEFAULT' => null,
             'NULLABLE' => true,
@@ -393,7 +411,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'material_id',
-            'COLUMN_POSITION' => 17,
+            'COLUMN_POSITION' => 18,
             'DATA_TYPE' => 'int',
             'DEFAULT' => null,
             'NULLABLE' => true,
@@ -411,7 +429,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'pole_length_id',
-            'COLUMN_POSITION' => 18,
+            'COLUMN_POSITION' => 19,
             'DATA_TYPE' => 'int',
             'DEFAULT' => null,
             'NULLABLE' => true,
@@ -429,7 +447,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'street_light_type_id',
-            'COLUMN_POSITION' => 19,
+            'COLUMN_POSITION' => 20,
             'DATA_TYPE' => 'int',
             'DEFAULT' => null,
             'NULLABLE' => true,
@@ -447,7 +465,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'condition_id',
-            'COLUMN_POSITION' => 20,
+            'COLUMN_POSITION' => 21,
             'DATA_TYPE' => 'int',
             'DEFAULT' => null,
             'NULLABLE' => true,
@@ -465,7 +483,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'created',
-            'COLUMN_POSITION' => 21,
+            'COLUMN_POSITION' => 22,
             'DATA_TYPE' => 'datetime',
             'DEFAULT' => null,
             'NULLABLE' => false,
@@ -483,7 +501,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'updated',
-            'COLUMN_POSITION' => 22,
+            'COLUMN_POSITION' => 23,
             'DATA_TYPE' => 'datetime',
             'DEFAULT' => null,
             'NULLABLE' => true,
@@ -501,7 +519,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'archived',
-            'COLUMN_POSITION' => 23,
+            'COLUMN_POSITION' => 24,
             'DATA_TYPE' => 'tinyint',
             'DEFAULT' => '0',
             'NULLABLE' => true,
@@ -540,6 +558,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
         'room_id' => 'RoomId',
         'owner_id' => 'OwnerId',
         'gps_relative' => 'GpsRelative',
+        'gps_accuracy' => 'GpsAccuracy',
         'gps_lat' => 'GpsLat',
         'gps_long' => 'GpsLong',
         'identifier' => 'Identifier',
@@ -569,6 +588,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
         'room_id' => null,
         'owner_id' => null,
         'gps_relative' => null,
+        'gps_accuracy' => null,
         'gps_lat' => null,
         'gps_long' => null,
         'identifier' => null,
@@ -588,12 +608,12 @@ class Table_Asset extends Struct_Abstract_ModelTable
     /**
      * Label format for list/dropdown display.
      */
-    protected $labelFormat = '[gps_lat]';
+    protected $labelFormat = '[gps_accuracy]';
 
     /**
      * Label format for list/dropdown display.
      */
-    protected $labelFormatForeign = '[asset_gps_lat]';
+    protected $labelFormatForeign = '[asset_gps_accuracy]';
 
 
 }
