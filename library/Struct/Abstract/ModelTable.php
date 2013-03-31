@@ -949,7 +949,6 @@ Struct_Debug::errorLog('update date', $record);
 	public function listAll(array $where, array $order = array(), $allColumns = false)
 	{
 		$where = $this->_appendArrayAutoFilter($where);
-Struct_Debug::errorLog('listAll', $where);
 		$recordSet = $this->fetchAll($where, $order);
 		$entries = array();
 		if (!$allColumns)
