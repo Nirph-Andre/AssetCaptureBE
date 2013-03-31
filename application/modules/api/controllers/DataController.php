@@ -2,43 +2,44 @@
 
 class Api_DataController extends Struct_Abstract_Controller
 {
-	
+
 	/**
 	 * @var string
 	 */
 	protected $_defaultObjectName = '';
-	
+
 	/**
 	 * @var string
 	 */
 	protected $_nameSpace = '';
-	
+
 	/**
 	 * @var Struct_Abstract_DataAccess
 	 */
 	protected $_object = false;
-	
+
 	/**
 	 * @var array
 	 */
 	protected $_data   = false;
-	
+
 	/**
 	 * @var array
 	 */
 	protected $_options   = false;
-	
-	
-	
+
+
+
 	public function init()
 	{
-		/* if (!Struct_Registry::isAuthenticated() && !defined('DEBUG_UNITTEST'))
+		if (!Struct_Registry::isAuthenticated() && !defined('DEBUG_UNITTEST'))
 		{
+			Struct_Debug::errorLog('Data call without authentication.', $this->getRequest()->getParams());
 			$this->jsonResult(Struct_ActionFeedback::error(
 					'Data call without authentication.',
 					'You are not authenticated, please login.'
 			));
-		} */
+		}
 		$this->_helper->layout()->disableLayout();
 		//$this->_helper->viewRenderer->setNoRender(true);
 		$params = $this->getRequest()->getParams();
@@ -94,7 +95,7 @@ class Api_DataController extends Struct_Abstract_Controller
 Struct_Debug::errorLog('_nameSpace', $this->_nameSpace);
 //Struct_Debug::errorLog($this->_nameSpace . '._data', $this->_data);
 //Struct_Debug::errorLog($this->_nameSpace . '._options', $this->_options);
-		
+
 		$class = 'Object_' . str_replace('DropList', '', ucfirst($this->_nameSpace));
 		$this->_object = new $class();
 		return true;
@@ -104,7 +105,7 @@ Struct_Debug::errorLog('_nameSpace', $this->_nameSpace);
 	{
 		$this->jsonResult(Struct_ActionFeedback::success());
 	}
-	
+
 	public function synchAction()
 	{
 		#-> Upstream.
@@ -113,12 +114,14 @@ Struct_Debug::errorLog('_nameSpace', $this->_nameSpace);
 		$uniqueIdentifier = $this->_object->getUniqueIdentifier();
 		if (isset($this->_data['create']) && !empty($this->_data['create']))
 		{
+			Struct_Debug::errorLog($this->_nameSpace . '.create', $this->_data['create']);
 			if (empty($uniqueIdentifier))
 			{
 				// Nothing to test against for duplication, create as is.
 				foreach($this->_data['create'] as $synchEntry)
 				{
 					$remoteId = $synchEntry['id'];
+					unset($synchEntry['id']);
 					$res = $this->_object->process(
 							new Struct_ActionRequest(
 									'Create',
@@ -162,6 +165,7 @@ Struct_Debug::errorLog('_nameSpace', $this->_nameSpace);
 					else
 					{
 						// Insert.
+						unset($synchEntry['id']);
 						$res = $this->_object->process(
 								new Struct_ActionRequest(
 										'Create',
@@ -177,6 +181,7 @@ Struct_Debug::errorLog('_nameSpace', $this->_nameSpace);
 		}
 		if (isset($this->_data['update']) && !empty($this->_data['update']))
 		{
+			Struct_Debug::errorLog($this->_nameSpace . '.update', $this->_data['update']);
 			foreach($this->_data['update'] as $synchEntry)
 			{
 				$remoteId = $synchEntry['id'];
@@ -199,6 +204,7 @@ Struct_Debug::errorLog('_nameSpace', $this->_nameSpace);
 		}
 		if (isset($this->_data['remove']) && !empty($this->_data['remove']))
 		{
+			Struct_Debug::errorLog($this->_nameSpace . '.remove', $this->_data['remove']);
 			foreach($this->_data['remove'] as $synchEntry)
 			{
 				$remoteId = $synchEntry['id'];
@@ -219,7 +225,7 @@ Struct_Debug::errorLog('_nameSpace', $this->_nameSpace);
 				}
 			}
 		}
-		
+
 		#-> Downstream.
 		$lastSynch = $this->_data['lastSynchDate'];
 		$extraFilter = isset($this->_data['filter'])
@@ -239,7 +245,7 @@ Struct_Debug::errorLog('_nameSpace', $this->_nameSpace);
 				'updated' => '>' . $lastSynch . ' AND <=' . $synchDate,
 				'archived' => 1
 		)), array(), true)->data;
-		
+
 		#-> Done, provide relevant feedback and downstream data.
 		$this->jsonNsResult(
 			Struct_ActionFeedback::successWithData(array(
