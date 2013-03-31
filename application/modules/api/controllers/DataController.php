@@ -92,9 +92,6 @@ class Api_DataController extends Struct_Abstract_Controller
 				unset($this->_data['Options']);
 			}
 		}
-Struct_Debug::errorLog('_nameSpace', $this->_nameSpace);
-//Struct_Debug::errorLog($this->_nameSpace . '._data', $this->_data);
-//Struct_Debug::errorLog($this->_nameSpace . '._options', $this->_options);
 
 		$class = 'Object_' . str_replace('DropList', '', ucfirst($this->_nameSpace));
 		$this->_object = new $class();
@@ -110,6 +107,7 @@ Struct_Debug::errorLog('_nameSpace', $this->_nameSpace);
 	{
 		#-> Upstream.
 		$synchDate = date('Y-m-d H:i:s', time() - 1);
+Struct_Debug::errorLog('_nameSpace', $this->_nameSpace . ' : ' . $this->_data['lastSynchDate'] . ' > ' . $synchDate);
 		$feedback = array();
 		$uniqueIdentifier = $this->_object->getUniqueIdentifier();
 		if (isset($this->_data['create']) && !empty($this->_data['create']))
