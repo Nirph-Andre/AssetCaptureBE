@@ -1,0 +1,42 @@
+
+<?php
+$utilDisplay = new Struct_Util_Display();
+?>
+
+<!-- Photo: Data Grid -->
+<span id="PhotoGrid">
+<?php include_once("photo-grid.phtml");?>
+</span>
+<!-- [End] Photo: Data Grid -->
+
+<!-- Photo: Modal Form -->
+<?php include_once("photo-modal.phtml");?>
+<!-- [End] Photo: Modal Form -->
+
+
+<script type="text/javascript">
+
+	var theme = "source/photo";
+
+	$(document).ready(function() {
+		$("#navPhoto").addClass("active");
+		searchHandler["srch-photo"] = {
+				action: theme + "/photo-grid",
+				container: "PhotoGrid"
+		};
+    searchStack["srch-photo"] = wrapFunction(search, this, ["srch-photo"]);
+	});
+
+	function addPhoto(id) {
+		//$("#photoModalHeading").html("Add New Photo");
+		mode = "create";
+		clearForm("photo", "modalPhoto");
+	}
+
+	function editPhoto(id) {
+		//$("#photoModalHeading").html("Edit Photo");
+		mode = "update";
+		populateForm("photo", "photo", photoData[id], "modalPhoto");
+	}
+
+</script>

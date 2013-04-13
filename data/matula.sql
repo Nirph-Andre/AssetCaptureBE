@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 31, 2013 at 05:06 PM
+-- Generation Time: Apr 13, 2013 at 02:48 PM
 -- Server version: 5.1.63-community
 -- PHP Version: 5.4.0-ZS5.6.0
 
@@ -93,10 +93,12 @@ CREATE TABLE IF NOT EXISTS `asset` (
   `asset_sub_type_id` int(10) unsigned NOT NULL,
   `asset_description_id` int(10) unsigned NOT NULL,
   `asset_sub_description_id` int(10) unsigned DEFAULT NULL,
+  `details` varchar(250) DEFAULT NULL,
   `material_id` int(10) unsigned DEFAULT NULL,
   `pole_length_id` int(10) unsigned DEFAULT NULL,
   `street_light_type_id` int(10) unsigned DEFAULT NULL,
   `condition_id` int(10) unsigned DEFAULT NULL,
+  `previous_condition_id` int(10) unsigned DEFAULT NULL,
   `created` datetime NOT NULL,
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
@@ -903,57 +905,58 @@ CREATE TABLE IF NOT EXISTS `meta_table` (
   `hash` varchar(32) NOT NULL,
   `version` smallint(6) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`,`hash`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
 
 --
 -- Dumping data for table `meta_table`
 --
 
 INSERT INTO `meta_table` (`id`, `name`, `created`, `updated`, `hash`, `version`) VALUES
-(1, 'content', '2013-03-30 00:00:00', '2013-03-31 00:00:00', 'bf47045e2f05006d8d8bc9b0c1151f00', 5),
-(2, 'location', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '961a1c8649c0994e82fb150f28f17cff', 5),
-(3, 'town', '2013-03-30 00:00:00', '2013-03-31 00:00:00', 'bb651138df6717a8515a0f9840e29b2c', 5),
-(4, 'street', '2013-03-30 00:00:00', '2013-03-31 00:00:00', 'ab7d1b24a3851d5bc97abba16bcdf4a7', 5),
-(5, 'building', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '910ddb9c7f191325d5b9a60e4cbaf4df', 5),
-(6, 'floor', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '47c294ae1a59df083783e15a9260eda9', 5),
-(7, 'room', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '19c81626777ecc44a7972e2f544d750b', 5),
-(8, 'asset_type', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '75bc2e41d75fb2f38097ef483d03d2e5', 5),
-(9, 'asset_sub_type', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '8b9edf987516b70ebf2e3786a0e8e05b', 5),
-(10, 'asset_description', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '4ffe133b31b990d12461c5dc6b7744da', 5),
+(1, 'content', '2013-03-30 00:00:00', '2013-04-13 00:00:00', 'bf47045e2f05006d8d8bc9b0c1151f00', 8),
+(2, 'location', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '961a1c8649c0994e82fb150f28f17cff', 8),
+(3, 'town', '2013-03-30 00:00:00', '2013-04-13 00:00:00', 'bb651138df6717a8515a0f9840e29b2c', 8),
+(4, 'street', '2013-03-30 00:00:00', '2013-04-13 00:00:00', 'ab7d1b24a3851d5bc97abba16bcdf4a7', 8),
+(5, 'building', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '910ddb9c7f191325d5b9a60e4cbaf4df', 8),
+(6, 'floor', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '47c294ae1a59df083783e15a9260eda9', 8),
+(7, 'room', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '19c81626777ecc44a7972e2f544d750b', 8),
+(8, 'asset_type', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '75bc2e41d75fb2f38097ef483d03d2e5', 8),
+(9, 'asset_sub_type', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '8b9edf987516b70ebf2e3786a0e8e05b', 8),
+(10, 'asset_description', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '4ffe133b31b990d12461c5dc6b7744da', 8),
 (11, 'asset_sub_description', '2013-03-30 00:00:00', NULL, '6795cadd1217c01c589adbb04e876323', 1),
-(12, 'material', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '28be51e227ff429cac73d8db61be656e', 5),
-(13, 'street_light_type', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '61075483e8516992cd36ab38378d47d4', 5),
-(14, 'condition', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '37664e54b5f9fba4a4389c89dee7b8f0', 5),
-(15, 'owner', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '6d349af96d1ce958d029d56093f15224', 5),
-(16, 'asset', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '6468587891f1a0c796d5713eee9cc86a', 3),
-(17, 'profile', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '74f6870f6740f14743f1648e51d26b70', 5),
+(12, 'material', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '28be51e227ff429cac73d8db61be656e', 8),
+(13, 'street_light_type', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '61075483e8516992cd36ab38378d47d4', 8),
+(14, 'condition', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '37664e54b5f9fba4a4389c89dee7b8f0', 8),
+(15, 'owner', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '6d349af96d1ce958d029d56093f15224', 8),
+(16, 'asset', '2013-03-30 00:00:00', '2013-04-13 00:00:00', 'cef1bd3158686c9d50877393380e8002', 4),
+(17, 'profile', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '74f6870f6740f14743f1648e51d26b70', 8),
 (18, 'contact_request', '2013-03-30 00:00:00', NULL, 'c6281d8d77e2fb13fd1b1b908e69fce7', 1),
 (19, 'app_audit_log', '2013-03-30 00:00:00', NULL, 'f0ad8d2f5234d9e55ce6860f3e7d443c', 1),
 (20, 'app_link_request', '2013-03-30 00:00:00', NULL, 'f43bdcb651541b245f2655558fb3d18d', 1),
-(21, 'config', '2013-03-30 00:00:00', '2013-03-31 00:00:00', 'e03531a6324decfbb1141c4f2892a0c5', 5),
+(21, 'config', '2013-03-30 00:00:00', '2013-04-13 00:00:00', 'e03531a6324decfbb1141c4f2892a0c5', 8),
 (22, 'lib_photo', '2013-03-30 00:00:00', NULL, '7bde09f24c7977b4721ca39fe327af08', 1),
 (23, 'lib_video', '2013-03-30 00:00:00', NULL, 'a69102d29787306f26ec5d6d0ee0d794', 1),
 (24, 'lib_document', '2013-03-30 00:00:00', NULL, 'c2a035d14c50dacbf0a8c67a14bd2851', 1),
 (25, 'lib_attachment', '2013-03-30 00:00:00', NULL, '38ab8b5d858df97a2456f2e624905b3a', 1),
-(26, 'lib_address', '2013-03-30 00:00:00', '2013-03-31 00:00:00', 'eda206b2bd3dcaf4822a4edfc279299e', 5),
+(26, 'lib_address', '2013-03-30 00:00:00', '2013-04-13 00:00:00', 'eda206b2bd3dcaf4822a4edfc279299e', 8),
 (27, 'lib_person', '2013-03-30 00:00:00', NULL, '33692ed654c410d64c3a1213d8333f73', 1),
-(28, 'lib_contact', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '8d6f12942a2322c96b1f80a61cfea1ad', 5),
-(29, 'lib_newsletter_template', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '71485ae092f3cffdc0950a6a78b1f3ae', 5),
+(28, 'lib_contact', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '8d6f12942a2322c96b1f80a61cfea1ad', 8),
+(29, 'lib_newsletter_template', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '71485ae092f3cffdc0950a6a78b1f3ae', 8),
 (30, 'lib_newsletter', '2013-03-30 00:00:00', NULL, '5acc042b8308cf92971bbfc35cdab562', 1),
 (31, 'lib_ip_country', '2013-03-30 00:00:00', NULL, '6e7553d3a5c89cad46393eebc24fafa5', 1),
-(32, 'lib_country', '2013-03-30 00:00:00', '2013-03-31 00:00:00', 'e76a17da9d1aa21dcb272b7fcd5cfb11', 5),
-(33, 'lib_region', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '30d5d303e8665973611450aeecf03b90', 5),
-(34, 'lib_city', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '6c5b2f2c7b8858933b4048bfdb603dba', 5),
+(32, 'lib_country', '2013-03-30 00:00:00', '2013-04-13 00:00:00', 'e76a17da9d1aa21dcb272b7fcd5cfb11', 8),
+(33, 'lib_region', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '30d5d303e8665973611450aeecf03b90', 8),
+(34, 'lib_city', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '6c5b2f2c7b8858933b4048bfdb603dba', 8),
 (35, 'lib_template', '2013-03-30 00:00:00', NULL, '1730e156a4631a9c34dd8867d1b62c79', 1),
 (36, 'lib_repeater_template', '2013-03-30 00:00:00', NULL, '6808b6e0d1d25cd9206da938a62b1085', 1),
 (37, 'lib_authentication_log', '2013-03-30 00:00:00', NULL, 'd656bfcd19186809dded6a3be9d5844e', 1),
 (38, 'lib_notification_log', '2013-03-30 00:00:00', NULL, 'ed4aa2a527e0e94a55b9023ae3ef9825', 1),
-(39, 'lib_service', '2013-03-30 00:00:00', '2013-03-31 00:00:00', 'ce8a58e087c7d5537c65a524032cd3e1', 5),
-(40, 'lib_currency', '2013-03-30 00:00:00', '2013-03-31 00:00:00', '66490a63a4b2802f902d2980426f8e4e', 5),
+(39, 'lib_service', '2013-03-30 00:00:00', '2013-04-13 00:00:00', 'ce8a58e087c7d5537c65a524032cd3e1', 8),
+(40, 'lib_currency', '2013-03-30 00:00:00', '2013-04-13 00:00:00', '66490a63a4b2802f902d2980426f8e4e', 8),
 (41, 'lib_xmlrpc_profile', '2013-03-30 00:00:00', NULL, '6137d78bc404d61f7894a5a7b01ab705', 1),
 (42, 'lib_action_reference', '2013-03-30 00:00:00', NULL, '7bd37aa43130e0ffa2466306f74725c7', 1),
 (43, 'bill_invoice', '2013-03-30 00:00:00', NULL, '37f95e7ed7065a5b6a3d533723692166', 1),
-(44, 'bill_invoice_line_item', '2013-03-30 00:00:00', NULL, 'b85a696bb89838b55ffae31d25ac5cc4', 1);
+(44, 'bill_invoice_line_item', '2013-03-30 00:00:00', NULL, 'b85a696bb89838b55ffae31d25ac5cc4', 1),
+(45, 'photo', '2013-04-13 00:00:00', NULL, '6fb7f96437b44a1cb2b99354182370dc', 1);
 
 -- --------------------------------------------------------
 
@@ -978,6 +981,24 @@ CREATE TABLE IF NOT EXISTS `owner` (
 INSERT INTO `owner` (`id`, `name`, `created`, `updated`, `archived`) VALUES
 (1, 'TOKOLOGO LOCAL MUNICIPALITY', '2013-03-30 08:15:00', NULL, 0),
 (2, 'TECHNICAL SERVICES', '2013-03-30 08:15:00', NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `photo`
+--
+
+DROP TABLE IF EXISTS `photo`;
+CREATE TABLE IF NOT EXISTS `photo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `asset_id` int(10) unsigned NOT NULL,
+  `type` varchar(100) NOT NULL,
+  `data` blob NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime DEFAULT NULL,
+  `archived` tinyint(3) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

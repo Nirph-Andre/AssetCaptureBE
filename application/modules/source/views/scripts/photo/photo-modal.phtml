@@ -1,0 +1,52 @@
+<!-- Photo: Modal Form -->
+<div class="row-fluid">
+  <div class="span12">
+	<div class="modal modal-thinner hide fade" id="modalPhoto">
+	  <div class="modal-header">
+		<button class="close" data-dismiss="modal">x</button>
+		<h3 id="photoModalHeading">Edit Photo</h3>
+	  </div>
+		<form id="photoForm" class="modal-form">
+		  <div class="modal-body ">
+			  <div class="span12">
+		  		<div class="control-group">
+				  	<label for="photo_asset_id"><b>Asset *</b></label>
+						<select id="photo_asset_id" name="asset_id"
+							form-id="photo" class="span12 required" >
+							<option value="">-- Select Asset * --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listAsset"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+		    		<label for="photo_type"><b>Type *</b></label>
+						<input id="photo_type" name="type" type="text"
+							form-id="photo" class="span12 required" maxlength="100">
+					</div>
+				<input type="hidden" id="photo_id" name="id" form-id="photo">
+			  </div>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>&nbsp;
+			<button type="submit" class="btn btn-success btn-warning btn-save"
+		  	data-loading-text="saving..."
+		  	data-complete-text="&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;&nbsp;">
+		  		&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;&nbsp;
+		  	</button>&nbsp;
+		  </div>
+		</form>
+	</div>
+  </div>
+</div>
+<!-- [End] Photo: Modal Form -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#photoForm").validate({
+		  submitHandler: function(form) {
+			  doUpdate("photo", "photo", "api/data/" + mode,
+			  	"PhotoGrid", theme + "/photo-grid",
+					false, true, false, {});
+		  }
+		});
+	});
+</script>

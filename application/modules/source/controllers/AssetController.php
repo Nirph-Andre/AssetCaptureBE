@@ -80,6 +80,8 @@ class Source_AssetController extends Struct_Abstract_Controller
         $this->listDataReturnView("Object_StreetLightType");
         $this->dataContext = "listCondition";
         $this->listDataReturnView("Object_Condition");
+        $this->dataContext = "listPreviousCondition";
+        $this->listDataReturnView("Object_Condition");
     }
 
     /**

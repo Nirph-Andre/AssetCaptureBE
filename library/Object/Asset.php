@@ -180,6 +180,13 @@ class Object_Asset extends Struct_Abstract_DataAccess
                         )
                     ))
             ),
+        'details' => array(
+            'required' => false,
+            'validators' => array(array(
+                    'type' => 'StringLength',
+                    'params' => array('max' => '250')
+                    ))
+            ),
         'material_id' => array(
             'required' => false,
             'validators' => array(array(
@@ -211,6 +218,16 @@ class Object_Asset extends Struct_Abstract_DataAccess
                     ))
             ),
         'condition_id' => array(
+            'required' => false,
+            'validators' => array(array(
+                    'type' => 'Between',
+                    'params' => array(
+                        'min' => 0,
+                        'max' => 4294967295
+                        )
+                    ))
+            ),
+        'previous_condition_id' => array(
             'required' => false,
             'validators' => array(array(
                     'type' => 'Between',

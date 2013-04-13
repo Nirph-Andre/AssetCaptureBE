@@ -17,12 +17,12 @@ class Table_LibNewsletterTemplate extends Struct_Abstract_ModelTable
     protected $_referenceMap = array(
         'HeaderLibPhoto' => array(
             'columns' => 'header_lib_photo_id',
-            'refTableClass' => 'Table_LibPhoto',
+            'refTableClass' => 'Table_Photo',
             'refColumns' => 'id'
             ),
         'FooterLibPhoto' => array(
             'columns' => 'footer_lib_photo_id',
-            'refTableClass' => 'Table_LibPhoto',
+            'refTableClass' => 'Table_Photo',
             'refColumns' => 'id'
             )
         );

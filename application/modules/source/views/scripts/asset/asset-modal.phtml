@@ -88,13 +88,13 @@
 		    		<label for="asset_gps_lat"><b>Gps Lat</b></label>
 						<input id="asset_gps_lat" name="gps_lat" type="text"
 							form-id="asset" class="span12 " maxlength="50">
-					</div></div>
-			  <div class="span6">
+					</div>
 		  		<div class="control-group">
 		    		<label for="asset_gps_long"><b>Gps Long</b></label>
 						<input id="asset_gps_long" name="gps_long" type="text"
 							form-id="asset" class="span12 " maxlength="50">
-					</div>
+					</div></div>
+			  <div class="span6">
 		  		<div class="control-group">
 		    		<label for="asset_identifier"><b>Identifier</b></label>
 						<input id="asset_identifier" name="identifier" type="text"
@@ -137,6 +137,11 @@
 						</select>
 					</div>
 		  		<div class="control-group">
+		    		<label for="asset_details"><b>Details</b></label>
+						<input id="asset_details" name="details" type="text"
+							form-id="asset" class="span12 " maxlength="250">
+					</div>
+		  		<div class="control-group">
 				  	<label for="asset_material_id"><b>Material</b></label>
 						<select id="asset_material_id" name="material_id"
 							form-id="asset" class="span12 " >
@@ -160,6 +165,15 @@
 							form-id="asset" class="span12 " >
 							<option value="">-- Select Condition --</option>
 							<?php echo $utilDisplay->buildDropdownOptions($this->data["listCondition"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_previous_condition_id"><b>Previous Condition</b></label>
+						<select id="asset_previous_condition_id" name="previous_condition_id"
+							form-id="asset" class="span12 " >
+							<option value="">-- Select Previous Condition --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listPreviousCondition"], false); ?>
 
 						</select>
 					</div>

@@ -1,20 +1,20 @@
 <?php
 
 /**
- * Table model for lib_newsletter_template
+ * Table model for photo
  */
-class Source_LibNewsletterTemplateController extends Struct_Abstract_Controller
+class Source_PhotoController extends Struct_Abstract_Controller
 {
 
     /**
      * Default object for DataAccess methods.
      */
-    protected $_defaultObjectName = 'Object_LibNewsletterTemplate';
+    protected $_defaultObjectName = 'Object_Photo';
 
     /**
      * Default session namespace for the view.
      */
-    protected $_sessionNamespace = 'LibNewsletterTemplate';
+    protected $_sessionNamespace = 'Photo';
 
     /**
      * Action controller initializer.
@@ -31,7 +31,7 @@ class Source_LibNewsletterTemplateController extends Struct_Abstract_Controller
     /**
      * Setup data grid on default value object.
      */
-    protected function setupLibNewsletterTemplateGrid()
+    protected function setupPhotoGrid()
     {
         $sqf = new Struct_Util_SmartQueryFilter();
         $response = $sqf->handleGrid(
@@ -42,8 +42,8 @@ class Source_LibNewsletterTemplateController extends Struct_Abstract_Controller
         	array(), // chain
         	10, "Json"
         );
-        $this->view->result = array("LibNewsletterTemplate" => $response->result);
-        $this->view->data   = array("LibNewsletterTemplate" => $response->data);
+        $this->view->result = array("Photo" => $response->result);
+        $this->view->data   = array("Photo" => $response->data);
     }
 
     /**
@@ -51,20 +51,18 @@ class Source_LibNewsletterTemplateController extends Struct_Abstract_Controller
      */
     public function indexAction()
     {
-        $this->setupLibNewsletterTemplateGrid();
-        $this->dataContext = "listHeaderLibPhoto";
-        $this->listDataReturnView("Object_Photo");
-        $this->dataContext = "listFooterLibPhoto";
-        $this->listDataReturnView("Object_Photo");
+        $this->setupPhotoGrid();
+        $this->dataContext = "listAsset";
+        $this->listDataReturnView("Object_Asset");
     }
 
     /**
      * Retrieve data grid for display.
      */
-    public function libNewsletterTemplateGridAction()
+    public function photoGridAction()
     {
         $this->_helper->layout()->disableLayout();
-        $this->setupLibNewsletterTemplateGrid();
+        $this->setupPhotoGrid();
     }
 
 

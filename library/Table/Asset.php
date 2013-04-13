@@ -84,13 +84,18 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'columns' => 'condition_id',
             'refTableClass' => 'Table_Condition',
             'refColumns' => 'id'
+            ),
+        'PreviousCondition' => array(
+            'columns' => 'previous_condition_id',
+            'refTableClass' => 'Table_Condition',
+            'refColumns' => 'id'
             )
         );
 
     /**
      * Tables dependant on this one.
      */
-    protected $_dependentTables = array();
+    protected $_dependentTables = array('photo' => 'Table_Photo');
 
     /**
      * Data dependancy chain.
@@ -407,11 +412,29 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'FLAGS' => 0,
             'FLAG_LIST' => ''
             ),
+        'details' => array(
+            'SCHEMA_NAME' => null,
+            'TABLE_NAME' => 'asset',
+            'COLUMN_NAME' => 'details',
+            'COLUMN_POSITION' => 18,
+            'DATA_TYPE' => 'varchar',
+            'DEFAULT' => null,
+            'NULLABLE' => true,
+            'LENGTH' => '250',
+            'SCALE' => null,
+            'PRECISION' => null,
+            'UNSIGNED' => null,
+            'PRIMARY' => false,
+            'PRIMARY_POSITION' => null,
+            'IDENTITY' => false,
+            'FLAGS' => 0,
+            'FLAG_LIST' => ''
+            ),
         'material_id' => array(
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'material_id',
-            'COLUMN_POSITION' => 18,
+            'COLUMN_POSITION' => 19,
             'DATA_TYPE' => 'int',
             'DEFAULT' => null,
             'NULLABLE' => true,
@@ -429,7 +452,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'pole_length_id',
-            'COLUMN_POSITION' => 19,
+            'COLUMN_POSITION' => 20,
             'DATA_TYPE' => 'int',
             'DEFAULT' => null,
             'NULLABLE' => true,
@@ -447,7 +470,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'street_light_type_id',
-            'COLUMN_POSITION' => 20,
+            'COLUMN_POSITION' => 21,
             'DATA_TYPE' => 'int',
             'DEFAULT' => null,
             'NULLABLE' => true,
@@ -465,7 +488,25 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'condition_id',
-            'COLUMN_POSITION' => 21,
+            'COLUMN_POSITION' => 22,
+            'DATA_TYPE' => 'int',
+            'DEFAULT' => null,
+            'NULLABLE' => true,
+            'LENGTH' => null,
+            'SCALE' => null,
+            'PRECISION' => null,
+            'UNSIGNED' => true,
+            'PRIMARY' => false,
+            'PRIMARY_POSITION' => null,
+            'IDENTITY' => false,
+            'FLAGS' => 0,
+            'FLAG_LIST' => ''
+            ),
+        'previous_condition_id' => array(
+            'SCHEMA_NAME' => null,
+            'TABLE_NAME' => 'asset',
+            'COLUMN_NAME' => 'previous_condition_id',
+            'COLUMN_POSITION' => 23,
             'DATA_TYPE' => 'int',
             'DEFAULT' => null,
             'NULLABLE' => true,
@@ -483,7 +524,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'created',
-            'COLUMN_POSITION' => 22,
+            'COLUMN_POSITION' => 24,
             'DATA_TYPE' => 'datetime',
             'DEFAULT' => null,
             'NULLABLE' => false,
@@ -501,7 +542,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'updated',
-            'COLUMN_POSITION' => 23,
+            'COLUMN_POSITION' => 25,
             'DATA_TYPE' => 'datetime',
             'DEFAULT' => null,
             'NULLABLE' => true,
@@ -519,7 +560,7 @@ class Table_Asset extends Struct_Abstract_ModelTable
             'SCHEMA_NAME' => null,
             'TABLE_NAME' => 'asset',
             'COLUMN_NAME' => 'archived',
-            'COLUMN_POSITION' => 24,
+            'COLUMN_POSITION' => 26,
             'DATA_TYPE' => 'tinyint',
             'DEFAULT' => '0',
             'NULLABLE' => true,
@@ -566,10 +607,12 @@ class Table_Asset extends Struct_Abstract_ModelTable
         'asset_sub_type_id' => 'AssetSubTypeId',
         'asset_description_id' => 'AssetDescriptionId',
         'asset_sub_description_id' => 'AssetSubDescriptionId',
+        'details' => 'Details',
         'material_id' => 'MaterialId',
         'pole_length_id' => 'PoleLengthId',
         'street_light_type_id' => 'StreetLightTypeId',
         'condition_id' => 'ConditionId',
+        'previous_condition_id' => 'PreviousConditionId',
         'created' => 'Created',
         'updated' => 'Updated',
         'archived' => 'Archived'
@@ -596,10 +639,12 @@ class Table_Asset extends Struct_Abstract_ModelTable
         'asset_sub_type_id' => null,
         'asset_description_id' => null,
         'asset_sub_description_id' => null,
+        'details' => null,
         'material_id' => null,
         'pole_length_id' => null,
         'street_light_type_id' => null,
         'condition_id' => null,
+        'previous_condition_id' => null,
         'created' => null,
         'updated' => null,
         'archived' => '0'

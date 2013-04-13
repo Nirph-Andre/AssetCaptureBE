@@ -23,8 +23,8 @@ list($order, $direction) = each($this->result["LibNewsletterTemplate"]["Order"])
 					</th>
 					<th class=""><b>Footer Lib Photo</b>
 						<div class="pull-right">
-							<i class="icon-<?php echo "lib_newsletter_template.mime_type" == $order && "ASC" == $direction ? "" : "circle-"; ?>arrow-down handy" onClick="order('libNewsletterTemplate', 'lib_newsletter_template.mime_type', 'asc');"></i>
-							<i class="icon-<?php echo "lib_newsletter_template.mime_type" == $order && "DESC" == $direction ? "" : "circle-"; ?>arrow-up handy" onClick="order('libNewsletterTemplate', 'lib_newsletter_template.mime_type', 'desc');"></i>
+							<i class="icon-<?php echo "lib_newsletter_template.type" == $order && "ASC" == $direction ? "" : "circle-"; ?>arrow-down handy" onClick="order('libNewsletterTemplate', 'lib_newsletter_template.type', 'asc');"></i>
+							<i class="icon-<?php echo "lib_newsletter_template.type" == $order && "DESC" == $direction ? "" : "circle-"; ?>arrow-up handy" onClick="order('libNewsletterTemplate', 'lib_newsletter_template.type', 'desc');"></i>
 						</div>
 					</th>
 					<th width="50px" class="">
@@ -37,8 +37,8 @@ list($order, $direction) = each($this->result["LibNewsletterTemplate"]["Order"])
 						id="a" name="srch_libNewsletterTemplate_lib_newsletter_template.name" type="text" class="span12 srch-libNewsletterTemplate"
 						value="<?php echo isset($this->result['LibNewsletterTemplate']['Search']['lib_newsletter_template.name']) ? $this->result['LibNewsletterTemplate']['Search']['lib_newsletter_template.name'] : ""; ?>"></div></td>
 					<td class=""><div class="row-fluid"><input 
-						id="a" name="srch_libNewsletterTemplate_lib_photo.mime_type" type="text" class="span12 srch-libNewsletterTemplate"
-						value="<?php echo isset($this->result['LibNewsletterTemplate']['Search']['lib_photo.mime_type']) ? $this->result['LibNewsletterTemplate']['Search']['lib_photo.mime_type'] : ""; ?>"></div></td>
+						id="a" name="srch_libNewsletterTemplate_photo.type" type="text" class="span12 srch-libNewsletterTemplate"
+						value="<?php echo isset($this->result['LibNewsletterTemplate']['Search']['photo.type']) ? $this->result['LibNewsletterTemplate']['Search']['photo.type'] : ""; ?>"></div></td>
 					<td width="50px" class="">
 						&nbsp;&nbsp;
 						<i class="icon-search handy" onClick="search('srch-libNewsletterTemplate');"></i>
@@ -49,7 +49,7 @@ list($order, $direction) = each($this->result["LibNewsletterTemplate"]["Order"])
 				<?php foreach ($this->data["LibNewsletterTemplate"] as $id => $record) { ?>
 				<tr>
 					<td><?php echo $record["name"]; ?></td>
-					<td><?php echo $record["lib_photo_mime_type"]; ?></td>
+					<td><?php echo $record["photo_type"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editLibNewsletterTemplate(<?php echo $id; ?>);">Edit</button>
 					</td>
