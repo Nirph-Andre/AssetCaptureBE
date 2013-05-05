@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 13, 2013 at 02:48 PM
+-- Generation Time: May 05, 2013 at 08:16 AM
 -- Server version: 5.1.63-community
--- PHP Version: 5.4.0-ZS5.6.0
+-- PHP Version: 5.4.11
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -120,23 +120,7 @@ CREATE TABLE IF NOT EXISTS `asset_description` (
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
-
---
--- Dumping data for table `asset_description`
---
-
-INSERT INTO `asset_description` (`id`, `asset_sub_type_id`, `name`, `created`, `updated`, `archived`) VALUES
-(1, 1, 'RESERVOIR', '2013-03-30 08:15:00', NULL, 0),
-(2, 1, 'WATERTANK', '2013-03-30 08:15:00', NULL, 0),
-(3, 1, 'WATERTANK ON STAND', '2013-03-30 08:15:00', NULL, 0),
-(4, 1, 'WOODEN POLE', '2013-03-30 08:15:00', NULL, 0),
-(5, 1, 'PALLISADE FENCE', '2013-03-30 08:15:00', NULL, 0),
-(6, 2, 'POLE NO LIGHT', '2013-03-30 08:15:00', NULL, 0),
-(7, 2, 'STREET LIGHT', '2013-03-30 08:15:00', NULL, 0),
-(8, 3, 'REGULATORY SIGN', '2013-03-30 08:15:00', NULL, 0),
-(9, 3, 'WARNING SIGN', '2013-03-30 08:15:00', NULL, 0),
-(10, 3, 'INFORMATION SIGN', '2013-03-30 08:15:00', NULL, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -170,21 +154,7 @@ CREATE TABLE IF NOT EXISTS `asset_sub_type` (
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
-
---
--- Dumping data for table `asset_sub_type`
---
-
-INSERT INTO `asset_sub_type` (`id`, `asset_type_id`, `name`, `created`, `updated`, `archived`) VALUES
-(1, 1, 'WATER', '2013-03-30 08:15:00', NULL, 0),
-(2, 1, 'ELECTRICITY', '2013-03-30 08:15:00', NULL, 0),
-(3, 1, 'ROAD SIGNS', '2013-03-30 08:15:00', NULL, 0),
-(4, 2, 'FURNITURE & FITTNGS', '2013-03-30 08:15:00', NULL, 0),
-(5, 2, 'MOTOR VEHICLES', '2013-03-30 08:15:00', NULL, 0),
-(6, 2, 'OFFICE EQUIPMENT', '2013-03-30 08:15:00', NULL, 0),
-(7, 2, 'COMPUTER EQUIPMENT', '2013-03-30 08:15:00', NULL, 0),
-(8, 2, 'PLANT & MACHINERY', '2013-03-30 08:15:00', NULL, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -200,15 +170,7 @@ CREATE TABLE IF NOT EXISTS `asset_type` (
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `asset_type`
---
-
-INSERT INTO `asset_type` (`id`, `name`, `created`, `updated`, `archived`) VALUES
-(1, 'INFRASTRUCTURE', '2013-03-30 08:15:00', NULL, 0),
-(2, 'OTHER ASSETS', '2013-03-30 08:15:00', NULL, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -265,15 +227,7 @@ CREATE TABLE IF NOT EXISTS `building` (
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `building`
---
-
-INSERT INTO `building` (`id`, `location_id`, `name`, `created`, `updated`, `archived`) VALUES
-(1, 1, 'COMMUNITY HALL', '2013-03-30 08:15:00', NULL, 0),
-(2, 1, 'MUNICIPAL BUILDING', '2013-03-30 08:15:00', NULL, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -393,15 +347,7 @@ CREATE TABLE IF NOT EXISTS `floor` (
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `floor`
---
-
-INSERT INTO `floor` (`id`, `building_id`, `name`, `created`, `updated`, `archived`) VALUES
-(1, 1, 'A1234', '2013-03-30 08:15:00', NULL, 0),
-(2, 1, 'A4321', '2013-03-30 08:15:00', NULL, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -854,15 +800,7 @@ CREATE TABLE IF NOT EXISTS `location` (
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `location`
---
-
-INSERT INTO `location` (`id`, `name`, `created`, `updated`, `archived`) VALUES
-(1, 'BOSHOF', '2013-03-30 08:15:00', NULL, 0),
-(2, 'DEALESVILLE', '2013-03-30 08:15:00', NULL, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -972,15 +910,7 @@ CREATE TABLE IF NOT EXISTS `owner` (
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `owner`
---
-
-INSERT INTO `owner` (`id`, `name`, `created`, `updated`, `archived`) VALUES
-(1, 'TOKOLOGO LOCAL MUNICIPALITY', '2013-03-30 08:15:00', NULL, 0),
-(2, 'TECHNICAL SERVICES', '2013-03-30 08:15:00', NULL, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1033,11 +963,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
 --
 
 INSERT INTO `profile` (`id`, `first_name`, `family_name`, `id_number`, `date_of_birth`, `mobile`, `email`, `username`, `password`, `password_salt`, `user_type`, `status`, `subscribe_newsletter`, `subscribe_reminders`, `last_login`, `created`, `archived`) VALUES
-(1, 'Greggory', 'Simmons', '7711225544000', '1977-11-22', '0840840840', 'greg@simmons-cars.co.za', 'greg', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'User', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0),
-(2, 'Jack', 'Vredenweld', '7202029977333', '1972-02-02', '0820820820', 'jack.v@jackscars.com', 'jack', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'User', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0),
-(3, 'Shannon', 'Bramson', '7703155544111', '1977-03-15', '0830830830', 'shannon@simmons-cars.co.za', 'shannon', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'Administrator', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0),
-(4, 'Lilith', 'Warchild', '7703155544111', '1977-03-15', '0730730730', 'lilith@rebel-traders.co.za', 'lilith', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'User', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0);
-
+(1, 'Chris', 'Calitz', '7311225544000', '1977-11-22', '0840840840', 'chris@munmap.co.za', 'chris', '787ca4d10a31f0e66d4d792a0a8c3975dd61c697', '8deba4865385c926b093b676ee39da57853a5c22', 'User', 'Active', 1, 1, '2012-09-24 12:00:00', '2012-09-24 12:00:00', 0);
 -- --------------------------------------------------------
 
 --
@@ -1078,15 +1004,7 @@ CREATE TABLE IF NOT EXISTS `street` (
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `street`
---
-
-INSERT INTO `street` (`id`, `town_id`, `name`, `created`, `updated`, `archived`) VALUES
-(1, 1, 'A RE YENG STREET', '2013-03-30 08:15:00', NULL, 0),
-(2, 1, 'WESSELS STREET', '2013-03-30 08:15:00', NULL, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1128,15 +1046,7 @@ CREATE TABLE IF NOT EXISTS `town` (
   `updated` datetime DEFAULT NULL,
   `archived` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `town`
---
-
-INSERT INTO `town` (`id`, `location_id`, `name`, `created`, `updated`, `archived`) VALUES
-(1, 1, 'SERETSE', '2013-03-30 08:15:00', NULL, 0),
-(2, 1, 'DONKERHOEK', '2013-03-30 08:15:00', NULL, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
