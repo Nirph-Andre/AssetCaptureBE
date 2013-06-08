@@ -1,0 +1,57 @@
+<!-- ImportData: Modal Form -->
+<div class="row-fluid">
+  <div class="span12">
+	<div class="modal modal-thinner hide fade" id="modalImportData">
+	  <div class="modal-header">
+		<button class="close" data-dismiss="modal">x</button>
+		<h3 id="importDataModalHeading">Edit Import Data</h3>
+	  </div>
+		<form id="importDataForm" class="modal-form">
+		  <div class="modal-body ">
+			  <div class="span12">
+		  		<div class="control-group">
+				  	<label for="importData_import_id"><b>Import *</b></label>
+						<select id="importData_import_id" name="import_id"
+							form-id="importData" class="span12 required" >
+							<option value="">-- Select Import * --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listImport"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+		    		<label for="importData_identifier"><b>Identifier *</b></label>
+						<input id="importData_identifier" name="identifier" type="text"
+							form-id="importData" class="span12 required" maxlength="100">
+					</div>
+		  		<div class="control-group">
+			  		<label for="importData_packet"><b>Packet</b></label>
+						<textarea id="importData_packet" name="packet" rows="5"
+							form-id="importData" class="span12 " maxlength="65535"></textarea>
+					</div>
+				<input type="hidden" id="importData_id" name="id" form-id="importData">
+			  </div>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>&nbsp;
+			<button type="submit" class="btn btn-success btn-warning btn-save"
+		  	data-loading-text="saving..."
+		  	data-complete-text="&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;&nbsp;">
+		  		&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;&nbsp;
+		  	</button>&nbsp;
+		  </div>
+		</form>
+	</div>
+  </div>
+</div>
+<!-- [End] ImportData: Modal Form -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#importDataForm").validate({
+		  submitHandler: function(form) {
+			  doUpdate("importData", "importData", "api/data/" + mode,
+			  	"ImportDataGrid", theme + "/import-data-grid",
+					false, true, false, {});
+		  }
+		});
+	});
+</script>

@@ -1,0 +1,59 @@
+<!-- Import: Modal Form -->
+<div class="row-fluid">
+  <div class="span12">
+	<div class="modal modal-thinner hide fade" id="modalImport">
+	  <div class="modal-header">
+		<button class="close" data-dismiss="modal">x</button>
+		<h3 id="importModalHeading">Edit Import</h3>
+	  </div>
+		<form id="importForm" class="modal-form">
+		  <div class="modal-body ">
+			  <div class="span12">
+		  		<div class="control-group">
+		    		<label for="import_filename"><b>Filename *</b></label>
+						<input id="import_filename" name="filename" type="text"
+							form-id="import" class="span12 required" maxlength="250">
+					</div>
+		  		<div class="control-group">
+				  	<label for="import_imported"><b>Imported *</b></label>
+						<input id="import_imported" name="imported" type="text"
+							form-id="import" class="span6 datepicker required datetime" >
+					</div>
+		  		<div class="control-group">
+		    		<label for="import_records"><b>Records *</b></label>
+						<input id="import_records" name="records" type="text"
+							form-id="import" class="span4 required digits" >
+					</div>
+		  		<div class="control-group">
+			  		<label for="import_map"><b>Map</b></label>
+						<textarea id="import_map" name="map" rows="5"
+							form-id="import" class="span12 " maxlength="65535"></textarea>
+					</div>
+				<input type="hidden" id="import_id" name="id" form-id="import">
+			  </div>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>&nbsp;
+			<button type="submit" class="btn btn-success btn-warning btn-save"
+		  	data-loading-text="saving..."
+		  	data-complete-text="&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;&nbsp;">
+		  		&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;&nbsp;
+		  	</button>&nbsp;
+		  </div>
+		</form>
+	</div>
+  </div>
+</div>
+<!-- [End] Import: Modal Form --><script src="/js/jquery-ui-timepicker-addon.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#importForm").validate({
+		  submitHandler: function(form) {
+			  doUpdate("import", "import", "api/data/" + mode,
+			  	"ImportGrid", theme + "/import-grid",
+					false, true, false, {});
+		  }
+		});
+	});
+</script>

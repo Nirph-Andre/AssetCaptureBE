@@ -1,0 +1,42 @@
+
+<?php
+$utilDisplay = new Struct_Util_Display();
+?>
+
+<!-- Import: Data Grid -->
+<span id="ImportGrid">
+<?php include_once("import-grid.phtml");?>
+</span>
+<!-- [End] Import: Data Grid -->
+
+<!-- Import: Modal Form -->
+<?php include_once("import-modal.phtml");?>
+<!-- [End] Import: Modal Form -->
+
+
+<script type="text/javascript">
+
+	var theme = "source/import";
+
+	$(document).ready(function() {
+		$("#navImport").addClass("active");
+		searchHandler["srch-import"] = {
+				action: theme + "/import-grid",
+				container: "ImportGrid"
+		};
+    searchStack["srch-import"] = wrapFunction(search, this, ["srch-import"]);
+	});
+
+	function addImport(id) {
+		//$("#importModalHeading").html("Add New Import");
+		mode = "create";
+		clearForm("import", "modalImport");
+	}
+
+	function editImport(id) {
+		//$("#importModalHeading").html("Edit Import");
+		mode = "update";
+		populateForm("import", "import", importData[id], "modalImport");
+	}
+
+</script>

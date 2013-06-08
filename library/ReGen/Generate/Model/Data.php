@@ -7,11 +7,11 @@
  */
 class ReGen_Generate_Model_Data extends CodeSource
 {
-	
+
 	protected $js = array();
 	protected $jsLookup = array();
 	protected $jsValidate = array();
-	
+
 	/**
 	 * Construct data model code for data access to all tables in database.
 	 * Assumes that Project Context data has been set for correct file locations.
@@ -27,7 +27,7 @@ class ReGen_Generate_Model_Data extends CodeSource
 	{
 		#-> Need some more time to do stuff...
 		set_time_limit(90);
-		
+
 		#-> Collect list of tables from db.
 		$db = new Zend_Db_Adapter_Pdo_Mysql(array(
 				'host'	 => 'localhost',
@@ -45,16 +45,16 @@ class ReGen_Generate_Model_Data extends CodeSource
 		{
 			$currentHash[$record['name']] = $record['hash'];
 		}
-		
-		
+
+
 		#-> Tools.
 		$filter = new Zend_Filter_Word_UnderscoreToCamelCase();
-		
+
 		#-> Grab csv and chew up first two rows for breakfast.
 		$handle = fopen('c:\Apache2\htdocs\AssetCaptureBE\data\db.csv', "r");
 		$data = fgetcsv($handle);
 		$data = fgetcsv($handle);
-		
+
 		#-> Prep.
 		$statements = array();
 		$csvTables = array();
@@ -65,7 +65,7 @@ class ReGen_Generate_Model_Data extends CodeSource
 		$numericTypes = array('TINYINT', 'SMALLINT', 'MEDIUMINT', 'INT', 'BIGINT', 'FLOAT', 'DOUBLE', 'FLOAT');
 		$insert = array();
 		$unique = array();
-		
+
 		#-> Process meta data for tables.
 		while (($data = fgetcsv($handle)) !== FALSE)
 		{
@@ -140,7 +140,7 @@ class ReGen_Generate_Model_Data extends CodeSource
 				$create[] = "  `id` INT NOT NULL AUTO_INCREMENT ," . "\n";
 				$insert = array();
 			}
-			
+
 			// collect
 			$parts = explode(':', $data[2]);
 			$field = $data[1];
@@ -176,7 +176,7 @@ class ReGen_Generate_Model_Data extends CodeSource
 			empty($fieldType) && $fieldType = "$data_type";
 			in_array($data_type, $numericTypes)
 				&& $fieldType .= " UNSIGNED";
-			
+
 			// data-setup
 			for ($i = 10; $i < 40; $i++)
 			{
@@ -185,7 +185,7 @@ class ReGen_Generate_Model_Data extends CodeSource
 					&& !empty($data[$i])
 					&& $insert[$rec][$field] = $data[$i];
 			}
-			
+
 			// build create statements
 			$create[$field] = "  `$field` $fieldType " . (1 == $data_null ? 'NOT NULL ' : '') . (strlen($data_default) > 0 ? "DEFAULT '$data_default'" : '') . ',' . "\n";
 			if ('UNIQUE' == $data_type_extra)
@@ -246,12 +246,12 @@ class ReGen_Generate_Model_Data extends CodeSource
 			}
 		}
 		$table = false;
-		
-		
+
+
 		#-> Collect list of tables from db.
 		$dbTables = $db->listTables();
-		
-		
+
+
 		#-> Map table associations.
 		$tables     = array();
 		$fieldMeta  = array();
@@ -293,7 +293,7 @@ class ReGen_Generate_Model_Data extends CodeSource
 					#-> Get rid of the _id bit.
 					$parts = explode('_', $key);
 					array_pop($parts);
-					
+
 					#-> Do we have a direct match?
 					$search = implode('_', $parts);
 					if (isset($tables[$search]))
@@ -301,7 +301,7 @@ class ReGen_Generate_Model_Data extends CodeSource
 						isset($dependants[$search])
 							|| $dependants[$search] = array();
 						$dependants[$search][$table] = 'Table_' . $tableName;
-						
+
 						#-> Check for depenancy chain requirements.
 						if (isset($dependancyChain[$key]))
 						{
@@ -365,8 +365,8 @@ class ReGen_Generate_Model_Data extends CodeSource
 				}
 			}
 		}
-		
-		
+
+
 		#-> Create Table_*, Object_* and *ManagerController classes.
 		#-> Also create index, grid and modal views.
 		foreach ($tables as $table => $meta)
@@ -392,13 +392,13 @@ class ReGen_Generate_Model_Data extends CodeSource
 			$this->_createDataController($tableName, $table, $fieldMeta[$table], $reference, $db, $dependencyTables);
 			$this->_createViews($tableName, $table, $fieldMeta[$table], $reference, $db, $dependencyTables);
 		}
-		
+
 		#-> Build AMF synch class.
 		$this->_buildAmfSynchInterface($tables, $amfMap);
 		$this->_writeEmberDataModels();
 	}
-	
-	
+
+
 	private function _writeEmberDataModels()
 	{
 		if (empty($this->js))
@@ -406,7 +406,7 @@ class ReGen_Generate_Model_Data extends CodeSource
 			return;
 		}
 		return;
-		
+
 		#-> Save js models to file.
 		$path = ReGen_Util_FileLocation::getJsLocation('appDataModels');
 		file_put_contents(
@@ -423,8 +423,8 @@ class ReGen_Generate_Model_Data extends CodeSource
 				. implode("\n\n", $this->jsValidate)
 				);
 	}
-	
-	
+
+
 	/**
 	 * Create js table model.
 	 *
@@ -440,11 +440,11 @@ class ReGen_Generate_Model_Data extends CodeSource
 		}
 		#-> Grab field meta for this table.
 		$fields = $fieldMeta[$table_name];
-		
+
 		#-> Tools.
 		$filter = new Zend_Filter_Word_UnderscoreToCamelCase();
 		$fltrsep = new Zend_Filter_Word_CamelCaseToSeparator();
-		
+
 		#-> Cater for lookup (drop-list) models.
 		if ($isLookupTable)
 		{
@@ -454,7 +454,7 @@ App.$modelName = DS.Model.extend({
 	name: DS.attr('string')
 });";
 		}
-		
+
 		#-> Work through the meta data.
 		$jsf = array();
 		$jsv = array();
@@ -481,13 +481,13 @@ App.$modelName = DS.Model.extend({
 				$embedded = $dOpt['embedded']
 					? ', ' . Zend_Json::encode(array('embedded' => true))
 					: '';
-				
+
 				#-> Get rid of the _id bit.
 				$field = lcfirst($filter->filter(substr($key, 0, strlen($key) -3)));
 				$parts = explode('_', $key);
 				array_pop($parts);
 				$dOpt['label'] = ucfirst(implode(' ', $parts));
-				
+
 				#-> Do we have a direct match?
 				$search = implode('_', $parts);
 				if (isset($tables[$search]))
@@ -527,7 +527,7 @@ App.$modelName = DS.Model.extend({
 					&& $validation[] = 'required';
 				!empty($dMeta['dataEnum'])
 					&& $validation[] = 'custum[enum[\'' . implode("','", explode(',', $dMeta['dataEnum'])) . '\']]';
-				
+
 				#-> DS attribute type.
 				$field = lcfirst($filter->filter($key));
 				$display = true;
@@ -631,23 +631,23 @@ App.$modelName = DS.Model.extend({
 					$jsv[] = "
 	$field: " . Zend_Json::encode($dOpt);
 			}
-			 
+
 		}
-			
+
 		foreach ($dependants as $depTable => $depClass)
 		{
-			$field = lcfirst($filter->filter($depTable)) 
+			$field = lcfirst($filter->filter($depTable))
 				. ('s' == substr($depTable, -1) ? 'es' : 's');
 			$reference = substr($depClass, 6, strlen($depClass) -6);
 			$jsf[] = "
 	$field: DS.hasMany('App.$reference', {\"embedded\":true})";
 		}
-		
+
 		$jsf[] = "
 	md5: DS.attr('string')";
 		$jsf[] = "
 	errors: DS.attr('string')";
-		
+
 		if ('lib_photo' == $table_name)
 		{
 			$jsf[] = "
@@ -655,29 +655,29 @@ App.$modelName = DS.Model.extend({
       return new Handlebars.SafeString('<img src=\"/image?id=' + this.get('id') + '\">');
     }.property('id')";
 		}
-		
+
 		$js = "
 App.$tableName = DS.Model.extend({";
 		$js .= implode(",", $jsf);
 		$js .= "
 });";
 		$this->js[$tableName] = $js;
-		
+
 		$js = "
 App.Validate.$tableName = {";
 		$js .= implode(",", $jsv);
 		$js .= "
 };";
-		
+
 		#-> All done -oO-
 		$this->jsValidate[$tableName] = $js;
 	}
-	
+
 	private function _buildAmfSynchInterface($tables, $amfMap)
 	{
 		#-> Tools.
 		$filter = new Zend_Filter_Word_UnderscoreToCamelCase();
-		
+
 		foreach ($amfMap as $modelClassName => $tableList)
 		{
 			#-> Create amf synch class.
@@ -688,7 +688,7 @@ App.Validate.$tableName = {";
 			$amfClass->setName($modelClassName)
 				->setDocblock($docblock)
 				->setExtendedClass('Struct_Abstract_AmfService');
-		
+
 			#-> Build code.
 			foreach ($tableList as $table => $objectName)
 			{
@@ -721,7 +721,7 @@ App.Validate.$tableName = {";
 											)
 							))
 					));
-					
+
 					$amfClass->setMethod(array(
 							'name' => 'update' . $objectName,
 							'visibility' => 'public',
@@ -747,7 +747,7 @@ App.Validate.$tableName = {";
 									)
 							))
 					));
-					
+
 					$amfClass->setMethod(array(
 							'name' => 'delete' . $objectName,
 							'visibility' => 'public',
@@ -774,7 +774,7 @@ App.Validate.$tableName = {";
 							))
 					));
 				}
-				
+
 				$amfClass->setMethod(array(
 						'name' => 'find' . $objectName,
 						'visibility' => 'public',
@@ -800,7 +800,7 @@ App.Validate.$tableName = {";
 								)
 						))
 				));
-				
+
 				$amfClass->setMethod(array(
 						'name' => 'list' . $objectName,
 						'visibility' => 'public',
@@ -826,7 +826,7 @@ App.Validate.$tableName = {";
 								)
 						))
 				));
-				
+
 				$amfClass->setMethod(array(
 						'name' => 'grid' . $objectName,
 						'visibility' => 'public',
@@ -853,7 +853,7 @@ App.Validate.$tableName = {";
 						))
 				));
 			}
-			
+
 			#-> Save class to file.
 			$path = ReGen_Util_FileLocation::getAmfInterfaceLocation($modelClassName);
 			$file = new Zend_CodeGenerator_Php_File(array(
@@ -862,8 +862,8 @@ App.Validate.$tableName = {";
 			file_put_contents($path, $file->generate());
 		}
 	}
-	
-	
+
+
 	/**
 	 * Create table model file.
 	 *
@@ -873,10 +873,10 @@ App.Validate.$tableName = {";
 	{
 		#-> Grab field meta for this table.
 		$fields = $fieldMeta[$table_name];
-		
+
 		#-> Tools.
 		$filter = new Zend_Filter_Word_UnderscoreToCamelCase();
-		
+
 		#-> Work through the meta data.
 		$fieldMap = array();
 		$tableFlags = 0;
@@ -888,7 +888,7 @@ App.Validate.$tableName = {";
 			$methodProperty = str_replace('_', '', $filter->filter($key));
 			$propertyName = $key;
 			$fieldMap[$key] = $methodProperty;
-			
+
 			if (0 < strlen($meta['DEFAULT']))
 			{
 				if ("'" == substr($meta['DEFAULT'], 1, 1))
@@ -898,7 +898,7 @@ App.Validate.$tableName = {";
 			}
 			$flags = 0;
 			$readable = array();
-			
+
 			#-> Pseudo delete functionality.
 			if ('archived' == $key
 					|| 'is_archived' == $key)
@@ -908,14 +908,14 @@ App.Validate.$tableName = {";
 				$tableReadable[] = 'TABLE_PSEUDO_DELETE';
 				$tableArchiveField = $key;
 			}
-			
+
 			#-> Default primary.
 			if ('id' == $key)
 			{
 				$flags |= FIELD_AUTOKEY;
 				$readable[] = 'FIELD_AUTOKEY';
 			}
-			
+
 			#-> Required.
 			if (!$meta['NULLABLE']
 					&& is_null($meta['DEFAULT'])
@@ -924,7 +924,7 @@ App.Validate.$tableName = {";
 				$flags |= FIELD_REQUIRED;
 				$readable[] = 'FIELD_REQUIRED';
 			}
-			
+
 			#-> Auto-date magic.
 			if ('created_timestamp' == $key
 					|| 'created_date' == $key
@@ -973,14 +973,14 @@ App.Validate.$tableName = {";
 			}
 			$fields[$key]['FLAGS'] = $flags;
 			$fields[$key]['FLAG_LIST'] = implode(' | ', $readable);
-			 
+
 			#-> Check for references
 			if ('_id' == substr($key, -3))
 			{
 				#-> Get rid of the _id bit.
 				$parts = explode('_', $key);
 				array_pop($parts);
-				
+
 				#-> Do we have a direct match?
 				$search = implode('_', $parts);
 				if (isset($tables[$search]))
@@ -1018,8 +1018,8 @@ App.Validate.$tableName = {";
 				}
 			}
 		}
-		
-		
+
+
 		#-> Create table class.
 		$tableClass = new Zend_CodeGenerator_Php_Class();
 		$docblock = new Zend_CodeGenerator_Php_Docblock(array(
@@ -1029,8 +1029,8 @@ App.Validate.$tableName = {";
 		$tableClass->setName($modelClassName)
 			->setDocblock($docblock)
 			->setExtendedClass('Struct_Abstract_ModelTable');
-		
-		
+
+
 		#-> Prepare default record array and label format.
 		$newRecord = array();
 		$stringLabel = false;
@@ -1065,7 +1065,7 @@ App.Validate.$tableName = {";
 		$labelForeign = ($labelForeign)
 			? $labelForeign
 			: '';
-		
+
 		#-> Set class properties.
 		$tableClass->setProperty(array(
 				'name' => '_name',
@@ -1157,19 +1157,19 @@ App.Validate.$tableName = {";
 						'shortDescription' => 'Label format for list/dropdown display.'
 				)
 		));
-		
+
 		#-> Save class to file.
 		$path = ReGen_Util_FileLocation::getTableModelLocation($tableName);
 	  	$file = new Zend_CodeGenerator_Php_File(array(
 				'classes' => array($tableClass)
 		));
 		file_put_contents($path, $file->generate());
-		
+
 		#-> All done -oO-
 		return $references;
 	}
 
-	
+
 	private function _createDataObject($tableName, $table_name, $fieldMeta, $unique)
 	{
 		#-> Prepare validation meta.
@@ -1247,8 +1247,8 @@ App.Validate.$tableName = {";
 						);
 				continue;
 			}
-			
-			
+
+
 			if ('datetime' == $meta['DATA_TYPE'])
 			{
 				$validate[$field]['validators'][] = array(
@@ -1425,7 +1425,7 @@ App.Validate.$tableName = {";
 				continue;
 			}
 		}
-		
+
 		#-> Create object class.
 		$objectClass = new Zend_CodeGenerator_Php_Class();
 		$docblock = new Zend_CodeGenerator_Php_Docblock(array(
@@ -1434,7 +1434,7 @@ App.Validate.$tableName = {";
 		$objectClass->setName('Object_' . $tableName)
 			->setDocblock($docblock)
 			->setExtendedClass('Struct_Abstract_DataAccess');
-		
+
 		#-> Set class properties.
 		$objectClass->setProperty(array(
 				'name' => '_eventNamespace',
@@ -1468,7 +1468,7 @@ App.Validate.$tableName = {";
 						'shortDescription' => 'Validation meta-data.'
 				)
 		));
-		
+
 		#-> Save class to file.
 		$path = ReGen_Util_FileLocation::getObjectLocation($tableName);
 		if (file_exists($path))
@@ -1479,12 +1479,12 @@ App.Validate.$tableName = {";
 				'classes' => array($objectClass)
 		));
 		file_put_contents($path, $file->generate());
-		
+
 		#-> All done -oO-
 		return $validate;
 	}
-	
-	
+
+
 	private function _createDataController($tableName, $table_name, $fieldMeta, $reference, $db, $dependancies)
 	{
 		#-> Create controller class.
@@ -1503,7 +1503,7 @@ App.Validate.$tableName = {";
 			->setDocblock($docblock)
 			->setExtendedClass('Struct_Abstract_Controller');
 		$firstDisplayField = $this->getFirstGridDisplayField($tableName, $fieldMeta, $reference, $db);
-		
+
 		#-> Prepare grid meta.
 		$gridSetupMethod = 'setup' . ucfirst($tableName) . 'Grid';
 		$cmToUnder = new Zend_Filter_Word_CamelCaseToUnderscore();
@@ -1628,8 +1628,8 @@ App.Validate.$tableName = {";
 				: "\n"; */
 			$i++;
 		}
-		
-		
+
+
 		#-> Set class properties.
 		$objectClass->setProperty(array(
 				'name' => '_defaultObjectName',
@@ -1647,11 +1647,11 @@ App.Validate.$tableName = {";
 						'shortDescription' => 'Default session namespace for the view.'
 				)
 		));
-		
+
 		#-> Add default data access methods.
 		$dataContext = ReGen_Registry::getContext('dataContext');
 		$dataContextWhitelist = ReGen_Registry::getContext('dataContextWhitelist');
-		
+
 		$indexBody = '$this->'.$gridSetupMethod.'();';
 		foreach ($reference as $refName => $refMap)
 		{
@@ -1675,7 +1675,7 @@ App.Validate.$tableName = {";
 						. '$this->listDataReturnView("Object_' . $objectName . '");';
 			}
 		}
-		
+
 		$itemName = lcfirst($tableName);
 		$objectClass->setMethod(array(
 				'name' => 'init',
@@ -1712,7 +1712,7 @@ App.Validate.$tableName = {";
 				'name' => $itemName . 'GridAction',
 				'visibility' => 'public',
 				'parameters' => array(),
-				'body' => '$this->_helper->layout()->disableLayout();' . "\n" 
+				'body' => '$this->_helper->layout()->disableLayout();' . "\n"
 						. '$this->'.$gridSetupMethod.'();',
 				'docblock' => new Zend_CodeGenerator_Php_Docblock(array(
 						'shortDescription' => 'Retrieve data grid for display.'
@@ -1764,26 +1764,26 @@ App.Validate.$tableName = {";
 						'shortDescription' => 'Remove data entry from database.'
 						))
 				)); */
-		
+
 		#-> Save class to file.
 		$path = ReGen_Util_FileLocation::getControllerLocation($tableName . $postPend);
 		$file = new Zend_CodeGenerator_Php_File(array(
 				'classes' => array($objectClass)
 		));
 		file_put_contents($path, $file->generate());
-		
-		
+
+
 		#-> All done -oO-
 		return true;
 	}
-	
+
 	private function _createViews($itemName, $table_name, $fieldMeta, $reference, $db, $dependancies)
 	{
 		$this->_createIndexView($itemName, $table_name, $fieldMeta);
 		$this->_createGridView($itemName, $table_name, $fieldMeta, $reference, $db);
 		$this->_createModalView($itemName, $table_name, $fieldMeta, $reference, $dependancies);
 	}
-	
+
 	private function _createIndexView($itemName, $table_name, $fieldMeta)
 	{
 		#-> Prepare code
@@ -1804,16 +1804,16 @@ App.Validate.$tableName = {";
 		$camToScore = new Zend_Filter_Word_CamelCaseToUnderscore();
 		$search = array('[table_name]', '[Item Name]', '[ItemName]', '[itemName]', '[item-name]', '[item_name]', '[module]', '[postpend]');
 		$replace = array($table_name, $Item_Name, $itemName, lcfirst($itemName), strtolower($camToDash->filter($itemName)), strtolower($camToScore->filter($itemName)), $lcModule, $postpend);
-		
+
 		#-> Create file.
 		$path = ReGen_Util_FileLocation::getViewLocation($itemName . $postPend, 'index');
 		file_put_contents($path, str_replace($search, $replace, $this->codeIndex));
-		
-		
+
+
 		#-> All done -oO-
 		return true;
 	}
-	
+
 	private function getFirstGridDisplayField($itemName, $fieldMeta, $reference, $db)
 	{
 		$fields = array();
@@ -1864,7 +1864,7 @@ App.Validate.$tableName = {";
 		}
 		return '';
 	}
-	
+
 	private function _createGridView($itemName, $table_name, $fieldMeta, $reference, $db)
 	{
 		#-> What fields will we display?
@@ -1939,7 +1939,7 @@ App.Validate.$tableName = {";
 				break;
 			}
 		}
-		
+
 		#-> Prepare code
 		$filter = new Zend_Filter_Word_CamelCaseToDash();
 		$search = array('[ItemName]', '[itemName]', '[item-name]', '[columns]');
@@ -2022,16 +2022,16 @@ App.Validate.$tableName = {";
 			$i++;
 		}
 		$html .= str_replace($search, $replace, $this->codeGridFooter);
-		
+
 		#-> Create file.
 		$path = ReGen_Util_FileLocation::getViewLocation($itemName . $postPend, $filter->filter($itemName) . '-grid');
 		file_put_contents($path, $html);
-		
-		
+
+
 		#-> All done -oO-
 		return true;
 	}
-	
+
 	private function _createModalView($itemName, $table_name, $fieldMeta, $reference, $dependancies)
 	{
 //Struct_Debug::errorLog($table_name, $dependancies);
@@ -2055,7 +2055,7 @@ App.Validate.$tableName = {";
 		$Item_Name = $filter->filter($itemName);
 		$search = array('[ItemName]', '[itemName]', '[item-name]', '[Item Name]');
 		$replace = array($itemName, lcfirst($itemName), $item_name, $Item_Name);
-		
+
 		#-> Prepare code
 		$extraCols = 0;
 		foreach ($dependancies as $refName => $refs)
@@ -2091,7 +2091,7 @@ App.Validate.$tableName = {";
 			? ceil($cols / 2) + 1
 			: $cols + 2;
 		$js .= str_replace($search, $replace, $this->codeModalJsHeader);
-		
+
 		#-> Prepare fields.
 		$toCamel = new Zend_Filter_Word_UnderscoreToCamelCase();
 		$toSep = new Zend_Filter_Word_CamelCaseToSeparator();
@@ -2200,7 +2200,7 @@ App.Validate.$tableName = {";
 												$fieldHtml
 												);
 										$html .= $fieldHtml;
-										
+
 										$colNum++;
 										if ($colNum == $midField)
 										{
@@ -2265,7 +2265,7 @@ App.Validate.$tableName = {";
 												$fieldHtml
 												);
 										$html .= $fieldHtml;
-										
+
 										$colNum++;
 										if ($colNum == $midField)
 										{
@@ -2466,18 +2466,18 @@ App.Validate.$tableName = {";
 		$html .= str_replace($search, $replace, "\n\t\t\t\t".'<input type="hidden" id="[itemName]_id" name="id" form-id="[itemName]">');
 		$html .= str_replace($search, $replace, $this->codeModalFooter);
 		$js .= str_replace($search, $replace, $this->codeModalJsFooter);
-		
+
 		#-> Create file.
 		$path = ReGen_Util_FileLocation::getViewLocation($itemName . $postPend, strtolower($toDash->filter($itemName)) . '-modal');
 		file_put_contents($path, $html . $jsIncludes . $js);
-		
-		
+
+
 		#-> All done -oO-
 		return true;
 	}
-	
-	
-	
+
+
+
 	protected function buildInsert($table, array $data)
 	{
 		$query = "INSERT INTO `$table` SET ";
@@ -2488,13 +2488,13 @@ App.Validate.$tableName = {";
 		}
 		return $query . implode(', ', $fieldSet);
 	}
-	
-	
+
+
 }
 
 class CodeSource
 {
-	
+
 	protected $codeIndex = '
 <?php
 $utilDisplay = new Struct_Util_Display();
@@ -2537,7 +2537,7 @@ $utilDisplay = new Struct_Util_Display();
 	}
 
 </script>';
-	
+
 	protected $codeGridHeader = '<?php
 !isset($utilDisplay)
 	&& $utilDisplay = new Struct_Util_Display();
@@ -2570,7 +2570,7 @@ list($order, $direction) = each($this->result["[ItemName]"]["Order"]);
 				</tr>
 				<tr class="">';
 	protected $codeGridColumnSearch = '
-					<td class="[class]"><div class="row-fluid"><input 
+					<td class="[class]"><div class="row-fluid"><input
 						id="a" name="srch_[itemName]_[foreign_table].[field_name]" type="text" class="span12 srch-[itemName]"
 						value="<?php echo isset($this->result[\'[ItemName]\'][\'Search\'][\'[foreign_table].[field_name]\']) ? $this->result[\'[ItemName]\'][\'Search\'][\'[foreign_table].[field_name]\'] : ""; ?>"></div></td>';
 	protected $codeGridRowPrep = '
@@ -2616,11 +2616,11 @@ list($order, $direction) = each($this->result["[ItemName]"]["Order"]);
 		    }
 		});
 	});
-	
+
 </script>';
-	
-	
-	
+
+
+
 	protected $codeModalHeader = '<!-- [ItemName]: Modal Form -->
 <div class="row-fluid">
   <div class="span12">
@@ -2662,16 +2662,16 @@ list($order, $direction) = each($this->result["[ItemName]"]["Order"]);
 		});
 	});
 </script>';
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
 	protected $codeModalFieldCheckBox = '
 		  		<div class="control-group">
 		    		<label class="checkbox" for="[itemName]_[field_name]">
@@ -2681,7 +2681,7 @@ list($order, $direction) = each($this->result["[ItemName]"]["Order"]);
 		    		</label>
 					</div>';
 	protected $codeModalJsFieldCheckBox = '';
-	
+
 	protected $codeModalFieldText = '
 		  		<div class="control-group">
 		    		<label for="[itemName]_[field_name]"><b>[Label]</b></label>
@@ -2689,7 +2689,7 @@ list($order, $direction) = each($this->result["[ItemName]"]["Order"]);
 							form-id="[itemName]" class="span[span] [validation]" [attributes]>
 					</div>';
 	protected $codeModalJsFieldText = '';
-	
+
 	protected $codeModalFieldTextArea = '
 		  		<div class="control-group">
 			  		<label for="[itemName]_[field_name]"><b>[Label]</b></label>
@@ -2697,7 +2697,7 @@ list($order, $direction) = each($this->result["[ItemName]"]["Order"]);
 							form-id="[itemName]" class="span12 [validation]" [attributes]></textarea>
 					</div>';
 	protected $codeModalJsFieldTextArea = '';
-	
+
 	protected $codeModalFieldSelect = '
 		  		<div class="control-group">
 				  	<label for="[itemName]_[field_name]"><b>[Label]</b></label>
@@ -2708,7 +2708,7 @@ list($order, $direction) = each($this->result["[ItemName]"]["Order"]);
 						</select>
 					</div>';
 	protected $codeModalJsFieldSelect = '';
-	
+
 	protected $codeModalFieldDependantSelect = '
 		  		<div class="control-group">
 				  	<label for="[itemName]_[field_name]"><b>[Label]</b></label>
@@ -2720,15 +2720,15 @@ list($order, $direction) = each($this->result["[ItemName]"]["Order"]);
 						</select>
 					</div>';
 	protected $codeModalJsFieldDependantSelect = '';
-	
+
 	protected $codeModalFieldDate = '
 		  		<div class="control-group">
 				  	<label for="[itemName]_[field_name]"><b>[Label]</b></label>
-	        	<input id="[itemName]_[field_name]" name="[field_name]" type="text" 
+	        	<input id="[itemName]_[field_name]" name="[field_name]" type="text"
 	            	form-id="[itemName]" class="span4 datepicker [validation]" [attributes]>
 					</div>';
 	protected $codeModalJsFieldDate = '';
-	
+
 	protected $codeModalFieldDateTime = '
 		  		<div class="control-group">
 				  	<label for="[itemName]_[field_name]"><b>[Label]</b></label>
@@ -2736,11 +2736,11 @@ list($order, $direction) = each($this->result["[ItemName]"]["Order"]);
 							form-id="[itemName]" class="span6 datepicker [validation]" [attributes]>
 					</div>';
 	protected $codeModalJsFieldDateTime = '';
-	
-	
-	
-	
-	
+
+
+
+
+
 }
 
 
