@@ -84,9 +84,9 @@ class Component_Import
 	{
 		#-> Safety check.
 		set_time_limit(0);
-		if (!file_exists(APPLICATION_PATH . '\\..\\data\\' . $fileName))
+		if (!file_exists(APPLICATION_PATH . '/../data/' . $fileName))
 		{
-			echo 'File not found for import! > ' . APPLICATION_PATH . '\\..\\data\\' . $fileName;
+			echo 'File not found for import! > ' . APPLICATION_PATH . '/../data/' . $fileName;
 			exit(0);
 		}
 
@@ -110,7 +110,7 @@ class Component_Import
 		$this->oImportData = new Object_ImportData();
 
 		#-> Prep file.
-		$handle  = fopen(APPLICATION_PATH . '\\..\\data\\' . $fileName, "r");
+		$handle  = fopen(APPLICATION_PATH . '/../data/' . $fileName, "r");
 		$columns = fgetcsv($handle);
 		$this->addLine('columns', $columns);
 		$oAsset = new Object_Asset();
