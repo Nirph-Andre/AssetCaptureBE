@@ -43,8 +43,6 @@ class Api_DataController extends Struct_Abstract_Controller
 		$this->_helper->layout()->disableLayout();
 		//$this->_helper->viewRenderer->setNoRender(true);
 		$params = $this->getRequest()->getParams();
-Struct_Debug::errorLog('rqst input', $params);
-Struct_Debug::errorLog('json input', file_get_contents('php://input'));
 		if (count($params) <= 3)
 		{
 			$params = json_decode(file_get_contents('php://input'), true);
