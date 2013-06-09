@@ -122,7 +122,7 @@ Struct_Debug::errorLog('json input', file_get_contents('php://input'));
 			$uniqueIdentifier = $this->_object->getUniqueIdentifier();
 			if (isset($this->_data['create']) && !empty($this->_data['create']))
 			{
-				Struct_Debug::errorLog($this->_nameSpace . '.create', $this->_data['create']);
+				//Struct_Debug::errorLog($this->_nameSpace . '.create', $this->_data['create']);
 				if (empty($uniqueIdentifier))
 				{
 					// Nothing to test against for duplication, create as is.
@@ -195,7 +195,7 @@ Struct_Debug::errorLog('json input', file_get_contents('php://input'));
 			}
 			if (isset($this->_data['update']) && !empty($this->_data['update']))
 			{
-				Struct_Debug::errorLog($this->_nameSpace . '.update', $this->_data['update']);
+				//Struct_Debug::errorLog($this->_nameSpace . '.update', $this->_data['update']);
 				foreach($this->_data['update'] as $synchEntry)
 				{
 					$remoteId = $synchEntry['id'];
@@ -218,7 +218,7 @@ Struct_Debug::errorLog('json input', file_get_contents('php://input'));
 			}
 			if (isset($this->_data['remove']) && !empty($this->_data['remove']))
 			{
-				Struct_Debug::errorLog($this->_nameSpace . '.remove', $this->_data['remove']);
+				//Struct_Debug::errorLog($this->_nameSpace . '.remove', $this->_data['remove']);
 				foreach($this->_data['remove'] as $synchEntry)
 				{
 					$remoteId = $synchEntry['id'];
