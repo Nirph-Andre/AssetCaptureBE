@@ -64,6 +64,16 @@ class Source_AssetController extends Struct_Abstract_Controller
         $this->listDataReturnView("Object_Floor");
         $this->dataContext = "listRoom";
         $this->listDataReturnView("Object_Room");
+        $this->dataContext = "listPreviousTown";
+        $this->listDataReturnView("Object_Town");
+        $this->dataContext = "listPreviousStreet";
+        $this->listDataReturnView("Object_Street");
+        $this->dataContext = "listPreviousBuilding";
+        $this->listDataReturnView("Object_Building");
+        $this->dataContext = "listPreviousFloor";
+        $this->listDataReturnView("Object_Floor");
+        $this->dataContext = "listPreviousRoom";
+        $this->listDataReturnView("Object_Room");
         $this->dataContext = "listOwner";
         $this->listDataReturnView("Object_Owner");
         $this->dataContext = "listAssetType";

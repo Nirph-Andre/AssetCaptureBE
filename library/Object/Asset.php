@@ -92,6 +92,56 @@ class Object_Asset extends Struct_Abstract_DataAccess
                         )
                     ))
             ),
+        'previous_town_id' => array(
+            'required' => false,
+            'validators' => array(array(
+                    'type' => 'Between',
+                    'params' => array(
+                        'min' => 0,
+                        'max' => 4294967295
+                        )
+                    ))
+            ),
+        'previous_street_id' => array(
+            'required' => false,
+            'validators' => array(array(
+                    'type' => 'Between',
+                    'params' => array(
+                        'min' => 0,
+                        'max' => 4294967295
+                        )
+                    ))
+            ),
+        'previous_building_id' => array(
+            'required' => false,
+            'validators' => array(array(
+                    'type' => 'Between',
+                    'params' => array(
+                        'min' => 0,
+                        'max' => 4294967295
+                        )
+                    ))
+            ),
+        'previous_floor_id' => array(
+            'required' => false,
+            'validators' => array(array(
+                    'type' => 'Between',
+                    'params' => array(
+                        'min' => 0,
+                        'max' => 4294967295
+                        )
+                    ))
+            ),
+        'previous_room_id' => array(
+            'required' => false,
+            'validators' => array(array(
+                    'type' => 'Between',
+                    'params' => array(
+                        'min' => 0,
+                        'max' => 4294967295
+                        )
+                    ))
+            ),
         'owner_id' => array(
             'required' => true,
             'validators' => array(array(

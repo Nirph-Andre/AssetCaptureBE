@@ -64,6 +64,51 @@
 						</select>
 					</div>
 		  		<div class="control-group">
+				  	<label for="asset_previous_town_id"><b>Previous Town</b></label>
+						<select id="asset_previous_town_id" name="previous_town_id"
+							form-id="asset" class="span12 " >
+							<option value="">-- Select Previous Town --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listPreviousTown"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_previous_street_id"><b>Previous Street</b></label>
+						<select id="asset_previous_street_id" name="previous_street_id"
+							form-id="asset" class="span12 " >
+							<option value="">-- Select Previous Street --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listPreviousStreet"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_previous_building_id"><b>Previous Building</b></label>
+						<select id="asset_previous_building_id" name="previous_building_id"
+							form-id="asset" class="span12 " >
+							<option value="">-- Select Previous Building --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listPreviousBuilding"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_previous_floor_id"><b>Previous Floor</b></label>
+						<select id="asset_previous_floor_id" name="previous_floor_id"
+							form-id="asset" class="span12 " >
+							<option value="">-- Select Previous Floor --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listPreviousFloor"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
+				  	<label for="asset_previous_room_id"><b>Previous Room</b></label>
+						<select id="asset_previous_room_id" name="previous_room_id"
+							form-id="asset" class="span12 " >
+							<option value="">-- Select Previous Room --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listPreviousRoom"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
 				  	<label for="asset_owner_id"><b>Owner *</b></label>
 						<select id="asset_owner_id" name="owner_id"
 							form-id="asset" class="span12 required" >
@@ -83,7 +128,8 @@
 		    		<label for="asset_gps_accuracy"><b>Gps Accuracy</b></label>
 						<input id="asset_gps_accuracy" name="gps_accuracy" type="text"
 							form-id="asset" class="span12 " maxlength="50">
-					</div>
+					</div></div>
+			  <div class="span6">
 		  		<div class="control-group">
 		    		<label for="asset_gps_lat"><b>Gps Lat</b></label>
 						<input id="asset_gps_lat" name="gps_lat" type="text"
@@ -93,8 +139,7 @@
 		    		<label for="asset_gps_long"><b>Gps Long</b></label>
 						<input id="asset_gps_long" name="gps_long" type="text"
 							form-id="asset" class="span12 " maxlength="50">
-					</div></div>
-			  <div class="span6">
+					</div>
 		  		<div class="control-group">
 		    		<label for="asset_identifier"><b>Identifier</b></label>
 						<input id="asset_identifier" name="identifier" type="text"

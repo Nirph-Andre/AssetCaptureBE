@@ -246,7 +246,7 @@ Struct_Debug::errorLog('json input', file_get_contents('php://input'));
 		{
 			$lastSynch = $this->_data['lastSynchDate'];
 			$extraFilter = isset($this->_data['filter'])
-											&& is_array($this->_data['filter'])
+							&& is_array($this->_data['filter'])
 				? $this->_data['filter']
 				: array();
 			$create = $this->_object->listAll(array_merge($extraFilter, array(

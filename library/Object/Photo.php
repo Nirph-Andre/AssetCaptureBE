@@ -51,10 +51,7 @@ class Object_Photo extends Struct_Abstract_DataAccess
             ),
         'data' => array(
             'required' => true,
-            'validators' => array(array(
-                    'type' => 'StringLength',
-                    'params' => array('max' => 65535)
-                    ))
+            'validators' => array()
             ),
         'archived' => array(
             'required' => false,
