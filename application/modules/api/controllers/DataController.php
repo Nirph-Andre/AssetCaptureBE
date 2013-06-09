@@ -122,61 +122,29 @@ Struct_Debug::errorLog('json input', file_get_contents('php://input'));
 			$uniqueIdentifier = $this->_object->getUniqueIdentifier();
 			if (isset($this->_data['create']) && !empty($this->_data['create']))
 			{
-				//Struct_Debug::errorLog($this->_nameSpace . '.create', $this->_data['create']);
-				if (empty($uniqueIdentifier))
+				if ('Photo' == ucfirst($this->_nameSpace))
 				{
-					// Nothing to test against for duplication, create as is.
 					foreach($this->_data['create'] as $synchEntry)
 					{
 						$remoteId = $synchEntry['id'];
-						unset($synchEntry['id']);
-						$res = $this->_object->process(
-								new Struct_ActionRequest(
-										'Create',
-										$synchEntry
-								));
-						if ($res->ok())
-						{
-							$feedback[] = isset($config['AutoArchive']) && 1 == $config['AutoArchive']
-								? array('id' => $remoteId, 'archive' => 1 )
-								: array('id' => $remoteId, 'sid' => $res->data['id'] );
-						}
+						Struct_Debug::errorLog($this->_nameSpace . '.create', $synchEntry['type']);
+						Struct_Debug::errorLog($this->_nameSpace . '.create', $synchEntry['asset_id']);
+						file_put_contents(APPLICATION_PATH . '/../public/img/test.jpg', $synchEntry['data']);
+						unset($synchEntry['data']);
+						$feedback[] = isset($config['AutoArchive']) && 1 == $config['AutoArchive']
+							? array('id' => $remoteId, 'archive' => 1 )
+							: array('id' => $remoteId, 'sid' => $res->data['id'] );
 					}
 				}
 				else
 				{
-					// Check for existing record.
-					foreach($this->_data['create'] as $synchEntry)
+					//Struct_Debug::errorLog($this->_nameSpace . '.create', $this->_data['create']);
+					if (empty($uniqueIdentifier))
 					{
-						$remoteId = $synchEntry['id'];
-						$filter = array();
-						foreach ($uniqueIdentifier as $field)
+						// Nothing to test against for duplication, create as is.
+						foreach($this->_data['create'] as $synchEntry)
 						{
-							if (isset($synchEntry[$field]))
-							{
-								$filter[$field] = $synchEntry[$field];
-							}
-						}
-						$item = $this->_object->view(null, $filter)->data;
-						if (isset($item['id']) && $item['id'])
-						{
-							// Update.
-							$synchEntry['id'] = $item['id'];
-							$res = $this->_object->process(
-									new Struct_ActionRequest(
-											'Update',
-											$synchEntry
-									));
-							if ($res->ok())
-							{
-								$feedback[] = isset($config['AutoArchive']) && 1 == $config['AutoArchive']
-									? array('id' => $remoteId, 'archive' => 1 )
-									: array('id' => $remoteId, 'sid' => $item['id'] );
-							}
-						}
-						else
-						{
-							// Insert.
+							$remoteId = $synchEntry['id'];
 							unset($synchEntry['id']);
 							$res = $this->_object->process(
 									new Struct_ActionRequest(
@@ -188,6 +156,55 @@ Struct_Debug::errorLog('json input', file_get_contents('php://input'));
 								$feedback[] = isset($config['AutoArchive']) && 1 == $config['AutoArchive']
 									? array('id' => $remoteId, 'archive' => 1 )
 									: array('id' => $remoteId, 'sid' => $res->data['id'] );
+							}
+						}
+					}
+					else
+					{
+						// Check for existing record.
+						foreach($this->_data['create'] as $synchEntry)
+						{
+							$remoteId = $synchEntry['id'];
+							$filter = array();
+							foreach ($uniqueIdentifier as $field)
+							{
+								if (isset($synchEntry[$field]))
+								{
+									$filter[$field] = $synchEntry[$field];
+								}
+							}
+							$item = $this->_object->view(null, $filter)->data;
+							if (isset($item['id']) && $item['id'])
+							{
+								// Update.
+								$synchEntry['id'] = $item['id'];
+								$res = $this->_object->process(
+										new Struct_ActionRequest(
+												'Update',
+												$synchEntry
+										));
+								if ($res->ok())
+								{
+									$feedback[] = isset($config['AutoArchive']) && 1 == $config['AutoArchive']
+										? array('id' => $remoteId, 'archive' => 1 )
+										: array('id' => $remoteId, 'sid' => $item['id'] );
+								}
+							}
+							else
+							{
+								// Insert.
+								unset($synchEntry['id']);
+								$res = $this->_object->process(
+										new Struct_ActionRequest(
+												'Create',
+												$synchEntry
+										));
+								if ($res->ok())
+								{
+									$feedback[] = isset($config['AutoArchive']) && 1 == $config['AutoArchive']
+										? array('id' => $remoteId, 'archive' => 1 )
+										: array('id' => $remoteId, 'sid' => $res->data['id'] );
+								}
 							}
 						}
 					}
