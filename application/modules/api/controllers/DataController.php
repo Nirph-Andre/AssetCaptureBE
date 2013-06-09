@@ -86,6 +86,9 @@ class Api_DataController extends Struct_Abstract_Controller
 				? $params['Options']
 				: array();
 			list($this->_nameSpace, $this->_data) = each($params);
+			Struct_Debug::errorLog('namespace', gettype($this->_nameSpace));
+			Struct_Debug::errorLog('data', gettype($this->_data));
+			Struct_Debug::errorLog('size', strlen(serialize($params)));
 			if (empty($this->_options) && isset($this->_data['Options']))
 			{
 				$this->_options = $this->_data['Options'];
