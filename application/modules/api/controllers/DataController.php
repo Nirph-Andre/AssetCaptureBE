@@ -46,6 +46,34 @@ class Api_DataController extends Struct_Abstract_Controller
 		if (count($params) <= 3)
 		{
 			$params = json_decode(file_get_contents('php://input'), true);
+			$jsonErr = json_last_error();
+			switch ($jsonErr)
+			{
+				case JSON_ERROR_DEPTH:
+					Struct_Debug::errorLog('JSON error', 'JSON_ERROR_DEPTH');
+					Struct_Debug::errorLog('JSON', file_get_contents('php://input'));
+					break;
+				case JSON_ERROR_STATE_MISMATCH:
+					Struct_Debug::errorLog('JSON error', 'JSON_ERROR_STATE_MISMATCH');
+					Struct_Debug::errorLog('JSON', file_get_contents('php://input'));
+					break;
+				case JSON_ERROR_CTRL_CHAR:
+					Struct_Debug::errorLog('JSON error', 'JSON_ERROR_CTRL_CHAR');
+					Struct_Debug::errorLog('JSON', file_get_contents('php://input'));
+					break;
+				case JSON_ERROR_SYNTAX:
+					Struct_Debug::errorLog('JSON error', 'JSON_ERROR_SYNTAX');
+					Struct_Debug::errorLog('JSON', file_get_contents('php://input'));
+					break;
+				case JSON_ERROR_UTF8:
+					Struct_Debug::errorLog('JSON error', 'JSON_ERROR_UTF8');
+					Struct_Debug::errorLog('JSON', file_get_contents('php://input'));
+					break;
+				/* case JSON_ERROR_NONE:
+					Struct_Debug::errorLog('JSON error', 'JSON_ERROR_NONE');
+					Struct_Debug::errorLog('JSON', file_get_contents('php://input'));
+					break; */
+			}
 			if (empty($params))
 			{
 				$this->jsonResult(Struct_ActionFeedback::error(
@@ -105,6 +133,15 @@ class Api_DataController extends Struct_Abstract_Controller
 	public function indexAction()
 	{
 		$this->jsonResult(Struct_ActionFeedback::success());
+	}
+
+	public function uploadAction()
+	{
+		Struct_Debug::errorLog('_FILES', $_FILES);
+		foreach ($this->_request as $key => $val)
+		{
+			Struct_Debug::errorLog("Upload: $key", (is_array($val) ? strlen(serialize($val)) : strlen($val)));
+		}
 	}
 
 	public function synchAction()
