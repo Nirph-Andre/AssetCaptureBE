@@ -505,7 +505,6 @@ class Component_DocumentUpload
                         FILE_APPEND
                     );
                 } else {
-                    move_uploaded_file($uploaded_file, $file_path);
                     $oLibDocument = new Object_Photo();
                     $file->id = $oLibDocument->save(
                     		null, array(),
@@ -515,6 +514,7 @@ class Component_DocumentUpload
                     				)
                     		)->data['id'];
                     $this->id = $file->id;
+                    move_uploaded_file($uploaded_file, $this->id . '.jpg');
                     //unlink($uploaded_file);
                 }
             } else {
