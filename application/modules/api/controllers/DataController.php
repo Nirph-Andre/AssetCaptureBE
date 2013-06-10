@@ -88,7 +88,7 @@ class Api_DataController extends Struct_Abstract_Controller
 			list($this->_nameSpace, $this->_data) = each($params);
 			if (!is_array($this->_data))
 			{
-				Struct_Debug::errorLog('oops', $this->_data);
+				Struct_Debug::errorLog('oops', $params);
 			}
 			if (empty($this->_options) && isset($this->_data['Options']))
 			{
