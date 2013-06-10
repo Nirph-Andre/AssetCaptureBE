@@ -116,7 +116,7 @@ class Api_DataController extends Struct_Abstract_Controller
 			list($this->_nameSpace, $this->_data) = each($params);
 			if (!is_array($this->_data))
 			{
-				Struct_Debug::errorLog('oops', $params);
+				$this->_data = $params;
 			}
 			if (empty($this->_options) && is_array($this->_data) && isset($this->_data['Options']))
 			{
@@ -146,11 +146,10 @@ class Api_DataController extends Struct_Abstract_Controller
 
 	public function uploadAction()
 	{
-		Struct_Debug::errorLog('_FILES', $_FILES);
-		foreach ($this->_request as $key => $val)
-		{
-			Struct_Debug::errorLog("Upload: $key", (is_array($val) ? strlen(serialize($val)) : strlen($val)));
-		}
+		$uploadHandler = new Component_DocumentUpload($this->_data['asset_id'], $this->_data['type']);
+		header("HTTP/1.1 200 OK");
+		echo 'OK';
+		exit(0);
 	}
 
 	public function synchAction()

@@ -13,6 +13,9 @@
 class Component_DocumentUpload
 {
     protected $options;
+    protected $assetId;
+    protected $type;
+    protected $id;
     // PHP File Upload error message codes:
     // http://php.net/manual/en/features.file-upload.errors.php
     protected $error_messages = array(
@@ -34,14 +37,16 @@ class Component_DocumentUpload
         'min_height' => 'Image requires a minimum height'
     );
 
-    function __construct($options = null, $initialize = true) {
+    function __construct($assetId, $type, $options = null, $initialize = true) {
+    	$this->assetId = $assetId;
+    	$this->type = $type;
         $this->options = array(
             'script_url' => $this->get_full_url().'/',
             'upload_dir' => dirname($_SERVER['SCRIPT_FILENAME']).'/files/',
             'upload_url' => $this->get_full_url().'/files/',
             'user_dirs' => false,
             'mkdir_mode' => 0755,
-            'param_name' => 'files',
+            'param_name' => 'file',
             // Set the following option to 'POST', if your server does not support
             // DELETE requests. This is a parameter sent to the client:
             'delete_type' => 'DELETE',
@@ -500,16 +505,17 @@ class Component_DocumentUpload
                         FILE_APPEND
                     );
                 } else {
-                    //move_uploaded_file($uploaded_file, $file_path);
-                    $oLibDocument = new Object_LibDocument();
+                    move_uploaded_file($uploaded_file, $file_path);
+                    $oLibDocument = new Object_Photo();
                     $file->id = $oLibDocument->save(
                     		null, array(),
                     		array(
-                    				'document' => file_get_contents($uploaded_file),
-                    				'mime_type' => $type
+                    				'asset_id' => $this->assetId,
+                    				'type' => $this->type
                     				)
                     		)->data['id'];
-                    unlink($uploaded_file);
+                    $this->id = $file->id;
+                    //unlink($uploaded_file);
                 }
             } else {
                 // Non-multipart uploads (PUT method support)
