@@ -126,6 +126,8 @@ class Api_DataController extends Struct_Abstract_Controller
 		}
 
 		$class = 'Object_' . str_replace('DropList', '', ucfirst($this->_nameSpace));
+		'Object_Type' == $class
+			&& $class = 'Object_Photo';
 		try
 		{
 			$this->_object = new $class();
