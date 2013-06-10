@@ -514,7 +514,7 @@ class Component_DocumentUpload
                     				)
                     		)->data['id'];
                     $this->id = $file->id;
-                    move_uploaded_file($uploaded_file, $this->id . '.jpg');
+                    move_uploaded_file($uploaded_file, APPLICATION_PATH . '/../public/files/' . $this->id . '.jpg');
                     //unlink($uploaded_file);
                 }
             } else {
