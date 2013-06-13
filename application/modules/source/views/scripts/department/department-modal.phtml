@@ -1,0 +1,43 @@
+<!-- Department: Modal Form -->
+<div class="row-fluid">
+  <div class="span12">
+	<div class="modal modal-thinner hide fade" id="modalDepartment">
+	  <div class="modal-header">
+		<button class="close" data-dismiss="modal">x</button>
+		<h3 id="departmentModalHeading">Edit Department</h3>
+	  </div>
+		<form id="departmentForm" class="modal-form">
+		  <div class="modal-body ">
+			  <div class="span12">
+		  		<div class="control-group">
+		    		<label for="department_name"><b>Name *</b></label>
+						<input id="department_name" name="name" type="text"
+							form-id="department" class="span12 required" maxlength="100">
+					</div>
+				<input type="hidden" id="department_id" name="id" form-id="department">
+			  </div>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>&nbsp;
+			<button type="submit" class="btn btn-success btn-warning btn-save"
+		  	data-loading-text="saving..."
+		  	data-complete-text="&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;&nbsp;">
+		  		&nbsp;&nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;&nbsp;
+		  	</button>&nbsp;
+		  </div>
+		</form>
+	</div>
+  </div>
+</div>
+<!-- [End] Department: Modal Form -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#departmentForm").validate({
+		  submitHandler: function(form) {
+			  doUpdate("department", "department", "api/data/" + mode,
+			  	"DepartmentGrid", theme + "/department-grid",
+					false, true, false, {});
+		  }
+		});
+	});
+</script>

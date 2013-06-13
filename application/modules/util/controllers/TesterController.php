@@ -20,24 +20,24 @@ class Util_TesterController extends Struct_Abstract_Controller
 	{
 		#-> Try something new today ;)
 		$cImport = new Component_Import();
-		$cImport->import('TOKOLOGO', 'TokologoCombined.csv', array(
+		$cImport->import('TOKOLOGO', 'Tokologo.csv', array(
 				'asset_type_id' 			=> 3,
 				'asset_sub_type_id' 		=> 4,
-				'asset_description_id' 		=> 5,
-				'asset_sub_description_id' 	=> 6,
+				'asset_description_id' 		=> 1,
+				'asset_sub_description_id' 	=> 5,
 				'identifier' 				=> 0,
-				'details' 					=> 1,
-				'condition_id' 				=> 18,
+				'details' 					=> 6,
+				'condition_id' 				=> 19,
 				'town_id' 					=> 10,
-				'lat_start' 				=> 34,
-				'long_start' 				=> 35,
-				'lat_end' 					=> 36,
-				'long_end' 					=> 37,
-				'street_id' 				=> 40,
-				'building_id' 				=> 12,
-				'floor_id' 					=> 13,
-				'room_id' 					=> 14,
-				'owner_id' 					=> 19
+				'lat_start' 				=> 35,
+				'long_start' 				=> 36,
+				'lat_end' 					=> 37,
+				'long_end' 					=> 38,
+				'street_id' 				=> 41,
+				'building_id' 				=> 13,
+				'floor_id' 					=> 14,
+				'room_id' 					=> 15,
+				'owner_id' 					=> 20
 		));
 		exit(0);
 	}

@@ -118,18 +118,27 @@
 						</select>
 					</div>
 		  		<div class="control-group">
+				  	<label for="asset_department_id"><b>Department *</b></label>
+						<select id="asset_department_id" name="department_id"
+							form-id="asset" class="span12 required" >
+							<option value="">-- Select Department * --</option>
+							<?php echo $utilDisplay->buildDropdownOptions($this->data["listDepartment"], false); ?>
+
+						</select>
+					</div>
+		  		<div class="control-group">
 		    		<label class="checkbox" for="asset_gps_relative">
 			    		<input type="checkbox" id="asset_gps_relative" name="gps_relative"
 			    			value="gps_relative" form-id="asset" checked>
 			    		&nbsp;<b>Gps Relative</b>
 		    		</label>
-					</div>
+					</div></div>
+			  <div class="span6">
 		  		<div class="control-group">
 		    		<label for="asset_gps_accuracy"><b>Gps Accuracy</b></label>
 						<input id="asset_gps_accuracy" name="gps_accuracy" type="text"
 							form-id="asset" class="span12 " maxlength="50">
-					</div></div>
-			  <div class="span6">
+					</div>
 		  		<div class="control-group">
 		    		<label for="asset_gps_lat"><b>Gps Lat</b></label>
 						<input id="asset_gps_lat" name="gps_lat" type="text"

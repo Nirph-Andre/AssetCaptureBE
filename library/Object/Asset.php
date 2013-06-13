@@ -152,6 +152,16 @@ class Object_Asset extends Struct_Abstract_DataAccess
                         )
                     ))
             ),
+        'department_id' => array(
+            'required' => true,
+            'validators' => array(array(
+                    'type' => 'Between',
+                    'params' => array(
+                        'min' => 0,
+                        'max' => 4294967295
+                        )
+                    ))
+            ),
         'gps_relative' => array(
             'required' => false,
             'validators' => array(array(

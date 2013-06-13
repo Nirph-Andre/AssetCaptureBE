@@ -76,6 +76,8 @@ class Source_AssetController extends Struct_Abstract_Controller
         $this->listDataReturnView("Object_Room");
         $this->dataContext = "listOwner";
         $this->listDataReturnView("Object_Owner");
+        $this->dataContext = "listDepartment";
+        $this->listDataReturnView("Object_Department");
         $this->dataContext = "listAssetType";
         $this->listDataReturnView("Object_AssetType");
         $this->dataContext = "listAssetSubType";

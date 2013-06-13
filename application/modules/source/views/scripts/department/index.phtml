@@ -1,0 +1,42 @@
+
+<?php
+$utilDisplay = new Struct_Util_Display();
+?>
+
+<!-- Department: Data Grid -->
+<span id="DepartmentGrid">
+<?php include_once("department-grid.phtml");?>
+</span>
+<!-- [End] Department: Data Grid -->
+
+<!-- Department: Modal Form -->
+<?php include_once("department-modal.phtml");?>
+<!-- [End] Department: Modal Form -->
+
+
+<script type="text/javascript">
+
+	var theme = "source/department";
+
+	$(document).ready(function() {
+		$("#navDepartment").addClass("active");
+		searchHandler["srch-department"] = {
+				action: theme + "/department-grid",
+				container: "DepartmentGrid"
+		};
+    searchStack["srch-department"] = wrapFunction(search, this, ["srch-department"]);
+	});
+
+	function addDepartment(id) {
+		//$("#departmentModalHeading").html("Add New Department");
+		mode = "create";
+		clearForm("department", "modalDepartment");
+	}
+
+	function editDepartment(id) {
+		//$("#departmentModalHeading").html("Edit Department");
+		mode = "update";
+		populateForm("department", "department", departmentData[id], "modalDepartment");
+	}
+
+</script>
