@@ -128,7 +128,8 @@ class Component_Import
 					? $data[$csvIndex]
 					: null;
 			}
-			if (is_null($entry['identifier'])) #  || 'BIOLOGICAL ASSET' == $entry['asset_type_id']
+			if (is_null($entry['identifier']) || is_null($entry['asset_type_id'])
+				|| is_null($entry['asset_sub_type_id']) || is_null($entry['town_id']))
 			{
 				error_log("Skipping: $i");
 				$this->addLine('', $data);
