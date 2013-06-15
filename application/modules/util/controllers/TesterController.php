@@ -27,17 +27,19 @@ class Util_TesterController extends Struct_Abstract_Controller
 				'asset_sub_description_id' 	=> 5,
 				'identifier' 				=> 0,
 				'details' 					=> 6,
-				'condition_id' 				=> 19,
-				'town_id' 					=> 10,
-				'lat_start' 				=> 35,
-				'long_start' 				=> 36,
-				'lat_end' 					=> 37,
-				'long_end' 					=> 38,
-				'street_id' 				=> 41,
-				'building_id' 				=> 13,
-				'floor_id' 					=> 14,
-				'room_id' 					=> 15,
-				'owner_id' 					=> 20
+				'detail2' 					=> 7,
+				'serial' 					=> 2,
+				'condition_id' 				=> 20,
+				'town_id' 					=> 11,
+				'lat_start' 				=> 36,
+				'long_start' 				=> 37,
+				'lat_end' 					=> 38,
+				'long_end' 					=> 39,
+				'street_id' 				=> 42,
+				'building_id' 				=> 14,
+				'floor_id' 					=> 15,
+				'room_id' 					=> 16,
+				'owner_id' 					=> 21
 		));
 		exit(0);
 	}

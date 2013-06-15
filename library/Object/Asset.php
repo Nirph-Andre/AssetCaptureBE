@@ -247,6 +247,20 @@ class Object_Asset extends Struct_Abstract_DataAccess
                     'params' => array('max' => '250')
                     ))
             ),
+        'detail2' => array(
+            'required' => false,
+            'validators' => array(array(
+                    'type' => 'StringLength',
+                    'params' => array('max' => '250')
+                    ))
+            ),
+        'serial' => array(
+            'required' => false,
+            'validators' => array(array(
+                    'type' => 'StringLength',
+                    'params' => array('max' => '250')
+                    ))
+            ),
         'material_id' => array(
             'required' => false,
             'validators' => array(array(

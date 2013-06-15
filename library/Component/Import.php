@@ -231,6 +231,10 @@ class Component_Import
 					$record['details'] = $entry['details'];
 				}
 			}
+			!is_null($entry['detail2'])
+				&& $record['detail2'] = $entry['detail2'];
+			!is_null($entry['serial'])
+				&& $record['serial'] = $entry['serial'];
 			$assetRes = $oAsset->save(null, array(), $record);
 			if (!isset($assetRes->data['id']))
 			{
