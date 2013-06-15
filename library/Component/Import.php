@@ -128,13 +128,14 @@ class Component_Import
 					? $data[$csvIndex]
 					: null;
 			}
-			if (is_null($entry['identifier']) || is_null($entry['asset_type_id'])
-				|| is_null($entry['asset_sub_type_id']) || is_null($entry['town_id']))
-			{
-				error_log("Skipping: $i");
-				$this->addLine('', $data);
-				continue;
-			}
+			is_null($entry['identifier'])
+				&& $entry['identifier'] = '';
+			is_null($entry['asset_type_id'])
+				&& $entry['asset_type_id'] = 'N/A';
+			is_null($entry['asset_sub_type_id'])
+				&& $entry['asset_sub_type_id'] = 'N/A';
+			is_null($entry['town_id'])
+				&& $entry['town_id'] = 'N/A';
 
 			#-> Construct asset.
 			error_log("Processing: $i : " . $entry['identifier']);
