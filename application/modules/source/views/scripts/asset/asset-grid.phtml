@@ -74,7 +74,7 @@ list($order, $direction) = each($this->result["Asset"]["Order"]);
 			</thead>
 			<tbody>
 				<?php foreach ($this->data["Asset"] as $id => $record) {
-					$color = ($record["created"] != $record["updated"])
+					$color = ($record["created"] != $record["updated"] || $record['id'] > 5011)
 						? 'style="background-color:#0F0;"'
 						: 'style="background-color:#F00;"';
 					?>
