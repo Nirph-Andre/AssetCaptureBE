@@ -33,6 +33,7 @@ class Source_AssetController extends Struct_Abstract_Controller
      */
     protected function setupAssetGrid()
     {
+    	try {
         $sqf = new Struct_Util_SmartQueryFilter();
         $response = $sqf->handleGrid(
         	$this->getRequest(), false, $this->_defaultObjectName,
@@ -44,6 +45,11 @@ class Source_AssetController extends Struct_Abstract_Controller
         );
         $this->view->result = array("Asset" => $response->result);
         $this->view->data   = array("Asset" => $response->data);
+    	}
+    	catch (Exception $e)
+    	{
+    		var_dump("$e"); exit();
+    	}
     }
 
     /**
