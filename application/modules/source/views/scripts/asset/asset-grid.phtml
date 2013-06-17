@@ -33,22 +33,16 @@ list($order, $direction) = each($this->result["Asset"]["Order"]);
 							<i class="icon-<?php echo "asset.name" == $order && "DESC" == $direction ? "" : "circle-"; ?>arrow-up handy" onClick="order('asset', 'asset.name', 'desc');"></i>
 						</div>
 					</th>
-					<th class=""><b>Street</b>
+					<th class=""><b>Category 1</b>
 						<div class="pull-right">
-							<i class="icon-<?php echo "asset.name" == $order && "ASC" == $direction ? "" : "circle-"; ?>arrow-down handy" onClick="order('asset', 'asset.name', 'asc');"></i>
-							<i class="icon-<?php echo "asset.name" == $order && "DESC" == $direction ? "" : "circle-"; ?>arrow-up handy" onClick="order('asset', 'asset.name', 'desc');"></i>
+							<i class="icon-<?php echo "asset_type.name" == $order && "ASC" == $direction ? "" : "circle-"; ?>arrow-down handy" onClick="order('asset', 'asset_type.name', 'asc');"></i>
+							<i class="icon-<?php echo "asset_type.name" == $order && "DESC" == $direction ? "" : "circle-"; ?>arrow-up handy" onClick="order('asset', 'asset_type.name', 'desc');"></i>
 						</div>
 					</th>
-					<th class=""><b>Building</b>
+					<th class=""><b>Barcode</b>
 						<div class="pull-right">
-							<i class="icon-<?php echo "asset.name" == $order && "ASC" == $direction ? "" : "circle-"; ?>arrow-down handy" onClick="order('asset', 'asset.name', 'asc');"></i>
-							<i class="icon-<?php echo "asset.name" == $order && "DESC" == $direction ? "" : "circle-"; ?>arrow-up handy" onClick="order('asset', 'asset.name', 'desc');"></i>
-						</div>
-					</th>
-					<th class=""><b>Floor</b>
-						<div class="pull-right">
-							<i class="icon-<?php echo "asset.name" == $order && "ASC" == $direction ? "" : "circle-"; ?>arrow-down handy" onClick="order('asset', 'asset.name', 'asc');"></i>
-							<i class="icon-<?php echo "asset.name" == $order && "DESC" == $direction ? "" : "circle-"; ?>arrow-up handy" onClick="order('asset', 'asset.name', 'desc');"></i>
+							<i class="icon-<?php echo "asset.identifier" == $order && "ASC" == $direction ? "" : "circle-"; ?>arrow-down handy" onClick="order('asset', 'asset.identifier', 'asc');"></i>
+							<i class="icon-<?php echo "asset.identifier" == $order && "DESC" == $direction ? "" : "circle-"; ?>arrow-up handy" onClick="order('asset', 'asset.identifier', 'desc');"></i>
 						</div>
 					</th>
 					<th width="50px" class="">
@@ -67,14 +61,11 @@ list($order, $direction) = each($this->result["Asset"]["Order"]);
 						id="a" name="srch_asset_town.name" type="text" class="span12 srch-asset"
 						value="<?php echo isset($this->result['Asset']['Search']['town.name']) ? $this->result['Asset']['Search']['town.name'] : ""; ?>"></div></td>
 					<td class=""><div class="row-fluid"><input
-						id="a" name="srch_asset_street.name" type="text" class="span12 srch-asset"
-						value="<?php echo isset($this->result['Asset']['Search']['street.name']) ? $this->result['Asset']['Search']['street.name'] : ""; ?>"></div></td>
+						id="a" name="srch_asset_asset_type.name" type="text" class="span12 srch-asset"
+						value="<?php echo isset($this->result['Asset']['Search']['asset_type.name']) ? $this->result['Asset']['Search']['asset_type.name'] : ""; ?>"></div></td>
 					<td class=""><div class="row-fluid"><input
-						id="a" name="srch_asset_building.name" type="text" class="span12 srch-asset"
-						value="<?php echo isset($this->result['Asset']['Search']['building.name']) ? $this->result['Asset']['Search']['building.name'] : ""; ?>"></div></td>
-					<td class=""><div class="row-fluid"><input
-						id="a" name="srch_asset_floor.name" type="text" class="span12 srch-asset"
-						value="<?php echo isset($this->result['Asset']['Search']['floor.name']) ? $this->result['Asset']['Search']['floor.name'] : ""; ?>"></div></td>
+						id="a" name="srch_asset.identifier" type="text" class="span12 srch-asset"
+						value="<?php echo isset($this->result['Asset']['Search']['asset.identifier']) ? $this->result['Asset']['Search']['asset.identifier'] : ""; ?>"></div></td>
 					<td width="50px" class="">
 						&nbsp;&nbsp;
 						<i class="icon-search handy" onClick="search('srch-asset');"></i>
@@ -82,14 +73,17 @@ list($order, $direction) = each($this->result["Asset"]["Order"]);
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($this->data["Asset"] as $id => $record) { ?>
+				<?php foreach ($this->data["Asset"] as $id => $record) {
+					$color = ($record["created"] != $record["updated"])
+						? 'style="background-color:#0F0;"'
+						: 'style="background-color:#F00;"';
+					?>
 				<tr>
-					<td><?php echo $record["asset_updated"]; ?></td>
+					<td <?php echo $color; ?>><?php echo $record["updated"]; ?></td>
 					<td><?php echo $record["location_name"]; ?></td>
 					<td><?php echo $record["town_name"]; ?></td>
-					<td><?php echo $record["street_name"]; ?></td>
-					<td><?php echo $record["building_name"]; ?></td>
-					<td><?php echo $record["floor_name"]; ?></td>
+					<td><?php echo $record["asset_type_name"]; ?></td>
+					<td><?php echo $record["identifier"]; ?></td>
 					<td>
 						<button type="button" class="btn btn-mini" onClick="editAsset(<?php echo $id; ?>);">Edit</button>
 					</td>
