@@ -261,7 +261,7 @@ class Component_Import
 		$import = $oImport->view($this->importId)->data;
 		$csvToFieldMap = unserialize($import['map']);
 		$importData = $oImportData->grid(
-			array('import_id' => $this->importId), array(), 500, 1,
+			array('import_id' => $this->importId), array(), null, null,
 			array(), array('import'),
 			array()
 		)->data;
