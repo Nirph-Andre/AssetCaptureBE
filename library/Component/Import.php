@@ -444,23 +444,23 @@ class Component_Import
 				switch($field)
 				{
 					case 'asset_type_id':
-						$value = !is_null($asset['asset_type']['name'])
-						? $asset['asset_type']['name']
+						$value = !is_null($asset['asset_type_name'])
+						? $asset['asset_type_name']
 						: 'N/A';
 						break;
 					case 'asset_sub_type_id':
-						$value = !is_null($asset['asset_sub_type']['name'])
-						? $asset['asset_sub_type']['name']
+						$value = !is_null($asset['asset_sub_type_name'])
+						? $asset['asset_sub_type_name']
 						: 'N/A';
 						break;
 					case 'asset_description_id':
-						$value = !is_null($asset['asset_description']['name'])
-						? $asset['asset_description']['name']
+						$value = !is_null($asset['asset_description_name'])
+						? $asset['asset_description_name']
 						: 'N/A';
 						break;
 					case 'asset_sub_description_id':
-						$value = !is_null($asset['asset_sub_description']['name'])
-						? $asset['asset_sub_description']['name']
+						$value = !is_null($asset['asset_sub_description_name'])
+						? $asset['asset_sub_description_name']
 						: '';
 						break;
 					case 'identifier':
@@ -484,13 +484,13 @@ class Component_Import
 						: '';
 						break;
 					case 'condition_id':
-						$value = !is_null($asset['condition']['name'])
-						? $asset['condition']['name']
+						$value = !is_null($asset['condition_name'])
+						? $asset['condition_name']
 						: '';
 						break;
 					case 'town_id':
-						$value = !is_null($asset['town']['name'])
-						? $asset['town']['name']
+						$value = !is_null($asset['town_name'])
+						? $asset['town_name']
 						: 'N/A';
 						break;
 					case 'lat_start':
@@ -510,28 +510,28 @@ class Component_Import
 						$value = $packet[$csvIndex];
 						break;
 					case 'street_id':
-						$value = !is_null($asset['street']['name'])
-						? $asset['street']['name']
+						$value = !is_null($asset['street_name'])
+						? $asset['street_name']
 						: '';
 						break;
 					case 'building_id':
-						$value = !is_null($asset['building']['name'])
-						? $asset['building']['name']
+						$value = !is_null($asset['building_name'])
+						? $asset['building_name']
 						: '';
 						break;
 					case 'floor_id':
-						$value = !is_null($asset['floor']['name'])
-						? $asset['floor']['name']
+						$value = !is_null($asset['floor_name'])
+						? $asset['floor_name']
 						: '';
 						break;
 					case 'room_id':
-						$value = !is_null($asset['room']['name'])
-						? $asset['room']['name']
+						$value = !is_null($asset['room_name'])
+						? $asset['room_name']
 						: '';
 						break;
 					case 'owner_id':
-						$value = !is_null($asset['owner']['name'])
-						? $asset['owner']['name']
+						$value = !is_null($asset['owner_name'])
+						? $asset['owner_name']
 						: '';
 						break;
 				}
