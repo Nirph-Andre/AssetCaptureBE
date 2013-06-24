@@ -49,7 +49,7 @@ class Util_TesterController extends Struct_Abstract_Controller
 	public function exportAction()
 	{
 		$cImport = new Component_Import();
-		$cImport->export(1, 2, 'TokEx.csv');
+		$cImport->export(1, 1, 'TokEx.csv');
 		echo 'Done';
 		exit();
 	}
