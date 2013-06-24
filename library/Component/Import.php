@@ -246,6 +246,303 @@ class Component_Import
 		}
 	}
 
+	public function export($locationId, $importId, $fileName)
+	{
+		set_time_limit(0);
+		if (file_exists(APPLICATION_PATH . '/../data/' . $fileName))
+		{
+			echo 'Export file already exists! > ' . APPLICATION_PATH . '/../data/' . $fileName;
+			exit(0);
+		}
+		#-> Prep import.
+		$this->importId = $importId;
+		$oImport = new Object_Import();
+		$oImportData = new Object_ImportData();
+		$import = $oImport->view($this->importId)->data;
+		$csvToFieldMap = unserialize($import['map']);
+		$importData = $oImportData->grid(
+			array('import_id' => $this->importId), array(), 500, 1,
+			array(), array('import'),
+			array()
+		)->data;
+		/* echo '<pre>';
+		var_dump($importData);
+		echo '</pre>';
+		exit(); */
+
+		#-> Prep file.
+		$handle  = fopen(APPLICATION_PATH . '/../data/' . $fileName, "w");
+		$oAsset = new Object_Asset();
+
+		#-> Export original records.
+		$i = 0;
+		$maxId = 0;
+		foreach ($importData as $row)
+		{
+			$packet = unserialize($row['packet']);
+			if ('columns' == $row['identifier'])
+			{
+				$packet[] = 'UPDATE STATUS';
+				$packet[] = 'PREVIOUS CONDITION';
+				fputcsv($handle, $packet);
+				continue;
+			}
+			if (empty($row['identifier']))
+			{
+				$packet[] = 'Unchanged';
+				$packet[] = '';
+				fputcsv($handle, $packet);
+				continue;
+			}
+			$asset = $oAsset->view($row['identifier'], array(), true)->data;
+			if (empty($asset))
+			{
+				echo 'Could not find import_data_id ' . $row['id'] . ' : asset ' . $row['identifier'];
+				exit();
+			}
+			$maxId = ($maxId < $asset['id'])
+				? $asset['id']
+				: $maxId;
+			/* echo '<pre>';
+			var_dump($csvToFieldMap);
+			var_dump($asset);
+			echo '</pre>';
+			exit(); */
+			foreach ($csvToFieldMap as $field => $csvIndex)
+			{
+				switch($field)
+				{
+					case 'asset_type_id':
+						$value = !is_null($asset['asset_type']['name'])
+							? $asset['asset_type']['name']
+							: 'N/A';
+						break;
+					case 'asset_sub_type_id':
+						$value = !is_null($asset['asset_sub_type']['name'])
+							? $asset['asset_sub_type']['name']
+							: 'N/A';
+						break;
+					case 'asset_description_id':
+						$value = !is_null($asset['asset_description']['name'])
+							? $asset['asset_description']['name']
+							: 'N/A';
+						break;
+					case 'asset_sub_description_id':
+						$value = !is_null($asset['asset_sub_description']['name'])
+							? $asset['asset_sub_description']['name']
+							: '';
+						break;
+					case 'identifier':
+						$value = !is_null($asset['identifier'])
+							? $asset['identifier']
+							: '';
+						break;
+					case 'details':
+						$value = !is_null($asset['details'])
+							? $asset['details']
+							: '';
+						break;
+					case 'detail2':
+						$value = !is_null($asset['detail2'])
+							? $asset['detail2']
+							: '';
+						break;
+					case 'serial':
+						$value = !is_null($asset['serial'])
+							? $asset['serial']
+							: '';
+						break;
+					case 'condition_id':
+						$value = !is_null($asset['condition']['name'])
+							? $asset['condition']['name']
+							: '';
+						break;
+					case 'town_id':
+						$value = !is_null($asset['town']['name'])
+							? $asset['town']['name']
+							: 'N/A';
+						break;
+					case 'lat_start':
+						$value = !is_null($asset['gps_lat'])
+							? $asset['gps_lat']
+							: '';
+						break;
+					case 'long_start':
+						$value = !is_null($asset['gps_long'])
+							? $asset['gps_long']
+							: '';
+						break;
+					case 'lat_end':
+						$value = $packet[$csvIndex];
+						break;
+					case 'long_end':
+						$value = $packet[$csvIndex];
+						break;
+					case 'street_id':
+						$value = !is_null($asset['street']['name'])
+							? $asset['street']['name']
+							: '';
+						break;
+					case 'building_id':
+						$value = !is_null($asset['building']['name'])
+							? $asset['building']['name']
+							: '';
+						break;
+					case 'floor_id':
+						$value = !is_null($asset['floor']['name'])
+							? $asset['floor']['name']
+							: '';
+						break;
+					case 'room_id':
+						$value = !is_null($asset['room']['name'])
+							? $asset['room']['name']
+							: '';
+						break;
+					case 'owner_id':
+						$value = !is_null($asset['owner']['name'])
+							? $asset['owner']['name']
+							: '';
+						break;
+				}
+				$packet[$csvIndex] = $value;
+			}
+			$updated = $asset["created"] != $asset["updated"]
+				? 'Updated'
+				: 'Unchanged';
+			$packet[] = $updated;
+			$packet[] = !is_null($asset['previous_condition']['name'])
+				? $asset['previous_condition']['name']
+				: '';
+			fputcsv($handle, $packet);
+			$i++;
+		}
+
+		$blank = array();
+		for ($i = 0; $i < 60; $i++)
+		{
+			$blank[$i] = '';
+		}
+
+		#-> Export new records. :: $record['id'] > 5011
+		error_log("max id: $maxId (5011)");
+		$assetData = $oAsset->grid(
+				array('location.id' => $locationId, 'asset.id' => '>' . $maxId), array(), null, null,
+				array(), array(),
+				array()
+		)->data;
+		error_log(count($assetData));
+		foreach ($assetData as $row)
+		{
+			if ($row['id'] < $maxId)
+			{
+				error_log('.');
+				continue;
+			}
+			$packet = $blank;
+			foreach ($csvToFieldMap as $field => $csvIndex)
+			{
+				switch($field)
+				{
+					case 'asset_type_id':
+						$value = !is_null($asset['asset_type']['name'])
+						? $asset['asset_type']['name']
+						: 'N/A';
+						break;
+					case 'asset_sub_type_id':
+						$value = !is_null($asset['asset_sub_type']['name'])
+						? $asset['asset_sub_type']['name']
+						: 'N/A';
+						break;
+					case 'asset_description_id':
+						$value = !is_null($asset['asset_description']['name'])
+						? $asset['asset_description']['name']
+						: 'N/A';
+						break;
+					case 'asset_sub_description_id':
+						$value = !is_null($asset['asset_sub_description']['name'])
+						? $asset['asset_sub_description']['name']
+						: '';
+						break;
+					case 'identifier':
+						$value = !is_null($asset['identifier'])
+						? $asset['identifier']
+						: '';
+						break;
+					case 'details':
+						$value = !is_null($asset['details'])
+						? $asset['details']
+						: '';
+						break;
+					case 'detail2':
+						$value = !is_null($asset['detail2'])
+						? $asset['detail2']
+						: '';
+						break;
+					case 'serial':
+						$value = !is_null($asset['serial'])
+						? $asset['serial']
+						: '';
+						break;
+					case 'condition_id':
+						$value = !is_null($asset['condition']['name'])
+						? $asset['condition']['name']
+						: '';
+						break;
+					case 'town_id':
+						$value = !is_null($asset['town']['name'])
+						? $asset['town']['name']
+						: 'N/A';
+						break;
+					case 'lat_start':
+						$value = !is_null($asset['gps_lat'])
+						? $asset['gps_lat']
+						: '';
+						break;
+					case 'long_start':
+						$value = !is_null($asset['gps_long'])
+						? $asset['gps_long']
+						: '';
+						break;
+					case 'lat_end':
+						$value = $packet[$csvIndex];
+						break;
+					case 'long_end':
+						$value = $packet[$csvIndex];
+						break;
+					case 'street_id':
+						$value = !is_null($asset['street']['name'])
+						? $asset['street']['name']
+						: '';
+						break;
+					case 'building_id':
+						$value = !is_null($asset['building']['name'])
+						? $asset['building']['name']
+						: '';
+						break;
+					case 'floor_id':
+						$value = !is_null($asset['floor']['name'])
+						? $asset['floor']['name']
+						: '';
+						break;
+					case 'room_id':
+						$value = !is_null($asset['room']['name'])
+						? $asset['room']['name']
+						: '';
+						break;
+					case 'owner_id':
+						$value = !is_null($asset['owner']['name'])
+						? $asset['owner']['name']
+						: '';
+						break;
+				}
+				$packet[$csvIndex] = $value;
+			}
+			$packet[] = 'New';
+			$packet[] = '';
+			fputcsv($handle, $packet);
+		}
+	}
+
 
 
 

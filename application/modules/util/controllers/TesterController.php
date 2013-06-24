@@ -19,6 +19,8 @@ class Util_TesterController extends Struct_Abstract_Controller
 	public function indexAction()
 	{
 		#-> Try something new today ;)
+		echo 'NOOOOOO imports yet ;)';
+		exit();
 		$cImport = new Component_Import();
 		$cImport->import('TOKOLOGO', 'Tokologo.csv', array(
 				'asset_type_id' 			=> 3,
@@ -43,6 +45,16 @@ class Util_TesterController extends Struct_Abstract_Controller
 		));
 		exit(0);
 	}
+
+	public function exportAction()
+	{
+		$cImport = new Component_Import();
+		$cImport->export(1, 2, 'TokEx.csv');
+		echo 'Done';
+		exit();
+	}
+
+
 
 
 }
