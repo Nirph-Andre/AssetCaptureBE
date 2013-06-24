@@ -431,9 +431,9 @@ class Component_Import
 				array()
 		)->data;
 		error_log(count($assetData));
-		foreach ($assetData as $row)
+		foreach ($assetData as $asset)
 		{
-			if ($row['id'] < $maxId)
+			if ($asset['id'] < $maxId)
 			{
 				error_log('.');
 				continue;
