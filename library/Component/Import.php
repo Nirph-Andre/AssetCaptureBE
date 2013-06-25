@@ -283,7 +283,18 @@ class Component_Import
 			if ('columns' == $row['identifier'])
 			{
 				$packet[] = 'UPDATE STATUS';
-				$packet[] = 'PREVIOUS CONDITION';
+				$packet[] = 'CREATE TIME';
+				$packet[] = 'UPDATE TIME';
+				$packet[] = 'PREV CONDITION';
+				$packet[] = 'PREV CATEGORY 1';
+				$packet[] = 'PREV CATEGORY 2';
+				$packet[] = 'PREV CATEGORY 3';
+				$packet[] = 'PREV CATEGORY 4';
+				$packet[] = 'PREV TOWN';
+				$packet[] = 'PREV STREET';
+				$packet[] = 'PREV BUILDING';
+				$packet[] = 'PREV FLOOR';
+				$packet[] = 'PREV ROOM';
 				fputcsv($handle, $packet);
 				continue;
 			}
@@ -291,6 +302,17 @@ class Component_Import
 			{
 				$packet[] = 'Unchanged';
 				$packet[] = '';
+				$packet[] = '';
+				$packet[] = $csvToFieldMap['condition_id'];
+				$packet[] = $csvToFieldMap['asset_type_id'];
+				$packet[] = $csvToFieldMap['asset_sub_type_id'];
+				$packet[] = $csvToFieldMap['asset_sub_description_id'];
+				$packet[] = $csvToFieldMap['details'];
+				$packet[] = $csvToFieldMap['town_id'];
+				$packet[] = $csvToFieldMap['street_id'];
+				$packet[] = $csvToFieldMap['building_id'];
+				$packet[] = $csvToFieldMap['floor_id'];
+				$packet[] = $csvToFieldMap['room_id'];
 				fputcsv($handle, $packet);
 				continue;
 			}
@@ -313,11 +335,13 @@ class Component_Import
 				switch($field)
 				{
 					case 'asset_type_id':
+						$prevCat1 = $packet[$csvIndex];
 						$value = !is_null($asset['asset_type']['name'])
 							? $asset['asset_type']['name']
 							: 'N/A';
 						break;
 					case 'asset_sub_type_id':
+						$prevCat2 = $packet[$csvIndex];
 						$value = !is_null($asset['asset_sub_type']['name'])
 							? $asset['asset_sub_type']['name']
 							: 'N/A';
@@ -328,6 +352,7 @@ class Component_Import
 							: 'N/A';
 						break;
 					case 'asset_sub_description_id':
+						$prevCat3 = $packet[$csvIndex];
 						$value = !is_null($asset['asset_sub_description']['name'])
 							? $asset['asset_sub_description']['name']
 							: '';
@@ -338,6 +363,7 @@ class Component_Import
 							: '';
 						break;
 					case 'details':
+						$prevCat4 = $packet[$csvIndex];
 						$value = !is_null($asset['details'])
 							? $asset['details']
 							: '';
@@ -353,11 +379,13 @@ class Component_Import
 							: '';
 						break;
 					case 'condition_id':
+						$prevCondition = $packet[$csvIndex];
 						$value = !is_null($asset['condition']['name'])
 							? $asset['condition']['name']
 							: '';
 						break;
 					case 'town_id':
+						$prevTown = $packet[$csvIndex];
 						$value = !is_null($asset['town']['name'])
 							? $asset['town']['name']
 							: 'N/A';
@@ -379,21 +407,25 @@ class Component_Import
 						$value = $packet[$csvIndex];
 						break;
 					case 'street_id':
+						$prevStreet = $packet[$csvIndex];
 						$value = !is_null($asset['street']['name'])
 							? $asset['street']['name']
 							: '';
 						break;
 					case 'building_id':
+						$prevBuilding = $packet[$csvIndex];
 						$value = !is_null($asset['building']['name'])
 							? $asset['building']['name']
 							: '';
 						break;
 					case 'floor_id':
+						$prevFloor = $packet[$csvIndex];
 						$value = !is_null($asset['floor']['name'])
 							? $asset['floor']['name']
 							: '';
 						break;
 					case 'room_id':
+						$prevRoom = $packet[$csvIndex];
 						$value = !is_null($asset['room']['name'])
 							? $asset['room']['name']
 							: '';
@@ -410,9 +442,18 @@ class Component_Import
 				? 'Updated'
 				: 'Unchanged';
 			$packet[] = $updated;
-			$packet[] = !is_null($asset['previous_condition']['name'])
-				? $asset['previous_condition']['name']
-				: '';
+			$packet[] = $asset['created'];
+			$packet[] = $asset['updated'];
+			$packet[] = $prevCondition;
+			$packet[] = $prevCat1;
+			$packet[] = $prevCat2;
+			$packet[] = $prevCat3;
+			$packet[] = $prevCat4;
+			$packet[] = $prevTown;
+			$packet[] = $prevStreet;
+			$packet[] = $prevBuilding;
+			$packet[] = $prevFloor;
+			$packet[] = $prevRoom;
 			fputcsv($handle, $packet);
 			$i++;
 		}
@@ -424,6 +465,16 @@ class Component_Import
 		}
 
 		#-> Export new records. :: $record['id'] > 5011
+		$prevCondition = '';
+		$prevCat1 = '';
+		$prevCat2 = '';
+		$prevCat3 = '';
+		$prevCat4 = '';
+		$prevTown = '';
+		$prevStreet = '';
+		$prevBuilding = '';
+		$prevFloor = '';
+		$prevRoom = '';
 		error_log("max id: $maxId (5011)");
 		$assetData = $oAsset->grid(
 				array('location.id' => $locationId, 'asset.id' => '>' . $maxId), array(), null, null,
