@@ -589,7 +589,8 @@ class Component_Import
 				$packet[$csvIndex] = $value;
 			}
 			$packet[] = 'New';
-			$packet[] = '';
+			$packet[] = $asset['created'];
+			$packet[] = $asset['updated'];
 			fputcsv($handle, $packet);
 		}
 	}
