@@ -323,17 +323,17 @@ class Component_Import
 				exit();
 			}
 			$cP = explode(' ', $asset['created']);
-			if ('2013-06-24' != $cP[0])
-			{
-				continue;
-			}
+			$uP = '';
 			if (!is_null($asset['updated']) && !empty($asset['updated']))
 			{
 				$uP = explode(' ', $asset['updated']);
-				if ('2013-06-24' != $uP[0])
-				{
-					continue;
-				}
+			}
+			$continue = '2013-06-24' == $cP[0] || '2013-06-24' == $uP
+				? true
+				: false;
+			if (!$continue)
+			{
+				continue;
 			}
 			$maxId = ($maxId < $asset['id'])
 				? $asset['id']
