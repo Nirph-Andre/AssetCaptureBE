@@ -255,7 +255,7 @@ class Component_Import
 			exit(0);
 		}
 		#-> Prep import.
-		$expDate = '2013-06-25';
+		$expDate = '2013-06-26';
 		$this->importId = $importId;
 		$oImport = new Object_Import();
 		$oImportData = new Object_ImportData();
