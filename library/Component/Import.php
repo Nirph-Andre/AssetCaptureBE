@@ -328,7 +328,7 @@ class Component_Import
 			{
 				$uP = explode(' ', $asset['updated']);
 			}
-			$continue = '2013-06-24' == $cP[0] || '2013-06-24' == $uP
+			$continue = '2013-06-24' == $cP[0] || '2013-06-24' == $uP[0]
 				? true
 				: false;
 			if (!$continue)
