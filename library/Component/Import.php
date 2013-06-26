@@ -255,6 +255,7 @@ class Component_Import
 			exit(0);
 		}
 		#-> Prep import.
+		$expDate = '2013-06-25';
 		$this->importId = $importId;
 		$oImport = new Object_Import();
 		$oImportData = new Object_ImportData();
@@ -328,7 +329,7 @@ class Component_Import
 			{
 				$uP = explode(' ', $asset['updated']);
 			}
-			$continue = '2013-06-24' == $cP[0] || '2013-06-24' == $uP[0]
+			$continue = $expDate == $cP[0] || $expDate == $uP[0]
 				? true
 				: false;
 			if (!$continue)
@@ -508,7 +509,7 @@ class Component_Import
 			{
 				$uP = explode(' ', $asset['updated']);
 			}
-			$continue = '2013-06-24' == $cP[0] || '2013-06-24' == $uP[0]
+			$continue = $expDate == $cP[0] || $expDate == $uP[0]
 				? true
 				: false;
 			if (!$continue)
