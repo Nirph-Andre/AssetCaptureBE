@@ -313,7 +313,7 @@ class Component_Import
 				$packet[] = $csvToFieldMap['building_id'];
 				$packet[] = $csvToFieldMap['floor_id'];
 				$packet[] = $csvToFieldMap['room_id'];
-				fputcsv($handle, $packet);
+				//fputcsv($handle, $packet);
 				continue;
 			}
 			$asset = $oAsset->view($row['identifier'], array(), true)->data;
@@ -321,6 +321,19 @@ class Component_Import
 			{
 				echo 'Could not find import_data_id ' . $row['id'] . ' : asset ' . $row['identifier'];
 				exit();
+			}
+			$cP = explode(' ', $asset['created']);
+			if ('2013-06-24' != $cP[0])
+			{
+				continue;
+			}
+			if (!is_null($asset['updated']) && !empty($asset['updated']))
+			{
+				$uP = explode(' ', $asset['updated']);
+				if ('2013-06-24' != $uP[0])
+				{
+					continue;
+				}
 			}
 			$maxId = ($maxId < $asset['id'])
 				? $asset['id']
@@ -488,6 +501,19 @@ class Component_Import
 			{
 				error_log('.');
 				continue;
+			}
+			$cP = explode(' ', $asset['created']);
+			if ('2013-06-24' != $cP[0])
+			{
+				continue;
+			}
+			if (!is_null($asset['updated']) && !empty($asset['updated']))
+			{
+				$uP = explode(' ', $asset['updated']);
+				if ('2013-06-24' != $uP[0])
+				{
+					continue;
+				}
 			}
 			$packet = $blank;
 			foreach ($csvToFieldMap as $field => $csvIndex)
