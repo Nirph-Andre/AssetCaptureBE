@@ -503,17 +503,17 @@ class Component_Import
 				continue;
 			}
 			$cP = explode(' ', $asset['created']);
-			if ('2013-06-24' != $cP[0])
-			{
-				continue;
-			}
+			$uP = '';
 			if (!is_null($asset['updated']) && !empty($asset['updated']))
 			{
 				$uP = explode(' ', $asset['updated']);
-				if ('2013-06-24' != $uP[0])
-				{
-					continue;
-				}
+			}
+			$continue = '2013-06-24' == $cP[0] || '2013-06-24' == $uP[0]
+				? true
+				: false;
+			if (!$continue)
+			{
+				continue;
 			}
 			$packet = $blank;
 			foreach ($csvToFieldMap as $field => $csvIndex)
