@@ -329,13 +329,13 @@ class Component_Import
 			{
 				$uP = explode(' ', $asset['updated']);
 			}
-			$continue = $expDate == $cP[0] || $expDate == $uP[0]
+			/* $continue = $expDate == $cP[0] || $expDate == $uP[0]
 				? true
 				: false;
 			if (!$continue)
 			{
 				continue;
-			}
+			} */
 			$maxId = ($maxId < $asset['id'])
 				? $asset['id']
 				: $maxId;
@@ -509,13 +509,13 @@ class Component_Import
 			{
 				$uP = explode(' ', $asset['updated']);
 			}
-			$continue = $expDate == $cP[0] || $expDate == $uP[0]
+			/* $continue = $expDate == $cP[0] || $expDate == $uP[0]
 				? true
 				: false;
 			if (!$continue)
 			{
 				continue;
-			}
+			} */
 			$packet = $blank;
 			foreach ($csvToFieldMap as $field => $csvIndex)
 			{
