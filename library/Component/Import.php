@@ -26,21 +26,6 @@ class Component_Import
 		$oClass = new $class();
 		$filter[$field] = $value;
 		$entry = $oClass->view(null, $filter)->data;
-		if ('MACHINERY AND EQUIPMENT' == $value && empty($entry))
-		{
-			echo "<pre>";
-			echo "sourceId($object, $value, $field)";
-			var_dump($entry);
-			var_dump($filter);
-			echo "try 1\n";
-			$entry = $oClass->view(null, array('name' => 'MACHINERY AND EQUIPMENT'))->data;
-			var_dump($entry);
-			echo "try 2\n";
-			$entry = $oClass->view(null, array('asset_type_id' => 2))->data;
-			var_dump($entry);
-			echo "</pre";
-			exit(0);
-		}
 		if (empty($entry))
 		{
 			if (!isset($filter[$field]) || is_null($filter[$field]))
