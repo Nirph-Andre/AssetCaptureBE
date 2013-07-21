@@ -26,6 +26,21 @@ class Component_Import
 		$oClass = new $class();
 		$filter[$field] = $value;
 		$entry = $oClass->view(null, $filter)->data;
+		if ('MACHINERY AND EQUIPMENT' == $value && empty($entry))
+		{
+			echo "<pre>";
+			echo "sourceId($object, $value, $field)";
+			var_dump($entry);
+			var_dump($filter);
+			echo "try 1\n";
+			$entry = $oClass->view(null, array('name' => 'MACHINERY AND EQUIPMENT'))->data;
+			var_dump($entry);
+			echo "try 2\n";
+			$entry = $oClass->view(null, array('asset_type_id' => 2))->data;
+			var_dump($entry);
+			echo "</pre";
+			exit(0);
+		}
 		if (empty($entry))
 		{
 			if (!isset($filter[$field]) || is_null($filter[$field]))
@@ -124,7 +139,7 @@ class Component_Import
 			$entry = array();
 			foreach ($csvToFieldMap as $field => $csvIndex)
 			{
-				$entry[$field] = ('N/A' != $data[$csvIndex] && '' != $data[$csvIndex])
+				$entry[$field] = (isset($data[$csvIndex]) && 'N/A' != $data[$csvIndex] && '' != $data[$csvIndex])
 					? $data[$csvIndex]
 					: null;
 			}
@@ -206,16 +221,16 @@ class Component_Import
 			$record['identifier'] = $entry['identifier'];
 			$record['asset_type_id'] = $this->sourceId('AssetType', $entry['asset_type_id']);
 			$record['asset_sub_type_id'] = $this->sourceId('AssetSubType', $entry['asset_sub_type_id'], 'name', array(
-							'asset_type_id' => $record['asset_type_id']
+							'asset_type_id' => (int) $record['asset_type_id']
 					));
 			$record['asset_description_id'] = !is_null($entry['asset_description_id'])
 				? $this->sourceId('AssetDescription', $entry['asset_description_id'], 'name', array(
-							'asset_sub_type_id' => $record['asset_sub_type_id']
+							'asset_sub_type_id' => (int) $record['asset_sub_type_id']
 					))
 				: $record['asset_sub_type_id'];
 			$record['asset_sub_description_id'] = !is_null($entry['asset_sub_description_id'])
 				? $this->sourceId('AssetSubDescription', $entry['asset_sub_description_id'], 'name', array(
-							'asset_description_id' => $record['asset_description_id']
+							'asset_description_id' => (int) $record['asset_description_id']
 					))
 				: null;
 			if (!is_null($entry['details']))

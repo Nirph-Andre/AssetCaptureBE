@@ -7,13 +7,13 @@
  */
 abstract class Struct_Abstract_DataAccess
 {
-	
+
 	/**
 	 * Utility to filter names for code use.
 	 * @var Zend_Filter_Word_UnderscoreToCamelCase
 	 */
 	static protected $_underscoreToCamelCase = null;
-	
+
 	/**
 	 * Current data intent.
 	 * @var unknown_type
@@ -29,7 +29,7 @@ abstract class Struct_Abstract_DataAccess
 	 * @var unknown_type
 	 */
 	private $_objectState = null;
-	
+
 	/**
 	 * Request object.
 	 * @var Struct_ActionRequest
@@ -55,7 +55,7 @@ abstract class Struct_Abstract_DataAccess
 	 * @var array
 	 */
 	protected $_dataChanges = null;
-	
+
 	/**
 	 * Switch to enable html encoding of return data.
 	 * @var boolean
@@ -121,9 +121,9 @@ abstract class Struct_Abstract_DataAccess
 	 * @var array
 	 */
 	protected $_meta = null;
-	
-	
-	
+
+
+
 	/* ---------------------------------------------------------------------- *\
 		Specifically cater for Response Agent Plugins.
 		Generally provides intent, state and value transparency.
@@ -136,7 +136,7 @@ abstract class Struct_Abstract_DataAccess
 	{
 		return $this->_objectState;
 	}
-	
+
 	/**
 	 * Get current data processing intent.
 	 * @return integer
@@ -145,7 +145,7 @@ abstract class Struct_Abstract_DataAccess
 	{
 		return $this->_dataIntent;
 	}
-	
+
 	/**
 	 * Get current data state.
 	 * @return integer
@@ -154,7 +154,7 @@ abstract class Struct_Abstract_DataAccess
 	{
 		return $this->_dataState;
 	}
-	
+
 	/**
 	 * Retrieve request specifics that the object is currently processing.
 	 * @return Struct_ActionRequest
@@ -163,7 +163,7 @@ abstract class Struct_Abstract_DataAccess
 	{
 		return $this->_request;
 	}
-	
+
 	/**
 	 * Retrieve only the input data from the action request.
 	 * @return unknown
@@ -172,7 +172,7 @@ abstract class Struct_Abstract_DataAccess
 	{
 		return $this->_request->data;
 	}
-	
+
 	/**
 	 * Retrieve current value data.
 	 * @return array
@@ -181,7 +181,7 @@ abstract class Struct_Abstract_DataAccess
 	{
 		return $this->_data;
 	}
-	
+
 	/**
 	 * Override current value data.
 	 * @param string $value
@@ -193,7 +193,7 @@ abstract class Struct_Abstract_DataAccess
 		$this->_data[$field] = $value;
 		return $this;
 	}
-	
+
 	/**
 	 * Override current tag value data.
 	 * @param array $data
@@ -204,7 +204,7 @@ abstract class Struct_Abstract_DataAccess
 		$this->_tagData = $data;
 		return $this;
 	}
-	
+
 	/**
 	 * Retrieve current value data for multi-action.
 	 * @return array
@@ -213,7 +213,7 @@ abstract class Struct_Abstract_DataAccess
 	{
 		return $this->_dataMulti;
 	}
-	
+
 	/**
 	 * Overwrite current value data for multi-action.
 	 * @param array $data
@@ -224,7 +224,7 @@ abstract class Struct_Abstract_DataAccess
 		$this->_dataMulti = $data;
 		return $this;
 	}
-	
+
 	/**
 	 * Retrieve data that is to change on the persistence layer.
 	 * @return array
@@ -233,7 +233,7 @@ abstract class Struct_Abstract_DataAccess
 	{
 		return $this->_dataChanges;
 	}
-	
+
 	/**
 	 * Override data that is to change on the persistence layer.
 	 * @param string $value
@@ -245,7 +245,7 @@ abstract class Struct_Abstract_DataAccess
 		$this->_dataChanges[$field] = $value;
 		return $this;
 	}
-	
+
 	/**
 	 * Remove field from data changes.
 	 * @param string $value
@@ -256,7 +256,7 @@ abstract class Struct_Abstract_DataAccess
 		unset($this->_dataChanges[$field]);
 		return $this;
 	}
-	
+
 	/**
 	 * Retrieve field validation meta-data.
 	 * @return array
@@ -265,7 +265,7 @@ abstract class Struct_Abstract_DataAccess
 	{
 		return $this->_validation;
 	}
-	
+
 	/**
 	 * Override field validation specifics.
 	 * @param string $field
@@ -281,7 +281,7 @@ abstract class Struct_Abstract_DataAccess
             );
 		return $this;
 	}
-	
+
 	/**
 	 * Allow agent to set additional validation messages.
 	 * Adding messages automatically causes a validation failure.
@@ -296,9 +296,9 @@ abstract class Struct_Abstract_DataAccess
 			&& $this->_agentValidationMessages[$field] = $messages;
 		return $this;
 	}
-	
-	
-	
+
+
+
 	/* ---------------------------------------------------------------------- *\
 	 *	Standard Interface
 	\* ---------------------------------------------------------------------- */
@@ -321,7 +321,7 @@ abstract class Struct_Abstract_DataAccess
 					'Server could not process data request.'
 					);
 		}
-		
+
 		#-> Preperations.
 		$this->_request = $request;
 		$this->_objectState  = OBJECT_STATE_PRE_PROCESSING;
@@ -335,7 +335,7 @@ abstract class Struct_Abstract_DataAccess
 				$this->_tagData[substr($field, 4, strlen($field) - 4)] = $value;
 			}
 		}
-		
+
 		#-> Processing.
 		switch ($request->action)
 		{
@@ -369,7 +369,7 @@ abstract class Struct_Abstract_DataAccess
 							array('Validation' => $this->_validationMessages)
 					);
 				}
-				
+
 				#-> Process the request.
 				$this->_objectState = OBJECT_STATE_PROCESSING;
 				$response = $this->save(null, array(), $this->_dataChanges, $this->_tagData);
@@ -382,7 +382,7 @@ abstract class Struct_Abstract_DataAccess
 				{
 					return $response;
 				}
-				
+
 				#-> Finalization.
 				$this->_agentValidationMessages = null;
 				$this->_objectState = OBJECT_STATE_POST_PROCESSING;
@@ -395,7 +395,7 @@ abstract class Struct_Abstract_DataAccess
 						array('Message' => $msg)
 						);
 				break;
-				
+
 			case 'Update':
 				$this->_agentValidationMessages = array();
 				$response = $this->view($this->_data['id']);
@@ -438,7 +438,7 @@ abstract class Struct_Abstract_DataAccess
 							array('Validation' => $this->_validationMessages)
 					);
 				}
-			
+
 				#-> Process the request.
 				$this->_objectState = OBJECT_STATE_PROCESSING;
 				$response = $this->save($this->_data['id'], array(), $this->_dataChanges, $this->_tagData);
@@ -450,7 +450,7 @@ abstract class Struct_Abstract_DataAccess
 				{
 					return $response;
 				}
-				
+
 				#-> Finalization.
 				$this->_agentValidationMessages = null;
 				$this->_objectState = OBJECT_STATE_POST_PROCESSING;
@@ -463,7 +463,7 @@ abstract class Struct_Abstract_DataAccess
 						array('Message' => $msg)
 				);
 				break;
-				
+
 			case 'Delete':
 				$response = $this->view($this->_data['id']);
 				if (!$response->ok())
@@ -482,7 +482,7 @@ abstract class Struct_Abstract_DataAccess
 							Struct_Event::getMessage()
 							);
 				}
-			
+
 				#-> Process the request.
 				$this->_objectState = OBJECT_STATE_PROCESSING;
 				$response = $this->remove($this->_data['id']);
@@ -494,7 +494,7 @@ abstract class Struct_Abstract_DataAccess
 				{
 					return $response;
 				}
-				
+
 				#-> Finalization.
 				$this->_objectState = OBJECT_STATE_POST_PROCESSING;
 				$this->_dataState   = DATA_STATE_CLEAN;
@@ -506,7 +506,7 @@ abstract class Struct_Abstract_DataAccess
 						array('Message' => $msg)
 				);
 				break;
-				
+
 			case 'Find':
 				if (!is_numeric($this->_data['id'])
 					|| $this->_data['id'] < 1)
@@ -526,7 +526,7 @@ abstract class Struct_Abstract_DataAccess
 							Struct_Event::getMessage()
 					);
 				}
-				
+
 				#-> Process the request.
 				$this->_objectState = OBJECT_STATE_PROCESSING;
 				$id = null;
@@ -544,7 +544,7 @@ abstract class Struct_Abstract_DataAccess
 					return $response;
 				}
 				$this->_data = $response->data;
-				
+
 				#-> Finalization.
 				$this->_objectState = OBJECT_STATE_POST_PROCESSING;
 				$this->_dataState   = DATA_STATE_CLEAN;
@@ -552,7 +552,7 @@ abstract class Struct_Abstract_DataAccess
 				Struct_Event::trigger("$this->_eventNamespace.Fetched", $this);
 				return Struct_ActionFeedback::successWithData($this->_data);
 				break;
-				
+
 			case 'List':
 				$this->_dataState   = DATA_STATE_NULL;
 				$this->_dataIntent  = DATA_INTENT_FETCH_MULTI;
@@ -563,7 +563,7 @@ abstract class Struct_Abstract_DataAccess
 							Struct_Event::getMessage()
 					);
 				}
-				
+
 				#-> Process the request.
 				$this->_objectState = OBJECT_STATE_PROCESSING;
 				$filter = isset($request->options['filter'])
@@ -578,7 +578,7 @@ abstract class Struct_Abstract_DataAccess
 					return $response;
 				}
 				$this->_dataMulti = $response->data;
-				
+
 				#-> Finalization.
 				$this->_objectState = OBJECT_STATE_POST_PROCESSING;
 				$this->_dataState   = DATA_STATE_CLEAN;
@@ -586,7 +586,7 @@ abstract class Struct_Abstract_DataAccess
 				Struct_Event::trigger("$this->_eventNamespace.FetchedMultiple", $this);
 				return Struct_ActionFeedback::successWithData($this->_dataMulti);
 				break;
-				
+
 			case 'Grid':
 				$this->_dataState   = DATA_STATE_NULL;
 				$this->_dataIntent  = DATA_INTENT_FETCH_MULTI;
@@ -597,7 +597,7 @@ abstract class Struct_Abstract_DataAccess
 							Struct_Event::getMessage()
 					);
 				}
-				
+
 				#-> Process the request.
 				$this->_objectState = OBJECT_STATE_PROCESSING;
 				$filter = isset($request->options['filter'])
@@ -643,7 +643,7 @@ abstract class Struct_Abstract_DataAccess
 						'Paging' => $response->result['Paging'],
 						'Order'  => $response->result['Order']
 						);
-				
+
 				#-> Finalization.
 				$this->_objectState = OBJECT_STATE_POST_PROCESSING;
 				$this->_dataState   = DATA_STATE_CLEAN;
@@ -652,7 +652,7 @@ abstract class Struct_Abstract_DataAccess
 				return Struct_ActionFeedback::successWithData($this->_dataMulti, $extra);
 				break;
 		}
-		
+
 		#-> Invalid action requested.
 		return Struct_ActionFeedback::error(
 				'Invalid data action requested',
@@ -660,7 +660,7 @@ abstract class Struct_Abstract_DataAccess
 				$request->action
 				);
 	}
-	
+
 	/**
 	 * Encode all return data for html display.
 	 * @param  boolean $encode
@@ -671,7 +671,7 @@ abstract class Struct_Abstract_DataAccess
 		$this->htmlEncodeReturnData = $encode;
 		return $this;
 	}
-	
+
 	/**
 	 * Retrieve database table name.
 	 * @return string
@@ -680,7 +680,7 @@ abstract class Struct_Abstract_DataAccess
 	{
 		return $this->_table;
 	}
-	
+
 	/**
 	 * Unique identification fields for this table (besides id field).
 	 * @return array|boolean
@@ -689,7 +689,7 @@ abstract class Struct_Abstract_DataAccess
 	{
 		return $this->_uniqueIdentifier;
 	}
-	
+
 	/**
 	 * Pass back unstacked data results.
 	 * @param boolean $flatten
@@ -700,7 +700,7 @@ abstract class Struct_Abstract_DataAccess
 		$this->_flatten = $flatten;
 		return $this;
 	}
-	
+
 	/**
 	 * Pass back results indexed by primary key.
 	 * @param boolean $index
@@ -711,7 +711,7 @@ abstract class Struct_Abstract_DataAccess
 		$this->_index = $index;
 		return $this;
 	}
-	
+
 	/**
 	 * Add a join chain link for extended data retrievals.
 	 * @param string $linkedTable
@@ -722,7 +722,7 @@ abstract class Struct_Abstract_DataAccess
 		$this->_chain[] = $linkedTable;
 		return $this;
 	}
-	
+
 	/**
 	 * Add a temporary join to the beginning of the next extended data query.
 	 * @param  string $table
@@ -739,7 +739,7 @@ abstract class Struct_Abstract_DataAccess
 				);
 		return $this;
 	}
-	
+
 	/**
 	 * Add a temporary join to the end of the next extended data query.
 	 * @param  string $table
@@ -756,7 +756,7 @@ abstract class Struct_Abstract_DataAccess
 				);
 		return $this;
 	}
-	
+
 	/**
 	 * Set to remove/not remove password fields from results.
 	 * @param boolean $show
@@ -767,7 +767,7 @@ abstract class Struct_Abstract_DataAccess
 		$this->_showPassFields = $show;
 		return $this;
 	}
-	
+
 	/**
 	 * Save entry.
 	 * @param  integer $id
@@ -799,7 +799,7 @@ abstract class Struct_Abstract_DataAccess
 		return $this->_getTable()
 			->updateSingle($where, $data, $tagData);
 	}
-	
+
 	/**
 	 * Update multiple entries.
 	 * @param  array $filters
@@ -816,7 +816,7 @@ abstract class Struct_Abstract_DataAccess
 		return $this->_getTable()
 			->updateMulti($where, $data);
 	}
-	
+
 	/**
 	 * Toggle bit-field value.
 	 * @param  string  $field
@@ -834,7 +834,7 @@ abstract class Struct_Abstract_DataAccess
 		$value = (1 == $record->data[$field])
 			? 0
 			: 1;
-	
+
 		$where = array();
 		if (!is_null($id))
 		{
@@ -847,7 +847,7 @@ abstract class Struct_Abstract_DataAccess
 		return $this->_getTable()
 			->updateSingle($where, array($field => $value));
 	}
-	
+
 	/**
 	 * Update field value.
 	 * @param  string  $field
@@ -870,7 +870,7 @@ abstract class Struct_Abstract_DataAccess
 		return $this->_getTable()
 			->updateSingle($where, array($field => $value));
 	}
-	
+
 	/**
 	 * Delete/Archive entry.
 	 * @param  integer $id
@@ -891,7 +891,7 @@ abstract class Struct_Abstract_DataAccess
 		return $this->_getTable()
 			->removeSingle($where);
 	}
-	
+
 	/**
 	 * Delete/Archive multiple entries.
 	 * @param  array $filters
@@ -907,7 +907,7 @@ abstract class Struct_Abstract_DataAccess
 		return $this->_getTable()
 			->removeMulti($where);
 	}
-	
+
 	/**
 	 * Retrieve entry.
 	 * @param  integer $id
@@ -935,7 +935,7 @@ abstract class Struct_Abstract_DataAccess
 					->htmlEncodeDataReturn($this->htmlEncodeReturnData)
 					->viewSingle($where);
 	}
-	
+
 	/**
 	 * Retrieve full list of recursively stacked dependancies.
 	 * @param array $chain
@@ -946,7 +946,7 @@ abstract class Struct_Abstract_DataAccess
 		return $this->_getTable()
 			->stackList($chain);
 	}
-	
+
 	/**
 	 * List entries by optional dynamic filters and order.
 	 * @param  array   $filters
@@ -970,7 +970,7 @@ abstract class Struct_Abstract_DataAccess
 			->htmlEncodeDataReturn($this->htmlEncodeReturnData)
 			->listAll($where, $order, $allColumns);
 	}
-	
+
 	/**
 	 * Full grid data for entries by optional dynamic filters, order and paging.
 	 * @param  array   $filters
@@ -1009,7 +1009,7 @@ abstract class Struct_Abstract_DataAccess
 			->grid($where, $order, $numRecordsPerPage, $numPage,
 					$filters, $excludeTables, $this->_chain, $group);
 	}
-	
+
 	/**
 	 * Count table entries relevant to filters supplied.
 	 * @param array $where
@@ -1023,9 +1023,9 @@ abstract class Struct_Abstract_DataAccess
 		return $this->_getTable()
 			->count($where, $includeArchived);
 	}
-	
-	
-	
+
+
+
 	/* ---------------------------------------------------------------------- *\
 	 *	Internal Utilities
 	\* ---------------------------------------------------------------------- */
@@ -1044,7 +1044,7 @@ abstract class Struct_Abstract_DataAccess
 			);
 		return new $className;
 	}
-	
+
 	/**
 	 * Validate data received to ensure integrity.
 	 * @param array $data
@@ -1072,7 +1072,7 @@ abstract class Struct_Abstract_DataAccess
 					unset($data[$field]);
 				}
 			}
-			
+
 			#-> Check for field required.
 			if (isset($requirements['required'])
 					&& $requirements['required']
@@ -1091,7 +1091,7 @@ abstract class Struct_Abstract_DataAccess
 				#-> Empty string passed, not required, move on.
 				continue;
 			}
-			
+
 			#-> Check for js passing string false/true for tinyint fields.
 			if ($this->_meta[$field]['DATA_TYPE'] == 'tinyint' && !is_numeric($this->_dataChanges[$field]))
 			{
@@ -1100,7 +1100,7 @@ abstract class Struct_Abstract_DataAccess
 					: 1;
 				$data[$field] = $this->_dataChanges[$field];
 			}
-			
+
 			#-> Custom field validators.
 			if (isset($data[$field])
 					&& isset($requirements['validators'])
@@ -1121,7 +1121,7 @@ abstract class Struct_Abstract_DataAccess
 				}
 			}
 		}
-		
+
 		#-> Check for validation errors from agent.
 		foreach ($this->_agentValidationMessages as $field => $messages)
 		{
@@ -1130,10 +1130,10 @@ abstract class Struct_Abstract_DataAccess
 				: $messages;
 			$valid = false;
 		}
-		
+
 		return $valid;
 	}
-	
+
 	/**
 	 * Convert human input filter to db format filter.
 	 * @param  array $filter
@@ -1144,7 +1144,8 @@ abstract class Struct_Abstract_DataAccess
 		$where = array();
 		foreach ($filter as $field => $valueStr)
 		{
-			$values = explode(' AND ', $valueStr);
+			//$values = explode(' AND ', $valueStr);
+			$values = array($valueStr);
 			foreach ($values as $value)
 			{
 				$parts = explode('.', $field);
@@ -1227,7 +1228,7 @@ abstract class Struct_Abstract_DataAccess
 		}
 		return $where;
 	}
-	
+
 	/**
 	 * Convert grid input order to db format order.
 	 * @param  array $order
@@ -1245,7 +1246,7 @@ abstract class Struct_Abstract_DataAccess
 		}
 		return $orderBy;
 	}
-	
-	
-	
+
+
+
 }
