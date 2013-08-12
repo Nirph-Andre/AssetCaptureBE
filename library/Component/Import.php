@@ -323,8 +323,6 @@ class Component_Import
 				echo 'Could not find import_data_id ' . $row['id'] . ' : asset ' . $row['identifier'];
 				exit();
 			}
-			var_dump($asset);
-			exit();
 			$cP = explode(' ', $asset['created']);
 			$uP = '';
 			if (!is_null($asset['updated']) && !empty($asset['updated']))
@@ -508,6 +506,8 @@ class Component_Import
 		error_log(count($assetData));
 		foreach ($assetData as $asset)
 		{
+			var_dump($asset);
+			exit();
 			if ($asset['id'] < $maxId)
 			{
 				error_log('.');
