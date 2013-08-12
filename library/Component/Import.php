@@ -323,6 +323,8 @@ class Component_Import
 				echo 'Could not find import_data_id ' . $row['id'] . ' : asset ' . $row['identifier'];
 				exit();
 			}
+			var_dump($asset);
+			exit();
 			$cP = explode(' ', $asset['created']);
 			$uP = '';
 			if (!is_null($asset['updated']) && !empty($asset['updated']))
@@ -452,9 +454,17 @@ class Component_Import
 				}
 				$packet[$csvIndex] = $value;
 			}
-			$updated = $asset["created"] != $asset["updated"]
-				? 'Updated'
-				: 'Unchanged';
+			if (!is_null($asset['asset_sub_type']) && !is_null($asset['asset_description'])
+				&& $asset['asset_sub_type']['id'] != $asset['asset_description']['asset_sub_type_id'])
+			{
+				$updated = 'INVALID';
+			}
+			else
+			{
+				$updated = $asset["created"] != $asset["updated"]
+					? 'Updated'
+					: 'Unchanged';
+			}
 			$packet[] = $updated;
 			$packet[] = $asset['created'];
 			$packet[] = $asset['updated'];

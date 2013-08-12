@@ -19,8 +19,8 @@ class Util_TesterController extends Struct_Abstract_Controller
 	public function indexAction()
 	{
 		#-> Try something new today ;)
-		/* echo 'NOOOOOO imports yet ;)';
-		exit(); */
+		echo 'NOOOOOO imports yet ;)';
+		exit();
 		$cImport = new Component_Import();
 		$cImport->import('MAGARENG', 'Magareng.csv', array(
 				'asset_type_id' 			=> 3,
