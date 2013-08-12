@@ -506,8 +506,6 @@ class Component_Import
 		error_log(count($assetData));
 		foreach ($assetData as $asset)
 		{
-			var_dump($asset);
-			exit();
 			if ($asset['id'] < $maxId)
 			{
 				error_log('.');
@@ -625,7 +623,16 @@ class Component_Import
 				}
 				$packet[$csvIndex] = $value;
 			}
-			$packet[] = 'New';
+			if (!is_null($asset['asset_sub_type_id']) && !is_null($asset['asset_description_asset_sub_type_id'])
+				&& $asset['asset_sub_type_id'] != $asset['asset_description_asset_sub_type_id'])
+			{
+				$updated = 'INVALID';
+			}
+			else
+			{
+				$updated = 'New';
+			}
+			$packet[] = $updated;
 			$packet[] = $asset['created'];
 			$packet[] = $asset['updated'];
 			fputcsv($handle, $packet);
